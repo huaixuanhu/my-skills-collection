@@ -1,0 +1,4 @@
+interface:
+  display_name: "Human-AI Governance"
+  short_description: "Risk-scaled long-term AI collaboration"
+  default_prompt: "Use $human-ai-governance to set up a practical long-term collaboration workflow for this project."
