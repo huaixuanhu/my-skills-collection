@@ -1,4 +1,4 @@
 interface:
   display_name: "Human-AI Governance"
-  short_description: "Risk-scaled long-term AI collaboration"
-  default_prompt: "Use $human-ai-governance to set up a practical long-term collaboration workflow for this project."
+  short_description: "Risk-scaled governance and Max/Ultra routing"
+  default_prompt: "Use $human-ai-governance to set proportional project governance and recommend xhigh, Max, or Ultra for this task."

@@ -15,6 +15,7 @@ def main() -> int:
         "references/governance-patterns.md",
         "references/graph-governance.md",
         "references/preflight-patterns.md",
+        "references/reasoning-mode-routing.md",
         "references/stage-sizing.md",
         "scripts/governance_preflight_template.py",
     }
@@ -26,18 +27,52 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.5.1`" in skill
-    assert "Generated/adapted from human-ai-governance v0.5.1" in skill
+    assert "Skill version: `0.6.0`" in skill
+    assert "Generated/adapted from human-ai-governance v0.6.0" in skill
     assert len(skill.splitlines()) < 120
     assert "The presence of a manifest alone does not activate graph workflow" in skill
+    for required in (
+        "treat them as peer primary modes",
+        "Preserve Codex's ordinary discretion over delegation, coordination, and writing",
+        "Do not impose read-only or single-writer defaults",
+        "temporary Max single-writer recovery slice",
+    ):
+        assert required in skill, required
 
     for relative_path in (
         "references/governance-patterns.md",
         "references/preflight-patterns.md",
         "references/evaluation-scenarios.md",
+        "references/reasoning-mode-routing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.5.1" in text, relative_path
+        assert "v0.6.0" in text, relative_path
+
+    routing = (
+        CANDIDATE / "references/reasoning-mode-routing.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "choose between Max and Ultra as peer primary modes",
+        "Do not make Ultra read-only by default",
+        "Do not use single-writer execution as a Max default",
+        "Do not force an Ultra-Max-Ultra ceremony",
+    ):
+        assert required in routing, required
+
+    evaluation = (
+        CANDIDATE / "references/evaluation-scenarios.md"
+    ).read_text(encoding="utf-8")
+    assert "`xhigh`, `max`, and `ultra`" in evaluation
+    assert "Whenever model-behavior scenarios are run" in evaluation
+    assert "Keep high and xhigh results separate" not in evaluation
+
+    agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
+    assert 'short_description: "Risk-scaled governance and Max/Ultra routing"' in agent_metadata
+    assert (
+        'default_prompt: "Use $human-ai-governance to set proportional project '
+        'governance and recommend xhigh, Max, or Ultra for this task."'
+        in agent_metadata
+    )
 
     graph = (CANDIDATE / "references/graph-governance.md").read_text(encoding="utf-8")
     assert "Manifest presence alone does not activate graph workflow" in graph
@@ -46,7 +81,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.5.1"',
+        'SKILL_VERSION = "0.6.0"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -57,7 +92,7 @@ def main() -> int:
         assert required in preflight, required
     assert "strip_git_quotes" not in preflight
 
-    print("PASS: v0.5.1 package regression checks passed.")
+    print("PASS: v0.6.0 package regression checks passed.")
     return 0
 
 

@@ -1,11 +1,11 @@
 ---
 name: human-ai-governance
-description: Create, review, or maintain practical five-tier human-AI collaboration governance for software projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, or long-running workflows for projects ranging from minitoy apps and confidential web apps to high-consequence read-only account tools and live-action systems.
+description: Create, review, or maintain practical five-tier human-AI collaboration governance and reasoning-mode routing for software projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, or deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination.
 ---
 
 # Human-AI Governance
 
-Skill version: `0.5.1`
+Skill version: `0.6.0`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.5.1
+Generated/adapted from human-ai-governance v0.6.0
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -38,6 +38,7 @@ Use the marker to decide whether an existing project needs a separately approved
 2. Classify and plan proportionally.
    - Use the higher of current authority on the affected surface and authority introduced by the work.
    - For material work, state scope, non-scope, likely files, validation, and safety assumptions concisely. Proceed directly on small read-only or reversible work unless local rules say otherwise.
+   - When reasoning-mode routing applies, make one concise recommendation before material work and name any real switch point. Do not repeat the recommendation after the user accepts it.
 
 3. Implement in bounded slices.
    - Prefer the project's existing patterns, language, tooling, and docs style.
@@ -51,6 +52,15 @@ Use the marker to decide whether an existing project needs a separately approved
    - When an aggregate gate already includes the relevant focused check, run only the aggregate gate. Run a child separately only to diagnose a failure or when the user or repository explicitly requires separate evidence. Add a preflight（预检）only when it controls a recurring mechanical failure.
    - Treat a passing result as current until a relevant validation input changes; do not rerun it solely for ceremony or handoff.
    - Review the diff, then report outcome, material files, validation, remaining risk, and next required decision.
+
+## Reasoning-Mode Routing
+
+- In the main workspace, use `xhigh` for relatively simple, bounded tasks. Once meaningful complexity appears, recommend Max or Ultra according to task shape; treat them as peer primary modes.
+- Recommend Max when the dominant challenge is deep serial reasoning, tightly coupled diagnosis, long causal continuity, or difficult plan closure.
+- Recommend Ultra when meaningful parallel investigation, implementation, testing, or review can improve coverage or progress. Apply the same proportionality rules: do not multiply agents, safeguards, documents, or validation without a concrete benefit.
+- Recommend a staged Max/Ultra combination only when the task genuinely changes shape across a restartable handoff, and state the switch condition. Preserve Codex's ordinary discretion over delegation, coordination, and writing.
+- Do not impose read-only or single-writer defaults. Consider a temporary Max single-writer recovery slice only after repeated coupled failures, persistent validation deadlock, or cyclic breakage where repairing one surface repeatedly damages another; end the restriction once the causal loop is closed and validated.
+- Treat mode choice as workflow guidance, never as evidence of correctness, safety, authority, or completion.
 
 ## Five Tiers
 
@@ -82,6 +92,8 @@ Read `references/preflight-patterns.md` when the user wants automatic governance
 Read `references/evaluation-scenarios.md` only when evaluating or revising this skill's behavior across representative project types.
 
 Read `references/stage-sizing.md` when creating or revising a complex multi-stage plan, handling a recovery branch, or deciding whether one stage spans too many independent responsibility or recovery domains.
+
+Read `references/reasoning-mode-routing.md` when recommending xhigh, Max, Ultra, or a staged combination for an important or complex main-workspace task, or when mode choice needs recovery routing after repeated failure.
 
 Read `references/graph-governance.md` only when the user explicitly asks for graph governance, an accepted plan calls for a shadow graph pilot, or a repository graph manifest is needed for the current task's cross-surface impact, recovery, authority, lineage, or freshness question. The presence of a manifest alone does not activate graph workflow for a bounded task. Treat graphs as optional derived indexes; do not introduce graph files, hooks, gates, or services merely because this skill is active.
 
