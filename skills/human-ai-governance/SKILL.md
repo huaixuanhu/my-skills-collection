@@ -5,7 +5,7 @@ description: Create, review, or maintain practical five-tier human-AI collaborat
 
 # Human-AI Governance
 
-Skill version: `0.6.0`
+Skill version: `0.6.1`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.6.0
+Generated/adapted from human-ai-governance v0.6.1
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -56,8 +56,9 @@ Use the marker to decide whether an existing project needs a separately approved
 ## Reasoning-Mode Routing
 
 - In the main workspace, use `xhigh` for relatively simple, bounded tasks. Once meaningful complexity appears, recommend Max or Ultra according to task shape; treat them as peer primary modes.
-- Recommend Max when the dominant challenge is deep serial reasoning, tightly coupled diagnosis, long causal continuity, or difficult plan closure.
-- Recommend Ultra when meaningful parallel investigation, implementation, testing, or review can improve coverage or progress. Apply the same proportionality rules: do not multiply agents, safeguards, documents, or validation without a concrete benefit.
+- Recommend Max when the dominant challenge is deep serial reasoning, tightly coupled diagnosis, long causal continuity, difficult plan closure, or a stable decomposition whose bounded parallel work must feed one coherent causal or decision chain.
+- Recommend Ultra when adaptive orchestration across meaningful investigation, implementation, testing, or review streams can improve coverage or progress because decomposition is uncertain, evolving, or dominated by separable parallel work. Apply the same proportionality rules: do not multiply agents, safeguards, documents, or validation without a concrete benefit.
+- Treat mode choice and agent topology as separate decisions. Max and Ultra may both use multiple subagents and parallel writes. Delegate by independent questions, hypotheses, or verifiable outputs rather than directories; distribute decision or write authority across coherent ownership, acceptance, and recovery boundaries.
 - Recommend a staged Max/Ultra combination only when the task genuinely changes shape across a restartable handoff, and state the switch condition. Preserve Codex's ordinary discretion over delegation, coordination, and writing.
 - Do not impose read-only or single-writer defaults. Consider a temporary Max single-writer recovery slice only after repeated coupled failures, persistent validation deadlock, or cyclic breakage where repairing one surface repeatedly damages another; end the restriction once the causal loop is closed and validated.
 - Treat mode choice as workflow guidance, never as evidence of correctness, safety, authority, or completion.

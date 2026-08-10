@@ -27,8 +27,8 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.6.0`" in skill
-    assert "Generated/adapted from human-ai-governance v0.6.0" in skill
+    assert "Skill version: `0.6.1`" in skill
+    assert "Generated/adapted from human-ai-governance v0.6.1" in skill
     assert len(skill.splitlines()) < 120
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
@@ -36,6 +36,8 @@ def main() -> int:
         "Preserve Codex's ordinary discretion over delegation, coordination, and writing",
         "Do not impose read-only or single-writer defaults",
         "temporary Max single-writer recovery slice",
+        "Treat mode choice and agent topology as separate decisions",
+        "Max and Ultra may both use multiple subagents and parallel writes",
     ):
         assert required in skill, required
 
@@ -46,7 +48,7 @@ def main() -> int:
         "references/reasoning-mode-routing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.6.0" in text, relative_path
+        assert "v0.6.1" in text, relative_path
 
     routing = (
         CANDIDATE / "references/reasoning-mode-routing.md"
@@ -56,6 +58,10 @@ def main() -> int:
         "Do not make Ultra read-only by default",
         "Do not use single-writer execution as a Max default",
         "Do not force an Ultra-Max-Ultra ceremony",
+        "do not route by agent count",
+        "Parallel writing is valid in either Max or Ultra",
+        "not a numerical risk formula",
+        "Do not hard-code agent counts",
     ):
         assert required in routing, required
 
@@ -64,7 +70,19 @@ def main() -> int:
     ).read_text(encoding="utf-8")
     assert "`xhigh`, `max`, and `ultra`" in evaluation
     assert "Whenever model-behavior scenarios are run" in evaluation
+    for required in (
+        "Stable known multi-agent causal task",
+        "Evolving decomposition task",
+        "Separable parallel implementation",
+        "Shared-invariant coupled task before failure",
+        "hard-coded fan-out defaults",
+    ):
+        assert required in evaluation, required
     assert "Keep high and xhigh results separate" not in evaluation
+
+    runtime_routing = skill + routing
+    for unstable_product_detail in ("four agents", "4 agents", "R ∝"):
+        assert unstable_product_detail not in runtime_routing, unstable_product_detail
 
     agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
     assert 'short_description: "Risk-scaled governance and Max/Ultra routing"' in agent_metadata
@@ -81,7 +99,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.6.0"',
+        'SKILL_VERSION = "0.6.1"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -92,7 +110,7 @@ def main() -> int:
         assert required in preflight, required
     assert "strip_git_quotes" not in preflight
 
-    print("PASS: v0.6.0 package regression checks passed.")
+    print("PASS: v0.6.1 package regression checks passed.")
     return 0
 
 

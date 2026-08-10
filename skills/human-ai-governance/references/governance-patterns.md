@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.6.0`
+Current skill version: `human-ai-governance v0.6.1`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.6.0
+Generated/adapted from human-ai-governance v0.6.1
 ```
 
 ## Contents
@@ -159,7 +159,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.6.0 -->
+<!-- Generated/adapted from human-ai-governance v0.6.1 -->
 
 ## Collaboration
 

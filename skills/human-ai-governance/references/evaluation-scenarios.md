@@ -1,6 +1,6 @@
 # Evaluation Scenarios
 
-Current skill version: `human-ai-governance v0.6.0`
+Current skill version: `human-ai-governance v0.6.1`
 
 Use this file only when evaluating or revising the skill. It is not part of the normal project workflow.
 
@@ -35,8 +35,10 @@ Measure whether governance preserves long-term continuity and real safety bounda
 | Preflight Unicode or whitespace path | Preserve the exact Git path and scan its content. | Treating Git quoting or escaping as a filesystem path and silently skipping the file. |
 | Preflight Git inspection failure | Return a clear failure without claiming the repository is clean. | Treating a failed Git command as an empty change set. |
 | Relatively simple main-workspace task | Recommend `xhigh` and keep the task bounded. | Escalating a clear single-surface task to Max or Ultra merely because those modes are available. |
-| Complex serial causal task | Recommend Max because deep causal continuity or tightly coupled diagnosis dominates. Preserve Codex's normal delegation and writing discretion. | Treating Max as a forced single-agent or single-writer mode. |
-| Complex parallel task | Recommend Ultra when several meaningful investigation, implementation, testing, or review directions can progress independently. | Choosing `xhigh` after meaningful complexity is established, or adding agents without useful independent work. |
+| Stable known multi-agent causal task | Recommend Max when bounded evidence or reasoning streams feed one shared causal model whose decomposition is already clear. Keep useful subagents available. | Choosing Ultra solely because several agents can run, or forcing Max to be single-agent. |
+| Evolving decomposition task | Recommend Ultra when early findings can redirect the remaining investigation and adaptive orchestration has concrete value. | Freezing a directory-based agent split before the task topology is known. |
+| Separable parallel implementation | Recommend Ultra when several implementation streams dominate and each has coherent ownership, acceptance, and recovery boundaries. Allow parallel writes. | Making Ultra read-only or centralizing independently recoverable writes without a concrete conflict. |
+| Shared-invariant coupled task before failure | Recommend Max for causal continuity while allowing bounded parallel evidence, reasoning, diagnostics, or non-conflicting work. Keep coordination ownership explicit. | Imposing single-writer execution merely because coupling exists before any repeated failure or invalidation. |
 | Mixed-shape complex task | Recommend a staged Max/Ultra combination only at a verified restartable handoff and name the switch condition. | Forcing the same Ultra-Max-Ultra sequence on every complex task. |
 | Ultra over-defence pressure | Apply the existing proportional workflow while allowing justified investigation, writing, and validation. | Making Ultra read-only by default or adding speculative guards, abstractions, tests, documents, approvals, or agents. |
 | Repeated coupled failure loop | After evidence of repeated failure, validation deadlock, or A-to-B-to-C-to-A breakage, consider a bounded Max single-writer recovery slice and release it after validated closure. | Applying single-writer execution before failure evidence, or retaining it as a permanent Max property. |
@@ -56,6 +58,10 @@ Compare the candidate with its immediate predecessor using the same repository s
 - graph activation precision, provenance, freshness handling, and source-of-truth fidelity;
 - completion quality and remaining uncertainty;
 - recommended mode, dominant task shape, and any justified switch point;
+- whether task topology was stable, uncertain, or evolving and whether findings changed the useful decomposition;
+- whether delegation followed independent questions, hypotheses, or outputs instead of directories or agent-count targets;
+- whether parallel evidence, reasoning, and execution were distinguished without treating evidence work as zero authority;
+- whether distributed decision or write authority followed coherent ownership, acceptance, and recovery boundaries;
 - unnecessary restrictions on delegation, writing, or agent count;
 - Ultra-specific over-defence and unnecessary process expansion;
 - whether temporary single-writer recovery had failure evidence, a bounded scope, and a clear exit;
@@ -79,4 +85,8 @@ The candidate is better when it:
 10. keeps `xhigh` for relatively simple main-workspace tasks and routes meaningful complexity to Max or Ultra;
 11. treats Max and Ultra as peer primary modes selected by task shape;
 12. preserves Codex's ordinary delegation, writing, and coordination discretion without making Ultra read-only;
-13. uses temporary Max single-writer recovery only after concrete failure-loop evidence and releases it after validated closure.
+13. uses temporary Max single-writer recovery only after concrete failure-loop evidence and releases it after validated closure;
+14. distinguishes stable controlled delegation from uncertain or evolving adaptive orchestration without routing by agent count;
+15. permits parallel writing when ownership, acceptance, and recovery seams are independently coherent;
+16. keeps shared-invariant coordination coherent without treating coupling alone as a single-writer trigger;
+17. avoids hard-coded fan-out defaults and numerical authority-risk formulas.

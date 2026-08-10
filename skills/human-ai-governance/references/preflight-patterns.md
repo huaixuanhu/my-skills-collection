@@ -1,6 +1,6 @@
 # Preflight Patterns
 
-Current skill version: `human-ai-governance v0.6.0`
+Current skill version: `human-ai-governance v0.6.1`
 
 Use this reference when a project needs automatic checks to prevent governance drift. The bundled `scripts/governance_preflight_template.py` is a starting scaffold, not a universal law. Copy it into the target repository and tune it to the project's tier（层级）, filenames, architecture docs, and credible side effects. Preserve a stronger proven project-specific gate instead of replacing it for consistency alone.
 
@@ -190,6 +190,8 @@ For a `v0.4.0` to `v0.5.0` migration, the five-tier classification and mechanica
 For a `v0.5.0` to `v0.5.1` migration, the governance model remains unchanged. The generic preflight now fails when Git inspection fails, parses exact NUL-delimited paths, and checks changed staged-index plus working-tree snapshots. Review project-specific staged-content logic before replacing it; retain a stronger local implementation when one already exists.
 
 For a `v0.5.1` to `v0.6.0` migration, the five-tier model and mechanical preflight behavior remain unchanged. Review the new main-workspace reasoning-mode routing separately: `xhigh` serves relatively simple work, while meaningful complexity routes to Max or Ultra by task shape. Do not add preflight checks for model choice, agent count, read-only operation, or single-writer execution. Temporary single-writer recovery remains a model judgment after concrete repeated-failure evidence, not a mechanical repository invariant.
+
+For a `v0.6.0` to `v0.6.1` migration, the five-tier model and mechanical preflight behavior remain unchanged. The routing reference now separates task-topology certainty from agent and authority topology. Do not add preflight checks for mode, agent count, delegation boundaries, parallel writing, authority distribution, or single-writer recovery; these remain contextual workflow judgments.
 
 Under the accepted reference classifications, `learningWordsformimi` remains Tier 3 while it lacks material economic or account authority, current read-only `autoadvisor` remains Tier 4, and a future live-trading quant system is Tier 5.
 
