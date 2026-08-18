@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-17 15:34 AEST
+
+- Added canonical `scaffold-research-task` v0.1.0 for deriving task-scoped research architecture and research-specific evidence governance.
+- Added proportional `base`, `model-research`, `third-party-source`, and `remote-compute` template modules plus a non-generating `governance-connect` bridge to existing project governance.
+- Kept citation and ordinary public-source research light while reserving stronger licence and provenance checks for incorporation or redistribution actions.
+- Added deterministic dry-run scaffolding, conflict-first no-overwrite behavior, repository-root protection, manifest validation, focused regression coverage, and four-family forward-test evidence.
+- Reason: preserve the reusable decision framework learned from complex research tasks without copying Model 5 or creating a second project-wide governance base.
+
 ## 2026-08-10 13:39 AEST
 
 - Refined canonical `human-ai-governance` to v0.6.1 with task-topology certainty plus agent and authority topology.

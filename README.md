@@ -21,6 +21,7 @@ CHANGELOG.md                  cross-skill version history
 | Skill | Version | Status |
 | --- | --- | --- |
 | `human-ai-governance` | `0.6.1` | canonical and validated |
+| `scaffold-research-task` | `0.1.0` | canonical and validated |
 
 ## Local Workflow
 
@@ -41,6 +42,12 @@ python3 -m venv .venv
 
 ```bash
 .venv/bin/python scripts/manage_skills.py install human-ai-governance --replace
+```
+
+例如，安装 research task scaffold（研究任务脚手架）：
+
+```bash
+.venv/bin/python scripts/manage_skills.py install scaffold-research-task --replace
 ```
 
 检查安装是否仍指向当前仓库：

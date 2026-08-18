@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scaffold Research Task"
+  short_description: "Derive proportional scaffolds for research tasks"
+  default_prompt: "Use $scaffold-research-task to derive and safely scaffold this research task."
