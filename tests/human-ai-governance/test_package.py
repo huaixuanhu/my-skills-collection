@@ -11,6 +11,7 @@ def main() -> int:
     expected_files = {
         "SKILL.md",
         "agents/openai.yaml",
+        "references/audience-facing-writing.md",
         "references/evaluation-scenarios.md",
         "references/governance-patterns.md",
         "references/graph-governance.md",
@@ -28,8 +29,8 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.7.0`" in skill
-    assert "Generated/adapted from human-ai-governance v0.7.0" in skill
+    assert "Skill version: `0.7.1`" in skill
+    assert "Generated/adapted from human-ai-governance v0.7.1" in skill
     assert len(skill.splitlines()) < 120
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
@@ -43,6 +44,10 @@ def main() -> int:
         "platform's current effective sandbox",
         "Stop adding validation",
         "references/proportional-assurance.md",
+        "Engineering-governance writing is the default",
+        "File extension, document length, or a request for polish alone does not decide the mode",
+        "Expression mode changes prose and organization only",
+        "references/audience-facing-writing.md",
     ):
         assert required in skill, required
 
@@ -52,9 +57,10 @@ def main() -> int:
         "references/evaluation-scenarios.md",
         "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
+        "references/audience-facing-writing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.7.0" in text, relative_path
+        assert "v0.7.1" in text, relative_path
 
     assurance = (
         CANDIDATE / "references/proportional-assurance.md"
@@ -66,6 +72,28 @@ def main() -> int:
         "they do not add tiers",
     ):
         assert required in assurance, required
+
+    writing = (
+        CANDIDATE / "references/audience-facing-writing.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "Engineering records remain the default",
+        "Minimize repeated self-justification, process defense, and irrelevant boundary statements",
+        "Route each section, page, slide, note, or appendix by its own function",
+        "not X, but Y",
+        "Do not use phrase counts, regular expressions, AI-detector scores",
+        "natural-sounding prose never justifies removing an operational invariant",
+        "Do not fill an unspecified trigger, fallback condition, threshold, or authorization step",
+        "Do not repeat the full boundary list in the conclusion",
+        "After one clear negative contrast, phrase later points affirmatively",
+    ):
+        assert required in writing, required
+    for banned in (
+        "Never use not X, but Y",
+        "Never use em dashes",
+        "AI-detector score must",
+    ):
+        assert banned not in writing, banned
 
     routing = (
         CANDIDATE / "references/reasoning-mode-routing.md"
@@ -97,6 +125,10 @@ def main() -> int:
         "Full-access platform configuration",
         "Complex component and simple glue decision",
         "hard-coded fan-out defaults",
+        "Long engineering plan with a request for polish",
+        "Leadership presentation",
+        "Technical design presentation",
+        "High-consequence audience memo",
     ):
         assert required in evaluation, required
     assert "Keep high and xhigh results separate" not in evaluation
@@ -106,10 +138,13 @@ def main() -> int:
         assert unstable_product_detail not in runtime_routing, unstable_product_detail
 
     agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
-    assert 'short_description: "Risk-scaled governance and Max/Ultra routing"' in agent_metadata
     assert (
-        'default_prompt: "Use $human-ai-governance to set proportional project '
-        'governance and recommend xhigh, Max, or Ultra for this task."'
+        'short_description: "Risk-scaled governance, reasoning, and writing modes"'
+        in agent_metadata
+    )
+    assert (
+        'default_prompt: "Use $human-ai-governance to set proportional project governance, '
+        'route xhigh, Max, or Ultra, and separate engineering records from audience-facing writing."'
         in agent_metadata
     )
 
@@ -120,7 +155,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.7.0"',
+        'SKILL_VERSION = "0.7.1"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -131,7 +166,7 @@ def main() -> int:
         assert required in preflight, required
     assert "strip_git_quotes" not in preflight
 
-    print("PASS: v0.7.0 package regression checks passed.")
+    print("PASS: v0.7.1 package regression checks passed.")
     return 0
 
 

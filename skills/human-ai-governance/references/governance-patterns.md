@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.0`
+Current skill version: `human-ai-governance v0.7.1`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.0
+Generated/adapted from human-ai-governance v0.7.1
 ```
 
 ## Contents
@@ -15,6 +15,7 @@ Generated/adapted from human-ai-governance v0.7.0
 - [Tier Decision Workflow](#tier-decision-workflow)
 - [Tier Checklist](#tier-checklist)
 - [Task Scope and Model Discretion](#task-scope-and-model-discretion)
+- [Writing Mode in Governed Deliverables](#writing-mode-in-governed-deliverables)
 - [Proportionality and Convenience](#proportionality-and-convenience)
 - [Economic and Account Consequences](#economic-and-account-consequences)
 - [Tier-Specific Governance](#tier-specific-governance)
@@ -84,6 +85,12 @@ Examples:
 - A new order-routing branch is Tier 5 work even if live mode remains disabled, because it designs material authority.
 - A test-only refactor that preserves the tested contract can omit changelog and architecture updates unless the project explicitly requires them.
 - A database migration remains material even when the diff is short.
+
+## Writing Mode in Governed Deliverables
+
+Keep project governance and functional engineering documents in engineering-governance writing by default. When the project also produces audience-facing prose or presentations, route only the relevant content units into audience-facing expression mode. Mixed reports and decks can use natural reader-facing narrative in the main story while specifications, source notes, evidence limits, risk disclosures, operating instructions, and approval conditions retain engineering precision.
+
+The writing route does not create a tier, reduce governance, or change authorization. File type and document length do not decide it. Read `audience-facing-writing.md` for activation and revision guidance.
 
 ## Proportionality and Convenience
 
@@ -163,7 +170,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.0 -->
+<!-- Generated/adapted from human-ai-governance v0.7.1 -->
 
 ## Collaboration
 

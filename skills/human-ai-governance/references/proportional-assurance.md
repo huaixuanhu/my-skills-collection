@@ -1,6 +1,6 @@
 # Proportional Assurance
 
-Current skill version: `human-ai-governance v0.7.0`
+Current skill version: `human-ai-governance v0.7.1`
 
 Use this reference when validation is expensive, prior evidence may still be valid, architecture or authority boundaries are involved, defensive controls may overlap, platform permissions need to be separated from project authorization, or a complex capability may reuse an existing component.
 
@@ -104,6 +104,12 @@ The platform's current effective sandbox（沙盒）, approval policy（审批�
 - If the platform configuration permits an action without approval, do not create a pause solely to imitate a stricter platform configuration.
 - Platform-granted technical capability is not blanket task authorization. Preserve the user's scope and project-specific gates for consequential external actions such as push, deployment, production mutation, cutover, retirement, live trading, or material cost.
 - One accepted plan covers ordinary local implementation decisions inside its scope. Reopen human agreement for material scope expansion, unresolved choices that change the result, consequential external action, or an explicit project gate.
+
+## Keep Presentation and Control Placement Separate
+
+Audience-facing expression may place a necessary caveat close to the claim it qualifies and remove repeated prose that adds no new reader protection. This editorial placement applies only to the presentation layer.
+
+Operational sources of truth retain constraints wherever independent execution, reproduction, review, approval, or recovery depends on them. A style revision is never evidence that a control, validation, disclosure, or authorization boundary is redundant. Judge those elements by their owned failure mode and functional entry point.
 
 ## Representative Project Shapes
 

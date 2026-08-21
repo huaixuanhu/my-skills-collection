@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-08-21 15:35 AEST
+
+- Upgraded canonical `human-ai-governance` to v0.7.1 with engineering-governance writing as the default and audience-facing expression activated from content function.
+- Added section-, page-, slide-, note-, and appendix-level routing for mixed reports and presentations without creating another tier or changing authority boundaries.
+- Minimized repeated self-justification, process defense, irrelevant boundary narration, and templated rhetorical patterns in reader-facing work while preserving facts, sources, uncertainty, required disclosure, safety controls, and approval semantics.
+- Kept functional engineering documents explicit and reproducible; file type, document length, and polish requests do not override their operational role.
+- Kept the generic preflight behavior unchanged apart from the v0.7.1 marker and rejected phrase bans, punctuation quotas, and AI-detector scores as mechanical writing gates.
+- Recorded 30 isolated Max/Ultra outputs, including a 24-output v0.7.0/v0.7.1 comparison that scored 113/120 versus 118/120, with no critical engineering, disclosure, or authorization regression.
+- Rendered and independently reviewed a temporary six-slide deck through a complete issue-finding, fix, and clean re-verification cycle without retaining generated artifacts in the repository.
+- Reason: improve long-form and presentation writing while preserving the v0.7.0 proportional-assurance and engineering-safety baseline.
+
 ## 2026-08-20 15:07 AEST
 
 - Upgraded canonical `human-ai-governance` to v0.7.0 with claim-bound evidence reuse, affected-surface invalidation, and explicit validation stopping conditions.

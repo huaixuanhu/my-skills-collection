@@ -1,11 +1,11 @@
 ---
 name: human-ai-governance
-description: Create, review, or maintain practical five-tier human-AI collaboration governance and reasoning-mode routing for software projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, or deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination.
+description: Create, review, or maintain practical five-tier human-AI collaboration governance, reasoning-mode routing, and audience-facing writing boundaries for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, or separating engineering records from reader-facing reports and presentation copy.
 ---
 
 # Human-AI Governance
 
-Skill version: `0.7.0`
+Skill version: `0.7.1`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.0
+Generated/adapted from human-ai-governance v0.7.1
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -58,6 +58,14 @@ Use the marker to decide whether an existing project needs a separately approved
    - Stop adding validation when every affected acceptance claim and safety invariant has current sufficient evidence. A relevant input change, failed evidence, or unresolved consequential boundary reopens only the necessary checks.
    - Review the diff, then report outcome, material files, validation, remaining risk, and next required decision.
 
+## Writing-Mode Routing
+
+- Engineering-governance writing is the default. Keep operational sources of truth such as plans, architecture, specifications, schemas, runbooks, migrations, incident and validation reports, evidence records, and authorization boundaries precise, reproducible, and explicit.
+- Activate audience-facing expression only for a content unit whose primary purpose is to present, explain, narrate, or persuade a defined audience, such as an article, speech, public copy, executive narrative, or presentation story. File extension, document length, or a request for polish alone does not decide the mode.
+- Route mixed deliverables by section, page, or block. A presentation story may use expression mode while technical appendices, source notes, risk disclosures, and executable instructions retain engineering precision.
+- Expression mode changes prose and organization only. It does not change facts, citations, uncertainty, required disclosure, safety controls, authority, approval, or validation.
+- Infer a clear route without another approval turn. If unresolved ambiguity would materially change the deliverable, ask once; otherwise keep the engineering default.
+
 ## Reasoning-Mode Routing
 
 - In the main workspace, use `xhigh` for relatively simple, bounded tasks. Once meaningful complexity appears, recommend Max or Ultra according to task shape; treat them as peer primary modes.
@@ -92,6 +100,8 @@ Retain governance artifacts that support continuity, but keep each one focused.
 ## Resources
 
 Read `references/proportional-assurance.md` when validation is expensive, evidence may be reusable, a change crosses architecture or authority boundaries, defensive controls may overlap, platform permissions need to be distinguished from project authorization, or a complex capability may reuse an existing component.
+
+Read `references/audience-facing-writing.md` when creating or revising audience-facing long-form prose, an article, speech, executive narrative, report, or presentation copy, or when a mixed deliverable needs section-level writing-mode routing.
 
 Read `references/governance-patterns.md` when creating governance files, adapting this workflow to a new project, writing templates, or deciding how strict the project should be.
 

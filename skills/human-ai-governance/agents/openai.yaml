@@ -1,4 +1,4 @@
 interface:
   display_name: "Human-AI Governance"
-  short_description: "Risk-scaled governance and Max/Ultra routing"
-  default_prompt: "Use $human-ai-governance to set proportional project governance and recommend xhigh, Max, or Ultra for this task."
+  short_description: "Risk-scaled governance, reasoning, and writing modes"
+  default_prompt: "Use $human-ai-governance to set proportional project governance, route xhigh, Max, or Ultra, and separate engineering records from audience-facing writing."
