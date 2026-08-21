@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-20 15:07 AEST
+
+- Upgraded canonical `human-ai-governance` to v0.7.0 with claim-bound evidence reuse, affected-surface invalidation, and explicit validation stopping conditions.
+- Kept Tier 1-5 as the only governance classification while treating complexity, data scale, cloud use, and validation cost as contextual questions rather than another score or tier.
+- Placed defensive controls at owned trust, authority, representation, persistence, and irreversibility boundaries without weakening distinct safety layers.
+- Deferred to the platform's active access and approval configuration while preserving task scope and project-specific authorization for consequential actions.
+- Added conditional component reuse guidance for complex capabilities without imposing a dependency-first rule on simple local glue.
+- Kept the generic preflight behavior unchanged apart from the v0.7.0 marker and recorded 34 isolated Max/Ultra forward-test runs, including a 24-run adversarial matrix, outside the runtime package.
+- Reason: balance long-horizon reliability with validation cost and implementation clarity across large-data, cloud, trading, web application, institutional, and shared model-training work.
+
 ## 2026-08-17 15:34 AEST
 
 - Added canonical `scaffold-research-task` v0.1.0 for deriving task-scoped research architecture and research-specific evidence governance.

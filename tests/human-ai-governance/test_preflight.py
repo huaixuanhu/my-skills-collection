@@ -42,7 +42,7 @@ def commit_all(root: Path, message: str) -> None:
     assert result.returncode == 0, result.stderr
 
 
-def init_repo(root: Path, marker: str = "0.6.1") -> None:
+def init_repo(root: Path, marker: str = "0.7.0") -> None:
     run(["git", "init", "-q"], root)
     run(["git", "config", "user.email", "test@example.invalid"], root)
     run(["git", "config", "user.name", "Governance Test"], root)
@@ -73,7 +73,7 @@ def update_trace(root: Path, *, architecture: bool = False, changed: str = "runt
         root / "CHANGELOG.md",
         "## 2026-07-11 10:00 AEST\n\n"
         f"- Changed {changed}.\n"
-        "- Reason: test v0.6.1 behavior.\n\n"
+        "- Reason: test v0.7.0 behavior.\n\n"
         "## 2026-07-10 10:00 AEST\n\n"
         "- Initial.\n"
         "- Reason: fixture.\n",
@@ -84,7 +84,7 @@ def update_trace(root: Path, *, architecture: bool = False, changed: str = "runt
         f"- Task: test {changed}.\n"
         "- Plan agreed: yes.\n"
         f"- Changed files: {changed}.\n"
-        "- Reason: test v0.6.1 behavior.\n"
+        "- Reason: test v0.7.0 behavior.\n"
         "- Validation: passed.\n"
         "- Safety notes: fixture only.\n\n"
         "## 2026-07-10 10:00 AEST\n\n"
@@ -108,7 +108,7 @@ def main() -> int:
     assert missing_tier.returncode == 2
     assert "--tier" in missing_tier.stderr
 
-    with tempfile.TemporaryDirectory(prefix="governance-v061-") as temp:
+    with tempfile.TemporaryDirectory(prefix="governance-v070-") as temp:
         base = Path(temp)
 
         not_repo = base / "not-repo"
@@ -342,7 +342,7 @@ def main() -> int:
         run(["git", "add", "AGENTS.md"], staged_marker)
         write(
             staged_marker / "AGENTS.md",
-            "Generated/adapted from human-ai-governance v0.6.1\n",
+            "Generated/adapted from human-ai-governance v0.7.0\n",
         )
         result = preflight(staged_marker, "--tier", "1", "--require-skill-marker")
         assert result.returncode == 1
@@ -484,7 +484,7 @@ def main() -> int:
         init_repo(large_agents)
         write(
             large_agents / "AGENTS.md",
-            "Generated/adapted from human-ai-governance v0.6.1\n" + ("x" * 33_000),
+            "Generated/adapted from human-ai-governance v0.7.0\n" + ("x" * 33_000),
         )
         result = preflight(
             large_agents,
@@ -495,7 +495,7 @@ def main() -> int:
         assert_pass(result)
         assert "exceeds the common 32 KiB project-doc budget" in result.stdout
 
-    print("PASS: v0.6.1 preflight behavior tests passed.")
+    print("PASS: v0.7.0 preflight behavior tests passed.")
     return 0
 
 

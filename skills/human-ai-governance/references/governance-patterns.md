@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.6.1`
+Current skill version: `human-ai-governance v0.7.0`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.6.1
+Generated/adapted from human-ai-governance v0.7.0
 ```
 
 ## Contents
@@ -19,7 +19,7 @@ Generated/adapted from human-ai-governance v0.6.1
 - [Economic and Account Consequences](#economic-and-account-consequences)
 - [Tier-Specific Governance](#tier-specific-governance)
 - [Governance Templates](#governance-templates)
-- [Validation Ladder](#validation-ladder)
+- [Validation Selection](#validation-selection)
 - [Examples](#examples)
 - [Handoff Summary](#handoff-summary)
 
@@ -31,6 +31,8 @@ Record these values before material work when they affect the decision:
 - `Current authority on the affected surface`: what the code, data, account, or workflow being changed can do now.
 - `Target capability tier`: the authority introduced or designed by the current work.
 - `Working tier`: the higher of the current and target authority on the affected surface.
+
+These are views of the same Tier 1-5 model, not additional classifications. Architecture complexity, data volume, cloud use, and validation cost inform orientation and evidence selection without creating another tier or score.
 
 Classify effective capability rather than project labels or distant roadmap ideas. A Tier 5 repository can use lighter task procedure for a documentation typo outside its protected surfaces, while permanent Tier 5 invariants still apply. Code that designs or enables a higher-risk capability uses the higher working tier before that capability is deployed.
 
@@ -74,6 +76,8 @@ Do not produce a long explanation for every skipped step. State the exception on
 
 One accepted plan covers ordinary local implementation decisions inside its declared scope. Ask again only for a material scope expansion, a consequential external action, an unresolved choice that changes the result, or an explicit repository approval gate.
 
+Follow the platform's current effective sandbox, approval, connector, and access configuration. The skill neither changes nor recreates that platform boundary. When the platform grants technical capability, continue to apply the accepted task scope and project-specific authorization boundaries.
+
 Examples:
 
 - A CSS or wording fix does not need architecture sync merely because it occurs in a Tier 5 repository.
@@ -86,13 +90,13 @@ Examples:
 Use the lightest governance that adequately controls credible harm.
 
 - Require each gate to name the failure mode it controls.
-- Avoid duplicate approval, logging, or documentation when an existing technical control already covers the risk.
+- Give each failure mode a canonical control owner. Preserve independent layers when they control distinct failures or contain failure of another layer.
 - Prefer one aggregate validation command when it already runs the required child checks.
 - Keep `AGENTS.md` as a concise routing map. Put stage history, test counts, and transient implementation status in canonical plans, changelogs, or logs.
 - Allow local, read-only, reversible, low-impact operations without repeated human confirmation.
 - Prefer hard limits, permission separation, deterministic tests, and runtime guards over additional paperwork.
 - Treat credentials, production infrastructure, external APIs（外部接口）, or automation as risk evidence to inspect, not automatic reasons for the highest tier.
-- Tune or remove a gate that repeatedly blocks safe work without catching credible risk.
+- When a gate repeatedly blocks safe work, inspect whether it still controls a current credible risk and place or tune it at the boundary that owns that risk.
 - Reclassify downward when risky authority is removed or a previously uncertain permission is proven narrower.
 - Keep Tier 4 close to the proven `autoadvisor` operating model: existing read-only guards, endpoint or method boundaries where needed, confirmation for real account calibration, redaction, tests, logs, and a local final gate. Do not impose a new cross-project allowlist（白名单）or per-request approval system without a concrete gap.
 
@@ -159,7 +163,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.6.1 -->
+<!-- Generated/adapted from human-ai-governance v0.7.0 -->
 
 ## Collaboration
 
@@ -280,19 +284,21 @@ Forbidden or approval-gated:
 
 For light projects, translate the same idea into a shorter “What this project may touch” section.
 
-## Validation Ladder
+## Validation Selection
 
-Pick the lowest rung that gives real confidence, then add higher rungs as credible harm grows.
+Select the rows that cover the affected claim and boundary. These are not levels, are not cumulative, and do not create a second tier model.
 
-1. Read-only inspection: source review and state checks.
-2. Tiny local change: syntax check or one smoke command.
-3. Durable app change: unit tests plus lint/format if present.
-4. Data or persistence change: migration or round-trip test, backup/export thought, and data-integrity checks.
-5. Confidential or production change: secret check, staging or preview validation, rollback route, and explicit approval for meaningful live changes.
-6. High-consequence read-only connector: fake tests first, existing guard or exact boundary where needed, redaction, failure downgrade, and approved minimal live calibration.
-7. Material-action system: simulation, execution-envelope tests, hard-limit tests, degraded-mode behavior, monitoring, emergency stop, and limited live acceptance.
+| Affected surface | Evidence direction |
+| --- | --- |
+| Read-only understanding | Source review and state checks |
+| Local contract-preserving behavior | Focused syntax, unit, or smoke evidence |
+| Shared interface or schema | Contract, round-trip, and affected-consumer evidence |
+| Data source, transformation, or persistence | Source identity, semantic and integrity checks, migration behavior, and affected downstream claims |
+| Confidential or production boundary | Secret handling, preview or staging evidence, rollback route, and required live-action approval |
+| High-consequence read-only connector | Fixtures, existing authority guard, redaction, failure downgrade, and approved minimal calibration when needed |
+| Material-action capability | Simulation, execution-envelope and hard-limit tests, degraded-mode behavior, monitoring, emergency behavior, and controlled activation |
 
-If an aggregate project command already covers the applicable rungs, run it once. Do not separately rerun every nested command unless diagnosing a failure or preserving distinct evidence.
+Reuse passing evidence while its relevant subject, inputs, contract, validator, acceptance rule, and environment remain unchanged. If an aggregate project command already covers the selected evidence, run it once. Run a child separately only to diagnose a failure or preserve explicitly required distinct evidence. Stop when the affected acceptance claims and permanent safety invariants have current sufficient evidence.
 
 For Tier 3 through Tier 5, read `preflight-patterns.md` and adapt `scripts/governance_preflight_template.py` only when the project lacks a stronger local gate and a mechanical check addresses a recurring failure mode.
 

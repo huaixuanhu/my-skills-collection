@@ -1,0 +1,119 @@
+# Proportional Assurance
+
+Current skill version: `human-ai-governance v0.7.0`
+
+Use this reference when validation is expensive, prior evidence may still be valid, architecture or authority boundaries are involved, defensive controls may overlap, platform permissions need to be separated from project authorization, or a complex capability may reuse an existing component.
+
+## One Tier Model, Contextual Questions
+
+Tier 1-5 remains the only governance classification. Choose it from effective authority, credible consequence, reversibility, cumulative impact, and third-party effect.
+
+Use the following as contextual questions without assigning levels, scores, or a second taxonomy:
+
+- Which behavioral, data, safety, or operational claim can this change affect?
+- Does the change cross a trust, authority, representation, persistence, or irreversibility boundary?
+- Which existing evidence is still bound to the same subject and relevant inputs?
+- Does the next action remain local and inside the accepted scope, or does it require project approval or a platform approval?
+
+Complexity, data volume, cloud infrastructure, and long task duration can increase orientation and evidence-management needs. They do not determine the tier by themselves.
+
+## Bind Evidence to Claims
+
+Useful validation evidence identifies enough of the following to decide whether it remains current:
+
+- the claim proved and its acceptance rule;
+- the code, artifact, configuration, or service version being evaluated;
+- the relevant input, dataset, manifest, partition set, or source snapshot;
+- the interface, schema（数据结构约定）, unit, time, null, ordering, and other semantic contracts involved;
+- the validator, test, query, review procedure, or policy version;
+- the environment facts that can change the result, including freshness for mutable external state.
+
+Exact hashes are useful for immutable artifacts but are not mandatory for every claim. A stable release identifier, dataset manifest, partition inventory, migration version, or deployment identity can be the cheaper binding when it is strong enough for the stated conclusion.
+
+Reuse passing evidence while every element relevant to its claim remains unchanged. When one element changes, invalidate that claim and its affected dependants rather than unrelated evidence. A failed or inconclusive result is not passing evidence.
+
+Examples:
+
+- A consumer-only code change can reuse an accepted upstream dataset receipt and validate the changed consumer.
+- A schema, unit, timezone, missing-value, ordering, or upstream transformation change reopens the affected contract and downstream claims.
+- A documentation or UI change does not invalidate data-quality evidence unless it changes the meaning presented to a user or the acceptance claim.
+- A source snapshot can remain reproducible while its statement about current live conditions expires; keep reproducibility and freshness as separate claims.
+
+## Select Sufficient Validation
+
+Choose validation from the affected claim and boundary. Validation options are not cumulative levels.
+
+| Change shape | Sufficient evidence direction |
+| --- | --- |
+| Local contract-preserving edit | Focused syntax, unit, or smoke evidence for the changed behavior |
+| Shared interface or schema change | Contract and round-trip evidence plus affected consumers |
+| Data-source or transformation change | Source identity, semantic and integrity checks, then affected downstream claims |
+| Auth, credential, network, persistence, or deployment boundary | Boundary tests, failure behavior, rollback or recovery evidence, and required approval |
+| Live material-action capability | Execution-envelope, hard-limit, degraded-mode, monitoring, and controlled activation evidence |
+
+For large datasets:
+
+- Use manifests, partition identities, stratified samples, invariants, and stage receipts when they prove the required claim without rescanning every record.
+- Run a full scan, rebuild, replay, or expensive backfill when the affected claim truly depends on complete coverage, relevant upstream bytes or semantics changed, or an explicit acceptance gate requires it.
+- State the ceiling of sample-based, synthetic, offline, or design-only evidence. Do not promote it to full-data, live, production, performance, or training authority.
+- Let downstream stages consume accepted upstream evidence and validate their own transformation or decision logic.
+
+An assurance slice is complete when every affected acceptance claim and permanent safety invariant has current sufficient evidence, the diff and side effects are understood, and no unresolved required approval remains. More checks need a new affected claim, invalidation trigger, failed evidence, or explicit repository requirement.
+
+## Place Defensive Controls at Their Owners
+
+A control earns its place by naming the failure it owns and the boundary where it can prevent or contain that failure.
+
+Common control-owning boundaries include:
+
+- external or untrusted input entering a trusted component;
+- advice becoming an account, payment, deployment, or trading action;
+- one representation becoming another, such as API payload to domain object or source data to derived feature;
+- transient state becoming durable or externally visible;
+- a reversible workflow crossing into an irreversible or costly action.
+
+Within one boundary, prefer one canonical validator, normalizer, retry policy, or guard. Independent layers remain appropriate when they control different failures or one layer must contain the failure of another. For example, a Tier 5 preflight can review an order path while a runtime limit still constrains each live order.
+
+During review, ask:
+
+- Which plausible failure becomes less controlled if this branch, guard, retry, fallback, or compatibility path is removed?
+- Does an upstream contract already guarantee the same condition within the same trust boundary?
+- Does this layer fail visibly and preserve the correct claim ceiling, or can it silently convert an error into misleading success?
+- Is the duplication independent defense-in-depth（纵深防御）, or the same check repeated without a separate owner?
+
+## Reuse or Build
+
+For a complex, shared, security-sensitive, infrastructure, protocol, or maintenance-heavy capability, inspect suitable existing project capabilities, platform services, standard-library support, and maintained open-source components before building it from scratch.
+
+There is no mandatory preference order. Compare:
+
+- functional and operational fit;
+- maintenance health and upgrade path;
+- security, provenance（来源）and supply-chain exposure;
+- licence and redistribution constraints;
+- integration, observability, migration, and exit cost;
+- the amount of custom glue still required.
+
+Simple local glue, narrow domain logic, or a small well-tested transformation may be safer and cheaper to implement directly than adding a dependency. Record the choice only when it is material to architecture, maintenance, safety, or future handoff.
+
+## Platform Permission and Project Authorization
+
+The platform's current effective sandbox（沙盒）, approval policy（审批策略）, connector（连接器）, and access configuration is authoritative and outside this skill's control.
+
+- If the platform requires approval, wait for it. An accepted project plan does not bypass that gate.
+- If the platform configuration permits an action without approval, do not create a pause solely to imitate a stricter platform configuration.
+- Platform-granted technical capability is not blanket task authorization. Preserve the user's scope and project-specific gates for consequential external actions such as push, deployment, production mutation, cutover, retirement, live trading, or material cost.
+- One accepted plan covers ordinary local implementation decisions inside its scope. Reopen human agreement for material scope expansion, unresolved choices that change the result, consequential external action, or an explicit project gate.
+
+## Representative Project Shapes
+
+| Project shape | Low-friction path | Boundary that retains stronger assurance |
+| --- | --- | --- |
+| Large research or data pipeline | Reuse immutable stage receipts and validate affected consumers | Source semantics, schema, lineage（数据血缘）, publication, remote write, or expensive recomputation |
+| Read-only financial or other high-consequence advisory system | Preserve proven read-only guards and one aggregate gate | New account authority, private action endpoints, consequential calibration, or misleading evidence |
+| Personal cloud or trading infrastructure | Continue approved local code, documentation, simulation, and focused tests | Credentials, public exposure, remote service mutation, single-writer change, cutover, retirement, or live action |
+| Production web application | Keep visual, copy, and local component work focused | Auth, privacy, schema migration, backup or restore, payment, and production deployment |
+| Institutional workflow | Keep learning material and bounded internal prototypes proportionate | Confidential client data, external submission, delegated business decisions, payments, or legal execution |
+| Shared model-training package | Keep richer controls local to the owned package and consume frozen data evidence | Shared contracts, dependency installation, cloud writes, costly training, and activation of executable stages |
+
+These shapes guide reasoning; they do not add tiers or replace the target repository's current facts and rules.

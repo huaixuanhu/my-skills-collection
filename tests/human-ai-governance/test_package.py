@@ -15,6 +15,7 @@ def main() -> int:
         "references/governance-patterns.md",
         "references/graph-governance.md",
         "references/preflight-patterns.md",
+        "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
         "references/stage-sizing.md",
         "scripts/governance_preflight_template.py",
@@ -27,8 +28,8 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.6.1`" in skill
-    assert "Generated/adapted from human-ai-governance v0.6.1" in skill
+    assert "Skill version: `0.7.0`" in skill
+    assert "Generated/adapted from human-ai-governance v0.7.0" in skill
     assert len(skill.splitlines()) < 120
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
@@ -38,6 +39,10 @@ def main() -> int:
         "temporary Max single-writer recovery slice",
         "Treat mode choice and agent topology as separate decisions",
         "Max and Ultra may both use multiple subagents and parallel writes",
+        "Tier 1-5 is the only governance classification",
+        "platform's current effective sandbox",
+        "Stop adding validation",
+        "references/proportional-assurance.md",
     ):
         assert required in skill, required
 
@@ -45,10 +50,22 @@ def main() -> int:
         "references/governance-patterns.md",
         "references/preflight-patterns.md",
         "references/evaluation-scenarios.md",
+        "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.6.1" in text, relative_path
+        assert "v0.7.0" in text, relative_path
+
+    assurance = (
+        CANDIDATE / "references/proportional-assurance.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "Validation options are not cumulative levels",
+        "There is no mandatory preference order",
+        "outside this skill's control",
+        "they do not add tiers",
+    ):
+        assert required in assurance, required
 
     routing = (
         CANDIDATE / "references/reasoning-mode-routing.md"
@@ -69,12 +86,16 @@ def main() -> int:
         CANDIDATE / "references/evaluation-scenarios.md"
     ).read_text(encoding="utf-8")
     assert "`xhigh`, `max`, and `ultra`" in evaluation
-    assert "Whenever model-behavior scenarios are run" in evaluation
+    assert "Select scenarios and reasoning modes" in evaluation
     for required in (
         "Stable known multi-agent causal task",
         "Evolving decomposition task",
         "Separable parallel implementation",
         "Shared-invariant coupled task before failure",
+        "Large-data consumer change with valid receipts",
+        "Boundary-owned defensive review",
+        "Full-access platform configuration",
+        "Complex component and simple glue decision",
         "hard-coded fan-out defaults",
     ):
         assert required in evaluation, required
@@ -99,7 +120,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.6.1"',
+        'SKILL_VERSION = "0.7.0"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -110,7 +131,7 @@ def main() -> int:
         assert required in preflight, required
     assert "strip_git_quotes" not in preflight
 
-    print("PASS: v0.6.1 package regression checks passed.")
+    print("PASS: v0.7.0 package regression checks passed.")
     return 0
 
 
