@@ -1,6 +1,6 @@
 # Proportional Assurance
 
-Current skill version: `human-ai-governance v0.7.1`
+Current skill version: `human-ai-governance v0.7.2`
 
 Use this reference when validation is expensive, prior evidence may still be valid, architecture or authority boundaries are involved, defensive controls may overlap, platform permissions need to be separated from project authorization, or a complex capability may reuse an existing component.
 

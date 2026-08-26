@@ -1,11 +1,11 @@
 ---
 name: human-ai-governance
-description: Create, review, or maintain practical five-tier human-AI collaboration governance, reasoning-mode routing, and audience-facing writing boundaries for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, or separating engineering records from reader-facing reports and presentation copy.
+description: Create, review, or maintain practical five-tier human-AI collaboration governance, reasoning-mode routing, audience-facing writing boundaries, and explicit default/plain technical-language choices for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, separating engineering records from reader-facing work, or controlling unexplained technical terminology without weakening engineering rigor.
 ---
 
 # Human-AI Governance
 
-Skill version: `0.7.1`
+Skill version: `0.7.2`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.1
+Generated/adapted from human-ai-governance v0.7.2
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -66,6 +66,14 @@ Use the marker to decide whether an existing project needs a separately approved
 - Expression mode changes prose and organization only. It does not change facts, citations, uncertainty, required disclosure, safety controls, authority, approval, or validation.
 - Infer a clear route without another approval turn. If unresolved ambiguity would materially change the deliverable, ask once; otherwise keep the engineering default.
 
+## Technical-Language Routing
+
+- Treat technical-language routing as an explicit axis independent of writing mode. If the user does not choose, use `default`, add no terminology transformation beyond current Codex and governing instructions, and do not ask for a choice.
+- Activate `plain` only from an explicit user request for plain, everyday, non-specialist, or low-jargon technical language. Apply the choice to the current task or content unit unless the user sets a broader scope, and let the user switch it explicitly.
+- Route writing mode first, then adjust terminology within it. `default` and `plain` must not activate, deactivate, replace, weaken, or reshape engineering-governance writing or audience-facing expression.
+- The choice changes wording only. It must not change reasoning, planning, implementation, tool use, validation, evidence, safety controls, authorization, or completion criteria.
+- In `plain`, preserve exact identifiers, code, commands, paths, configuration keys, error text, formulas, and necessary technical terms. Plain language does not imply brevity; when a simpler substitute would create ambiguity, keep the term and explain it briefly in the user's language.
+
 ## Reasoning-Mode Routing
 
 - In the main workspace, use `xhigh` for relatively simple, bounded tasks. Once meaningful complexity appears, recommend Max or Ultra according to task shape; treat them as peer primary modes.
@@ -102,6 +110,8 @@ Retain governance artifacts that support continuity, but keep each one focused.
 Read `references/proportional-assurance.md` when validation is expensive, evidence may be reusable, a change crosses architecture or authority boundaries, defensive controls may overlap, platform permissions need to be distinguished from project authorization, or a complex capability may reuse an existing component.
 
 Read `references/audience-facing-writing.md` when creating or revising audience-facing long-form prose, an article, speech, executive narrative, report, or presentation copy, or when a mixed deliverable needs section-level writing-mode routing.
+
+Read `references/technical-language-routing.md` when the user explicitly selects `plain`, when technical material must be explained to a non-specialist, or when validating that `default` and `plain` leave writing mode and engineering capability unchanged.
 
 Read `references/governance-patterns.md` when creating governance files, adapting this workflow to a new project, writing templates, or deciding how strict the project should be.
 

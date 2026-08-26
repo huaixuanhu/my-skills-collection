@@ -1,8 +1,10 @@
 # Audience-Facing Writing
 
-Current skill version: `human-ai-governance v0.7.1`
+Current skill version: `human-ai-governance v0.7.2`
 
 Use this reference after `SKILL.md` routes a deliverable or one of its content units into audience-facing expression mode. This mode governs presentation and prose. It does not change project tier, engineering controls, evidence requirements, or authorization.
+
+Technical-language choice is a separate axis. `default` and `plain` cannot activate, deactivate, or reshape audience-facing expression. When the user explicitly selects `plain`, preserve the chosen voice, narrative, organization, rhythm, genre, and presentation logic while adapting only terminology under `technical-language-routing.md`.
 
 ## Route by Content Function
 

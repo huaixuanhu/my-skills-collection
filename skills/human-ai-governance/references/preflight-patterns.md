@@ -1,6 +1,6 @@
 # Preflight Patterns
 
-Current skill version: `human-ai-governance v0.7.1`
+Current skill version: `human-ai-governance v0.7.2`
 
 Use this reference when a project needs automatic checks to prevent governance drift. The bundled `scripts/governance_preflight_template.py` is a starting scaffold, not a universal law. Copy it into the target repository and tune it to the project's tier（层级）, filenames, architecture docs, and credible side effects. Preserve a stronger proven project-specific gate instead of replacing it for consistency alone.
 
@@ -27,7 +27,7 @@ Use tier-aware checks:
 
 Keep automatic checks mechanical. Do not ask a generic script to infer whether an economic limit is appropriate, whether a trade thesis is sound, or whether confidential exposure is materially harmful. Record those judgments in project governance and test the resulting technical limits.
 
-Do not turn audience-facing style into a generic preflight gate. Phrase counts, regular expressions for constructions such as “not X, but Y,” punctuation or list quotas, and AI-detector scores cannot reliably decide whether prose fits its audience or whether an engineering constraint is necessary. Use semantic review and, for presentations, inspect the rendered artifact. Enforce a mechanical format requirement only when the target project has an explicit stable contract for it.
+Do not turn audience-facing style or technical-language choice into a generic preflight gate. Phrase or jargon counts, word blacklists, reading-level scores, regular expressions for constructions such as “not X, but Y,” punctuation or list quotas, and AI-detector scores cannot reliably decide whether prose fits its audience, whether `plain` preserved meaning, or whether an engineering constraint is necessary. Use semantic review and, for presentations, inspect the rendered artifact. Enforce a mechanical format requirement only when the target project has an explicit stable contract for it.
 
 Fail when Git repository state cannot be inspected. Use NUL-delimited status records so Unicode, whitespace, rename, and copy paths remain exact. When staged and working-tree content differ, validate each changed snapshot without printing matched secret values.
 
@@ -198,6 +198,8 @@ For a `v0.6.0` to `v0.6.1` migration, the five-tier model and mechanical preflig
 For a `v0.6.1` to `v0.7.0` migration, Tier 1-5 remains the only classification and the generic preflight behavior remains unchanged apart from the version marker. Review the new proportional-assurance guidance for evidence reuse, claim-scoped invalidation, boundary-owned controls, platform-permission deference, and conditional component reuse. Keep these as contextual judgments: do not add generic script checks for validation density, defensive-programming style, platform access mode, dependency choice, or evidence sufficiency.
 
 For a `v0.7.0` to `v0.7.1` migration, the five-tier model, authority boundaries, and generic preflight behavior remain unchanged apart from the version marker. Review the new writing-mode route only where the project produces audience-facing prose or presentations. Keep functional engineering documents under engineering governance, route mixed deliverables by content unit, and do not add phrase bans, punctuation quotas, or AI-detector gates.
+
+For a `v0.7.1` to `v0.7.2` migration, the writing-mode route, five-tier model, authority boundaries, and generic preflight behavior remain unchanged apart from the version marker. Review the new explicit `default` / `plain` technical-language choice only where users need control over unexplained terminology. Keep it independent from writing mode and engineering capability; do not add jargon counts, word blacklists, reading-level scores, regular expressions, or detector gates.
 
 Under the accepted reference classifications, `learningWordsformimi` remains Tier 3 while it lacks material economic or account authority, current read-only `autoadvisor` remains Tier 4, and a future live-trading quant system is Tier 5.
 

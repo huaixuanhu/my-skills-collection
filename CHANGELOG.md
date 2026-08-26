@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-27 02:56 AEST
+
+- Upgraded canonical `human-ai-governance` to v0.7.2 with an explicit technical-language choice: `default` keeps normal Codex terminology, while `plain` uses more common words and explains necessary specialist terms.
+- Kept `default` as the fallback when the user does not choose a terminology mode, without adding a mandatory question or an automatic simplification pass.
+- Kept the terminology choice independent from the v0.7.1 engineering-governance and audience-facing writing modes, including their voice, organization, narrative, rhythm, genre, and presentation logic.
+- Limited `plain` mode to wording changes. Reasoning depth, planning, implementation, tool use, validation, evidence, safety, authority, and completion requirements remain unchanged.
+- Preserved exact identifiers, code, commands, paths, configuration keys, error text, formulas, and necessary technical terms; rejected jargon counts, word blacklists, reading-level scores, regex checks, and AI-detector scores as mechanical language gates.
+- Added five routing scenarios and focused regression checks. Package regression, preflight behavior regression, the official Codex skill validator, aggregate validation for two skills and five regression scripts, and the diff check all passed.
+- Reason: let the user control how technical explanations sound without weakening engineering work or changing the existing audience-facing writing system.
+
 ## 2026-08-21 15:35 AEST
 
 - Upgraded canonical `human-ai-governance` to v0.7.1 with engineering-governance writing as the default and audience-facing expression activated from content function.

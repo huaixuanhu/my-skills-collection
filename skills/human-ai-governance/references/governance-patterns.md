@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.1`
+Current skill version: `human-ai-governance v0.7.2`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.1
+Generated/adapted from human-ai-governance v0.7.2
 ```
 
 ## Contents
@@ -16,6 +16,7 @@ Generated/adapted from human-ai-governance v0.7.1
 - [Tier Checklist](#tier-checklist)
 - [Task Scope and Model Discretion](#task-scope-and-model-discretion)
 - [Writing Mode in Governed Deliverables](#writing-mode-in-governed-deliverables)
+- [Technical Language in Governed Deliverables](#technical-language-in-governed-deliverables)
 - [Proportionality and Convenience](#proportionality-and-convenience)
 - [Economic and Account Consequences](#economic-and-account-consequences)
 - [Tier-Specific Governance](#tier-specific-governance)
@@ -91,6 +92,12 @@ Examples:
 Keep project governance and functional engineering documents in engineering-governance writing by default. When the project also produces audience-facing prose or presentations, route only the relevant content units into audience-facing expression mode. Mixed reports and decks can use natural reader-facing narrative in the main story while specifications, source notes, evidence limits, risk disclosures, operating instructions, and approval conditions retain engineering precision.
 
 The writing route does not create a tier, reduce governance, or change authorization. File type and document length do not decide it. Read `audience-facing-writing.md` for activation and revision guidance.
+
+## Technical Language in Governed Deliverables
+
+Treat technical-language choice as an explicit axis separate from writing mode. Use `default` when the user does not choose and add no terminology transformation from this skill. Use `plain` only after an explicit request for plain, everyday, non-specialist, or low-jargon technical language.
+
+Route writing mode first, then apply the terminology choice inside it. Neither `default` nor `plain` may activate, deactivate, replace, weaken, or reshape engineering-governance writing or audience-facing expression. Plain language changes wording only; it preserves reasoning, implementation, tools, validation, evidence, safety, authorization, completion criteria, and exact operational terms. Read `technical-language-routing.md` for scope and review guidance.
 
 ## Proportionality and Convenience
 
@@ -170,7 +177,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.1 -->
+<!-- Generated/adapted from human-ai-governance v0.7.2 -->
 
 ## Collaboration
 

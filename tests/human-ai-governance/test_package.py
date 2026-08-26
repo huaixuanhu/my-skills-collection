@@ -19,6 +19,7 @@ def main() -> int:
         "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
         "references/stage-sizing.md",
+        "references/technical-language-routing.md",
         "scripts/governance_preflight_template.py",
     }
     actual_files = {
@@ -29,9 +30,9 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.7.1`" in skill
-    assert "Generated/adapted from human-ai-governance v0.7.1" in skill
-    assert len(skill.splitlines()) < 120
+    assert "Skill version: `0.7.2`" in skill
+    assert "Generated/adapted from human-ai-governance v0.7.2" in skill
+    assert len(skill.splitlines()) < 135
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
         "treat them as peer primary modes",
@@ -48,6 +49,11 @@ def main() -> int:
         "File extension, document length, or a request for polish alone does not decide the mode",
         "Expression mode changes prose and organization only",
         "references/audience-facing-writing.md",
+        "Treat technical-language routing as an explicit axis independent of writing mode",
+        "add no terminology transformation beyond current Codex and governing instructions",
+        "must not activate, deactivate, replace, weaken, or reshape",
+        "It must not change reasoning, planning, implementation, tool use, validation, evidence, safety controls, authorization, or completion criteria",
+        "references/technical-language-routing.md",
     ):
         assert required in skill, required
 
@@ -58,9 +64,10 @@ def main() -> int:
         "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
         "references/audience-facing-writing.md",
+        "references/technical-language-routing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.7.1" in text, relative_path
+        assert "v0.7.2" in text, relative_path
 
     assurance = (
         CANDIDATE / "references/proportional-assurance.md"
@@ -86,6 +93,8 @@ def main() -> int:
         "Do not fill an unspecified trigger, fallback condition, threshold, or authorization step",
         "Do not repeat the full boundary list in the conclusion",
         "After one clear negative contrast, phrase later points affirmatively",
+        "Technical-language choice is a separate axis",
+        "cannot activate, deactivate, or reshape audience-facing expression",
     ):
         assert required in writing, required
     for banned in (
@@ -94,6 +103,21 @@ def main() -> int:
         "AI-detector score must",
     ):
         assert banned not in writing, banned
+
+    terminology = (
+        CANDIDATE / "references/technical-language-routing.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "Use `default` when the user does not make an explicit choice",
+        "Technical-language routing is orthogonal to writing-mode routing",
+        "Audience-facing expression does not imply `plain`",
+        "Plain language does not mean a shorter or less complete answer",
+        "reasoning effort, reasoning route, or agent topology",
+        "Keep exact identifiers, code, commands, paths, configuration keys, API fields, error text, formulas, standards",
+        "Would `default` and `plain` lead to the same engineering decision, implementation, validation, evidence, risk, and next action?",
+        "Do not use jargon counts, word blacklists, reading-level scores, regular expressions, or AI-detector scores",
+    ):
+        assert required in terminology, required
 
     routing = (
         CANDIDATE / "references/reasoning-mode-routing.md"
@@ -129,6 +153,11 @@ def main() -> int:
         "Leadership presentation",
         "Technical design presentation",
         "High-consequence audience memo",
+        "No terminology choice",
+        "Plain engineering explanation",
+        "Audience-facing default terminology",
+        "Audience-facing plain terminology",
+        "Plain high-consequence handoff",
     ):
         assert required in evaluation, required
     assert "Keep high and xhigh results separate" not in evaluation
@@ -139,12 +168,12 @@ def main() -> int:
 
     agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
     assert (
-        'short_description: "Risk-scaled governance, reasoning, and writing modes"'
+        'short_description: "Risk-scaled governance, reasoning, writing, and language modes"'
         in agent_metadata
     )
     assert (
-        'default_prompt: "Use $human-ai-governance to set proportional project governance, '
-        'route xhigh, Max, or Ultra, and separate engineering records from audience-facing writing."'
+        'default_prompt: "Use $human-ai-governance to set proportional governance, '
+        'route reasoning and writing, and keep default technical language unless the user explicitly selects plain."'
         in agent_metadata
     )
 
@@ -155,7 +184,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.7.1"',
+        'SKILL_VERSION = "0.7.2"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -166,7 +195,7 @@ def main() -> int:
         assert required in preflight, required
     assert "strip_git_quotes" not in preflight
 
-    print("PASS: v0.7.1 package regression checks passed.")
+    print("PASS: v0.7.2 package regression checks passed.")
     return 0
 
 
