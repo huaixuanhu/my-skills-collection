@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.2`
+Current skill version: `human-ai-governance v0.7.3`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.2
+Generated/adapted from human-ai-governance v0.7.3
 ```
 
 ## Contents
@@ -17,6 +17,7 @@ Generated/adapted from human-ai-governance v0.7.2
 - [Task Scope and Model Discretion](#task-scope-and-model-discretion)
 - [Writing Mode in Governed Deliverables](#writing-mode-in-governed-deliverables)
 - [Technical Language in Governed Deliverables](#technical-language-in-governed-deliverables)
+- [Plan Index and Lifecycle Routing](#plan-index-and-lifecycle-routing)
 - [Proportionality and Convenience](#proportionality-and-convenience)
 - [Economic and Account Consequences](#economic-and-account-consequences)
 - [Tier-Specific Governance](#tier-specific-governance)
@@ -99,6 +100,16 @@ Treat technical-language choice as an explicit axis separate from writing mode. 
 
 Route writing mode first, then apply the terminology choice inside it. Neither `default` nor `plain` may activate, deactivate, replace, weaken, or reshape engineering-governance writing or audience-facing expression. Plain language changes wording only; it preserves reasoning, implementation, tools, validation, evidence, safety, authorization, completion criteria, and exact operational terms. Read `technical-language-routing.md` for scope and review guidance.
 
+## Plan Index and Lifecycle Routing
+
+Keep one clear plan direct. When nested children, parallel branches, multi-session continuation, or retained historical plans make the current entry ambiguous, point `AGENTS.md` to a compact `PLAN_INDEX.yaml`, `PLAN_INDEX.md`, or an existing registry and apply its load policy before opening plan bodies.
+
+Treat the index as a routing read model. It identifies the matched workstream, current plan, parent links, status owner, and on-demand evidence; it cannot grant scope, authority, approval, or completion. Keep paths stable and record lifecycle in metadata rather than moving plans between status-named folders.
+
+Separate `lifecycle_status`, `authority_state`, and `load_policy`. The combination `complete + consumed + evidence_only` means the plan's work is complete, its retained result has been absorbed by another owner source, and the plan is read only when its evidence or history is needed. Completion alone does not prove that a plan is safe to skip.
+
+At closeout, update the index and any mutable header mirror together. Preserve immutable or evidence-bound plan text and point the index to its current `status_owner`. Read `plan-lifecycle-routing.md` for the selection order, state meanings, scaling pattern, and conflict rules.
+
 ## Proportionality and Convenience
 
 Use the lightest governance that adequately controls credible harm.
@@ -177,7 +188,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.2 -->
+<!-- Generated/adapted from human-ai-governance v0.7.3 -->
 
 ## Collaboration
 
@@ -190,7 +201,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 
 - Runtime / virtual environment:
 - Architecture entrypoint:
-- Active plan / status entrypoint:
+- Plan index / active status entrypoint:
 - Aggregate validation command:
 - Project tier:
 - Tier rationale:
@@ -206,6 +217,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ## Decision Rules
 
 - Read only the canonical sources relevant to the task.
+- When a plan index applies, query it and apply load policy before opening plan bodies; load only matched current plans, necessary parents, status owners, and needed evidence.
 - For material work, state scope, non-scope, validation, and affected authority.
 - Update a document only when its current claim would become stale.
 - Run the aggregate gate once; rerun child checks only for diagnosis or separate evidence.
@@ -214,13 +226,20 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 
 ### Plan Doc Header
 
-Use this for child plans or branch plans to avoid plan drift.
+Use this for child plans or branch plans to avoid plan drift. In an indexed plan tree, keep the lifecycle lines synchronized with the index when the plan is mutable. For a small direct plan, include only fields that improve continuity.
 
 ```markdown
 # <Project> <Stage or Branch>: <Topic>
 
 Created:
 Last updated:
+
+Lifecycle status: active
+Authority state: current
+Load policy: default
+Status owner: this document
+Consumed by: none
+Successor: none
 
 Source plan:
 - `<path/to/parent-plan.md>`
@@ -230,9 +249,6 @@ Derived from:
 
 Input evidence:
 - `<path/to/evidence-or-handoff.md>`
-
-Consumer / next stage:
-- `<path/to/future-plan.md>`
 
 Document nature:
 This is a derived design / implementation plan for <scope>. It is not an independent peer plan.

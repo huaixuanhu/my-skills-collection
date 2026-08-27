@@ -15,6 +15,7 @@ def main() -> int:
         "references/evaluation-scenarios.md",
         "references/governance-patterns.md",
         "references/graph-governance.md",
+        "references/plan-lifecycle-routing.md",
         "references/preflight-patterns.md",
         "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
@@ -30,9 +31,9 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.7.2`" in skill
-    assert "Generated/adapted from human-ai-governance v0.7.2" in skill
-    assert len(skill.splitlines()) < 135
+    assert "Skill version: `0.7.3`" in skill
+    assert "Generated/adapted from human-ai-governance v0.7.3" in skill
+    assert len(skill.splitlines()) < 145
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
         "treat them as peer primary modes",
@@ -54,6 +55,12 @@ def main() -> int:
         "must not activate, deactivate, replace, weaken, or reshape",
         "It must not change reasoning, planning, implementation, tool use, validation, evidence, safety controls, authorization, or completion criteria",
         "references/technical-language-routing.md",
+        "route through a compact plan index before opening plan bodies",
+        "Do not recursively load a plan directory to discover which document is current",
+        "Use an index when child-of-child plans, parallel branches, multi-session continuation, or retained historical plans make task routing ambiguous",
+        "`complete + consumed + evidence_only`",
+        "A stale index yields to its owner sources",
+        "references/plan-lifecycle-routing.md",
     ):
         assert required in skill, required
 
@@ -65,9 +72,10 @@ def main() -> int:
         "references/reasoning-mode-routing.md",
         "references/audience-facing-writing.md",
         "references/technical-language-routing.md",
+        "references/plan-lifecycle-routing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.7.2" in text, relative_path
+        assert "v0.7.3" in text, relative_path
 
     assurance = (
         CANDIDATE / "references/proportional-assurance.md"
@@ -119,6 +127,49 @@ def main() -> int:
     ):
         assert required in terminology, required
 
+    plan_routing = (
+        CANDIDATE / "references/plan-lifecycle-routing.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "Do not use a fixed plan-count threshold",
+        "The index helps an agent find what to read",
+        "It cannot grant scope, implementation authority, runtime authority, approval, or completion",
+        "`lifecycle_status` | `active`, `blocked`, `complete`, `superseded`",
+        "`authority_state` | `current`, `consumed`",
+        "`load_policy` | `default`, `conditional`, `evidence_only`",
+        "Completion does not prove that another source now carries the plan's current contract",
+        "Apply `load_policy` before opening the referenced plan body",
+        "Do not recursively read all plans, all siblings, or every ancestor by default",
+        "Do not edit an immutable, signed, digest-bound, receipt-bound, or append-only plan",
+        "It does not mean obsolete, safe to delete, or irrelevant to every future claim",
+        "An index-first design does not require loading the whole index into model context",
+        "Store lifecycle in metadata rather than renaming or moving folders whenever status changes",
+    ):
+        assert required in plan_routing, required
+
+    stage_sizing = (
+        CANDIDATE / "references/stage-sizing.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "Plan closeout and context release",
+        "Do not infer `evidence_only` from completion alone",
+        "preserve its original text and carry current lifecycle and loading state in the index",
+    ):
+        assert required in stage_sizing, required
+
+    governance = (
+        CANDIDATE / "references/governance-patterns.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "Plan Index and Lifecycle Routing",
+        "Plan index / active status entrypoint",
+        "Lifecycle status: active",
+        "Authority state: current",
+        "Load policy: default",
+        "Consumed by: none",
+    ):
+        assert required in governance, required
+
     routing = (
         CANDIDATE / "references/reasoning-mode-routing.md"
     ).read_text(encoding="utf-8")
@@ -158,6 +209,12 @@ def main() -> int:
         "Audience-facing default terminology",
         "Audience-facing plain terminology",
         "Plain high-consequence handoff",
+        "Simple project with one clear plan",
+        "Nested plan tree with consumed history",
+        "Completed current baseline",
+        "Immutable evidence-bound plan closeout",
+        "Stale plan index conflict",
+        "Large plan index",
     ):
         assert required in evaluation, required
     assert "Keep high and xhigh results separate" not in evaluation
@@ -168,12 +225,12 @@ def main() -> int:
 
     agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
     assert (
-        'short_description: "Risk-scaled governance, reasoning, writing, and language modes"'
+        'short_description: "Risk-scaled governance, plan routing, writing, and language"'
         in agent_metadata
     )
     assert (
         'default_prompt: "Use $human-ai-governance to set proportional governance, '
-        'route reasoning and writing, and keep default technical language unless the user explicitly selects plain."'
+        'route plan context, reasoning, and writing, and keep default technical language unless plain is requested."'
         in agent_metadata
     )
 
@@ -184,7 +241,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.7.2"',
+        'SKILL_VERSION = "0.7.3"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -194,8 +251,9 @@ def main() -> int:
     ):
         assert required in preflight, required
     assert "strip_git_quotes" not in preflight
+    assert "PLAN_INDEX" not in preflight
 
-    print("PASS: v0.7.2 package regression checks passed.")
+    print("PASS: v0.7.3 package regression checks passed.")
     return 0
 
 

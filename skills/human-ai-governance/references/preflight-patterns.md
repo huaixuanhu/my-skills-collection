@@ -1,6 +1,6 @@
 # Preflight Patterns
 
-Current skill version: `human-ai-governance v0.7.2`
+Current skill version: `human-ai-governance v0.7.3`
 
 Use this reference when a project needs automatic checks to prevent governance drift. The bundled `scripts/governance_preflight_template.py` is a starting scaffold, not a universal law. Copy it into the target repository and tune it to the project's tier（层级）, filenames, architecture docs, and credible side effects. Preserve a stronger proven project-specific gate instead of replacing it for consistency alone.
 
@@ -22,10 +22,13 @@ Use tier-aware checks:
 - Tier 2 through Tier 5: changed material files without the configured changelog update, when the project maintains a changelog
 - Tier 3 through Tier 5: changed material files with a missing or stale AI log, incomplete latest log entry, module-topology or migration changes without architecture sync, or child plans without `Source plan` / `Derived from`
 - optional strict mode: project-specific risky side effects in executable runtime paths
+- optional indexed-plan mode: project-specific checks for unique plan IDs and paths, valid state values, resolvable parent and status-owner links, and lineage cycles after the repository adopts a stable index contract
 - marker mode: missing or stale `Generated/adapted from human-ai-governance vX.Y.Z` marker
 - advisory only: a changed root `AGENTS.md` that is approaching or exceeds the common project-document byte budget
 
 Keep automatic checks mechanical. Do not ask a generic script to infer whether an economic limit is appropriate, whether a trade thesis is sound, or whether confidential exposure is materially harmful. Record those judgments in project governance and test the resulting technical limits.
+
+Do not require a plan index in every repository or infer `complete`, `consumed`, or `evidence_only` from file contents. The generic preflight template does not enforce plan-index lifecycle. Add a project-specific index check only after routing ambiguity is recurring, the project has adopted stable fields and state values, and the check can validate structure without deciding semantic completion or authority.
 
 Do not turn audience-facing style or technical-language choice into a generic preflight gate. Phrase or jargon counts, word blacklists, reading-level scores, regular expressions for constructions such as “not X, but Y,” punctuation or list quotas, and AI-detector scores cannot reliably decide whether prose fits its audience, whether `plain` preserved meaning, or whether an engineering constraint is necessary. Use semantic review and, for presentations, inspect the rendered artifact. Enforce a mechanical format requirement only when the target project has an explicit stable contract for it.
 
@@ -200,6 +203,8 @@ For a `v0.6.1` to `v0.7.0` migration, Tier 1-5 remains the only classification a
 For a `v0.7.0` to `v0.7.1` migration, the five-tier model, authority boundaries, and generic preflight behavior remain unchanged apart from the version marker. Review the new writing-mode route only where the project produces audience-facing prose or presentations. Keep functional engineering documents under engineering governance, route mixed deliverables by content unit, and do not add phrase bans, punctuation quotas, or AI-detector gates.
 
 For a `v0.7.1` to `v0.7.2` migration, the writing-mode route, five-tier model, authority boundaries, and generic preflight behavior remain unchanged apart from the version marker. Review the new explicit `default` / `plain` technical-language choice only where users need control over unexplained terminology. Keep it independent from writing mode and engineering capability; do not add jargon counts, word blacklists, reading-level scores, regular expressions, or detector gates.
+
+For a `v0.7.2` to `v0.7.3` migration, the five-tier model, writing and terminology routes, authority boundaries, and generic preflight behavior remain unchanged apart from the version marker. Review plan-index routing only where nested, parallel, multi-session, or retained historical plans make the current entry ambiguous. Keep the index a compact routing read model, preserve evidence-bound paths, and add a mechanical index checker only when the target repository has an explicit stable contract for it.
 
 Under the accepted reference classifications, `learningWordsformimi` remains Tier 3 while it lacks material economic or account authority, current read-only `autoadvisor` remains Tier 4, and a future live-trading quant system is Tier 5.
 

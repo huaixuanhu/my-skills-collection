@@ -1,4 +1,4 @@
 interface:
   display_name: "Human-AI Governance"
-  short_description: "Risk-scaled governance, reasoning, writing, and language modes"
-  default_prompt: "Use $human-ai-governance to set proportional governance, route reasoning and writing, and keep default technical language unless the user explicitly selects plain."
+  short_description: "Risk-scaled governance, plan routing, writing, and language"
+  default_prompt: "Use $human-ai-governance to set proportional governance, route plan context, reasoning, and writing, and keep default technical language unless plain is requested."

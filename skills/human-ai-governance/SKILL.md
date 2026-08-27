@@ -1,11 +1,11 @@
 ---
 name: human-ai-governance
-description: Create, review, or maintain practical five-tier human-AI collaboration governance, reasoning-mode routing, audience-facing writing boundaries, and explicit default/plain technical-language choices for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, separating engineering records from reader-facing work, or controlling unexplained technical terminology without weakening engineering rigor.
+description: Create, review, or maintain practical five-tier human-AI collaboration governance, plan-index and lifecycle routing, reasoning-mode routing, audience-facing writing boundaries, and explicit default/plain technical-language choices for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, plan indexes, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, separating engineering records from reader-facing work, or controlling unexplained technical terminology without weakening engineering rigor.
 ---
 
 # Human-AI Governance
 
-Skill version: `0.7.2`
+Skill version: `0.7.3`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.2
+Generated/adapted from human-ai-governance v0.7.3
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -30,6 +30,7 @@ Use the marker to decide whether an existing project needs a separately approved
 - Treat the platform's current effective sandbox, approval, connector, and access configuration as authoritative and outside this skill's control. Do not weaken, strengthen, bypass, or recreate it. Platform-granted capability does not expand task scope or project authorization.
 - For a complex, shared, security-sensitive, or maintenance-heavy capability, inspect suitable project, platform, standard, or maintained open-source options before building it from scratch. Simple local glue may be implemented directly; choose by fit and lifecycle risk rather than a mandatory preference order.
 - Update a document when its current claim would become false, incomplete, or misleading. Prefer one canonical source plus links over repetition.
+- When several generations or branches of plans make the current entry unclear, route through a compact plan index before opening plan bodies. Do not recursively load a plan directory to discover which document is current.
 - For a projectless discussion or bounded low-impact task, stop at this file unless a resource trigger below actually applies. Do not load references or create governance artifacts for completeness alone.
 
 ## Core Workflow
@@ -57,6 +58,14 @@ Use the marker to decide whether an existing project needs a separately approved
    - When an aggregate gate already includes the relevant focused check, run only the aggregate gate. Run a child separately only to diagnose a failure or when the user or repository explicitly requires separate evidence. Add a preflight（预检）only when it controls a recurring mechanical failure.
    - Stop adding validation when every affected acceptance claim and safety invariant has current sufficient evidence. A relevant input change, failed evidence, or unresolved consequential boundary reopens only the necessary checks.
    - Review the diff, then report outcome, material files, validation, remaining risk, and next required decision.
+
+## Plan-Context Routing
+
+- Use an index when child-of-child plans, parallel branches, multi-session continuation, or retained historical plans make task routing ambiguous. Keep a single clear plan direct for small work; do not introduce an index from file count alone.
+- Treat `PLAN_INDEX.yaml` or `PLAN_INDEX.md` as a compact routing read model, never as authority. Keep plan paths stable and keep lifecycle in metadata rather than moving files between active and completed folders.
+- Select the matched workstream and current plan before opening plan bodies, then apply `default`, `conditional`, or `evidence_only` load policy. Load only the current plan, necessary parent chain, status owner, and evidence needed for the affected claim; do not load every sibling or historical plan.
+- Keep `lifecycle_status`, `authority_state`, and `load_policy` separate. `complete + consumed + evidence_only` means the work is complete, its result has been absorbed, and the plan is retained for on-demand evidence; `complete` alone does not make a plan safe to skip.
+- At closeout, update the index and any mutable plan-header mirror together, name the current status owner and successor or consumer, and preserve immutable or evidence-bound plans unchanged. A stale index yields to its owner sources and must not silently direct work.
 
 ## Writing-Mode Routing
 
@@ -100,6 +109,7 @@ Retain governance artifacts that support continuity, but keep each one focused.
 
 - `AGENTS.md`: concise rules, tier, permanent boundaries, canonical-doc pointers, and aggregate validation commands; keep history and transient status elsewhere.
 - `ARCHITECTURE.md` or `PROJECT_MAP.md`: current structure, module responsibilities, data flow, safety and deployment boundaries.
+- `PLAN_INDEX.yaml` or `PLAN_INDEX.md`: optional compact routing metadata for complex plan trees; keep authority, detailed history, and evidence in their owner sources.
 - `plan_docs/`: accepted scope, decisions, sequencing, exit criteria, and known non-scope for complex or multi-session work.
 - `CHANGELOG.md` and `governance/AI_AGENT_LOG.md`: concise reasons, outcomes, validation, and safety notes when the project uses them for continuity.
 - `governance/preflight` scripts: mechanical checks for stable invariants; they should not infer nuanced human risk judgments.
@@ -120,6 +130,8 @@ Read `references/preflight-patterns.md` when the user wants automatic governance
 Read `references/evaluation-scenarios.md` only when evaluating or revising this skill's behavior across representative project types.
 
 Read `references/stage-sizing.md` when creating or revising a complex multi-stage plan, handling a recovery branch, or deciding whether one stage spans too many independent responsibility or recovery domains.
+
+Read `references/plan-lifecycle-routing.md` when a project has nested or parallel plans, completed plans retained as evidence, uncertain current-plan selection, or a plan index that must avoid loading irrelevant history.
 
 Read `references/reasoning-mode-routing.md` when recommending xhigh, Max, Ultra, or a staged combination for an important or complex main-workspace task, or when mode choice needs recovery routing after repeated failure.
 

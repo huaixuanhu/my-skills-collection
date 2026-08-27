@@ -62,6 +62,19 @@ At a high-load stage close, pause, failure, or task switch, persist the smallest
 
 Do not create a new report when existing receipts and plan links already provide this truth.
 
+## Plan closeout and context release
+
+When a project uses a plan index, close a stage by recording both the execution result and how future agents should load its plan:
+
+- set `lifecycle_status` from verified exit evidence;
+- set `authority_state` according to whether the plan still directs new work or its retained result has been consumed by another owner source;
+- set `load_policy` only after identifying the current status owner and future retrieval need;
+- record the consumer or successor and the exact next-entry condition.
+
+Do not infer `evidence_only` from completion alone. A completed plan may remain the current baseline, while a consumed plan may still be required for a specific audit or recovery claim.
+
+Update a mutable plan header and its index entry together. When the plan is immutable, digest-bound, receipt-bound, signed, or append-only, preserve its original text and carry current lifecycle and loading state in the index plus the named status owner. Do not create another closeout document merely to say that an existing plan is complete.
+
 ## Mid-stage overload
 
 When a stage becomes overloaded during execution:

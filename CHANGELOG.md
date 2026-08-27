@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-08-27 22:35 AEST
+
+- Upgraded canonical `human-ai-governance` to v0.7.3 with index-first routing for nested, parallel, multi-session, and historically retained plan trees.
+- Kept a single clear plan direct and activated an index from routing ambiguity rather than project tier, importance, file count, token count, or the skill's presence alone.
+- Separated `lifecycle_status`, `authority_state`, and `load_policy`; defined `complete + consumed + evidence_only` as completed work whose retained result has been absorbed and whose plan is loaded only for claim-relevant evidence or history.
+- Required load policy to be applied before opening plan bodies, limiting default context to the matched current plan, necessary parent chain, status owner, and affected evidence instead of recursively reading all plan documents.
+- Kept a plan index as a compact routing read model that cannot grant authority or override plans, receipts, contracts, authorization, code, tests, or Git evidence.
+- Added closeout guidance for mutable plan-header mirrors while preserving immutable, signed, digest-bound, receipt-bound, and append-only plan text.
+- Kept the generic preflight behavior unchanged apart from the v0.7.3 marker; project-specific index checks remain optional after a stable local contract exists.
+- Added six routing and lifecycle scenarios plus focused regression checks. Package regression, preflight behavior regression, the official Codex skill validator, aggregate validation for two skills and five regression scripts, and the diff check all passed.
+- Reason: reduce irrelevant plan loading and stale-plan activation without losing engineering context, evidence, authority boundaries, or recovery information.
+
 ## 2026-08-27 02:56 AEST
 
 - Upgraded canonical `human-ai-governance` to v0.7.2 with an explicit technical-language choice: `default` keeps normal Codex terminology, while `plain` uses more common words and explains necessary specialist terms.
