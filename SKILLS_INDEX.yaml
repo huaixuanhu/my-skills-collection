@@ -1,0 +1,45 @@
+schema_version: 1
+role: routing_read_model
+skills:
+  design-authorship:
+    path: skills/design-authorship
+    routing_class: task-specific
+    lifecycle_status: maintained
+    invocation_policy: implicit
+    use_when:
+      - A UI, interaction, responsive state, slide, presentation-like HTML, or explanatory diagram needs design direction, redesign, critique, or visual verification.
+      - Visual intent would benefit from references, content-to-form reasoning, or concept-image calibration before engineering implementation.
+    not_for:
+      - Pure backend, data, prose, or infrastructure work with no material visual or interaction decision.
+      - Standalone image generation whose requested result is the image itself rather than calibration for a designed artifact.
+    composes_with:
+      - human-ai-governance
+      - scaffold-research-task
+  human-ai-governance:
+    path: skills/human-ai-governance
+    routing_class: cross-cutting
+    lifecycle_status: maintained
+    invocation_policy: implicit
+    use_when:
+      - Project-wide planning, authority, evidence, recovery, validation, handoff, writing-mode, or technical-language rules need to be created, reviewed, or maintained.
+      - A long-running or consequential workflow needs proportional human-AI collaboration boundaries across task types.
+    not_for:
+      - An ordinary bounded task whose existing project governance already answers the relevant questions.
+      - Replacing a task-specific design, research, presentation, data, or implementation workflow.
+    composes_with:
+      - design-authorship
+      - scaffold-research-task
+  scaffold-research-task:
+    path: skills/scaffold-research-task
+    routing_class: task-specific
+    lifecycle_status: maintained
+    invocation_policy: implicit
+    use_when:
+      - A literature review, data study, model investigation, reproducible experiment, or remote research task needs a task-scoped workspace structure.
+      - Research inputs, code, data, environments, artifacts, evidence, or host-governance connections need proportional separation.
+    not_for:
+      - Ordinary implementation work that does not need a new research-task architecture.
+      - Creating a second project-wide governance base inside an already governed repository.
+    composes_with:
+      - human-ai-governance
+      - design-authorship

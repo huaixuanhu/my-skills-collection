@@ -5,6 +5,8 @@
 ## Project Map
 
 - Canonical skill source: `skills/<skill-name>/`
+- Machine-readable skill catalog: `SKILLS_INDEX.yaml`
+- Human-readable skill catalog: `SKILLS_INDEX.md`
 - Human and architecture entrypoint: `README.md`
 - Version history: `CHANGELOG.md` and Git tags
 - Repository manager: `scripts/manage_skills.py`
@@ -20,6 +22,8 @@
 - Keep each runtime skill package limited to `SKILL.md` and resources it directly needs. Keep tests, release history, and installation guidance outside the skill folder.
 - Give each skill one folder whose name matches its `SKILL.md` frontmatter `name`.
 - Keep version claims synchronized across a skill's entrypoint, references, scripts, tests, changelog entry, and release tag.
+- Treat `SKILLS_INDEX.yaml` as the routing and management read model for repository-owned skills. Keep its skill coverage exact and regenerate or update `SKILLS_INDEX.md` whenever routing metadata or a skill version changes.
+- The catalog does not install a skill, force platform invocation, grant authority, or replace a skill's own `SKILL.md` description. Check live installation state separately.
 
 ## Collaboration
 

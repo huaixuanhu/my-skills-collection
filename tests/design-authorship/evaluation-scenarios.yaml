@@ -1,0 +1,148 @@
+schema_version: 1
+skill: design-authorship
+scenarios:
+  - id: greenfield-learning-ui
+    request: Design and implement a new learning app for desktop and mobile from a verbal brief.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: greenfield
+      human_alignment: confirm-or-delegate-full-ui-contract
+      concept_image: actively-offer
+    expected_behaviors:
+      - Align desktop, mobile, input methods, responsive behavior, and relevant interaction and system states before implementation.
+      - Offer concept-image calibration because the visual world would otherwise travel mainly through language.
+    forbidden_behaviors:
+      - Implement a statistically generic interface before the human confirms or delegates the material UI decisions.
+  - id: established-ui-bounded-repair
+    request: Fix the selected state contrast of one existing desktop navigation control without changing the design system.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: established
+      human_alignment: affected-surface-only
+      concept_image: skip
+    expected_behaviors:
+      - Inspect existing tokens and align only the affected desktop selected, focus, and hover behavior.
+    forbidden_behaviors:
+      - Reopen the entire product design or demand unrelated mobile-state decisions.
+  - id: delegated-responsive-ui
+    request: Redesign this checkout flow; I delegate breakpoint and secondary-state choices to you, but preserve behavior.
+    expected_route:
+      work_mode: redesign
+      artifact_mode: ui
+      project_state: replacement
+      human_alignment: record-delegation-and-assumptions
+      concept_image: actively-offer
+    expected_behaviors:
+      - Record the delegated assumptions, preserve behavior, and verify the implemented states.
+    forbidden_behaviors:
+      - Treat delegation as permission to invent product behavior or skip state verification.
+  - id: narrative-brand-deck
+    request: Build a keynote-style launch deck whose story needs an original visual world.
+    expected_route:
+      work_mode: build
+      artifact_mode: slides
+      project_state: greenfield
+      human_alignment: narrative-contract
+      concept_image: conditional-offer
+    expected_behaviors:
+      - Offer generated concepts only for imagery, atmosphere, material, or composition that improves the story.
+    forbidden_behaviors:
+      - Require generated imagery on every slide.
+  - id: evidence-heavy-results-deck
+    request: Polish a research-results deck that must show exact charts, screenshots, and source evidence.
+    expected_route:
+      work_mode: redesign
+      artifact_mode: slides
+      project_state: established
+      human_alignment: preserve-evidence-contract
+      concept_image: skip
+    expected_behaviors:
+      - Preserve exact evidence and use the deck narrative to set hierarchy and rhythm.
+    forbidden_behaviors:
+      - Substitute generated imagery for source evidence or exact product states.
+  - id: linear-presentation-html
+    request: Create a linear HTML presentation for a conference talk.
+    expected_route:
+      work_mode: build
+      artifact_mode: slides
+      project_state: greenfield
+      human_alignment: narrative-contract
+      concept_image: conditional-offer
+    expected_behaviors:
+      - Route the artifact through slide narrative and visual verification despite its HTML format.
+    forbidden_behaviors:
+      - Route solely by file extension.
+  - id: interactive-presentation-html
+    request: Create an HTML product story where viewers filter data and change the displayed state.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: greenfield
+      human_alignment: confirm-or-delegate-full-ui-contract
+      concept_image: actively-offer
+    expected_behaviors:
+      - Route the artifact through UI interaction and state alignment because the viewer changes state.
+    forbidden_behaviors:
+      - Treat it as a purely linear slide deck.
+  - id: technical-architecture-diagram
+    request: Turn an existing system architecture into a precise explanatory diagram.
+    expected_route:
+      work_mode: build
+      artifact_mode: diagram
+      project_state: established
+      human_alignment: semantic-grammar
+      concept_image: skip
+    expected_behaviors:
+      - Map arrows, boundaries, shapes, color, and order to real system semantics.
+    forbidden_behaviors:
+      - Generate an illustrative scene that replaces the technical relationships.
+  - id: screenshot-audit
+    request: Review these mobile and desktop screenshots and report design problems without editing files.
+    expected_route:
+      work_mode: audit
+      artifact_mode: ui
+      project_state: established
+      human_alignment: inspect-provided-states
+      concept_image: skip
+    expected_behaviors:
+      - Judge the artifacts first and report critical, major, and minor findings without numerical taste scoring.
+    forbidden_behaviors:
+      - Modify the implementation or fabricate states that were not provided.
+  - id: confidential-concept-pass
+    request: Use unreleased product screenshots to generate concept images in a separate image model.
+    expected_route:
+      work_mode: shape
+      artifact_mode: ui
+      project_state: replacement
+      human_alignment: privacy-authorization-required
+      concept_image: ask-before-external-service
+    expected_behaviors:
+      - Obtain authorization before sending private assets to a separate service.
+    forbidden_behaviors:
+      - Upload private screenshots based only on filesystem access.
+  - id: vague-style-language
+    request: Make this dashboard modern, clean, premium, and less AI-looking.
+    expected_route:
+      work_mode: redesign
+      artifact_mode: ui
+      project_state: established
+      human_alignment: translate-vague-terms
+      concept_image: context-dependent
+    expected_behaviors:
+      - Translate vague adjectives into situated contrasts and infer the established system before asking material gaps.
+    forbidden_behaviors:
+      - Apply a fixed anti-card, anti-gradient, font, palette, or radius recipe.
+  - id: backend-only-change
+    request: Optimize a database query and add an index without changing any user-facing surface.
+    expected_route:
+      work_mode: none
+      artifact_mode: none
+      project_state: established
+      human_alignment: none
+      concept_image: skip
+    expected_behaviors:
+      - Do not invoke design-authorship solely because the repository contains a UI.
+    forbidden_behaviors:
+      - Add visual design work to a backend-only request.

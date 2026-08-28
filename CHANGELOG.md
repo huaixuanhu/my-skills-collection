@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-08-28 17:25 AEST
+
+- Added canonical `design-authorship` v0.1.0 for context-specific UI, interaction, slide, presentation-like HTML, and diagram direction, redesign, critique, and rendered verification.
+- Required a human-confirmed or explicitly delegated desktop, mobile, input, responsive, and interaction-state contract before new UI, material redesign, or new interaction-pattern implementation; bounded repairs align only affected surfaces.
+- Added active concept-image calibration offers for greenfield UI and material visual replacement, with conditional use for presentations when original imagery or composition adds real information.
+- Verified the current official OpenAI name **GPT Image 2** and API model ID `gpt-image-2`, while preventing generic image tools from being attributed to an unverified underlying model.
+- Kept concept images as auxiliary styleframe or composition evidence; they do not determine exact content, component semantics, responsive behavior, interaction states, accessibility, feasibility, or factual evidence.
+- Added artifact-specific references for intent and reference analysis, content-to-form mapping, UI and interaction, slides, diagrams, critique, and durable project design context.
+- Rejected fixed anti-default recipes, aesthetic lint scripts, numerical taste gates, and universal completion conditions derived from subjective severity labels.
+- Added `SKILLS_INDEX.yaml` as the machine-readable routing and management catalog plus a validated `SKILLS_INDEX.md` human view. The catalog distinguishes cross-cutting governance from task-specific design and research skills without claiming to install, invoke, or authorize them.
+- Extended `scripts/manage_skills.py` with semantic version extraction, exact catalog coverage and invocation-policy validation, `catalog`, `list`, and `check-all` commands, and live installation-state reporting.
+- Added twelve deterministic evaluation-contract scenarios and three focused regression scripts. Package, evaluation-contract, catalog, official Codex skill, aggregate repository, and diff checks passed; no model-run aesthetic score or behavioral forward-test result is claimed.
+- Reason: preserve visual information through explicit human alignment and optional image-based calibration while keeping design choices contextual, verifiable, and manageable as the custom skill collection grows.
+
 ## 2026-08-28 15:07 AEST
 
 - Upgraded canonical `human-ai-governance` to v0.7.4 so an explicit persistent-completion request keeps its accepted objective and safe in-scope recovery active after failed attempts.

@@ -20,7 +20,16 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = REPO_ROOT / "skills"
 TESTS_ROOT = REPO_ROOT / "tests"
+CATALOG_PATH = REPO_ROOT / "SKILLS_INDEX.yaml"
+CATALOG_MARKDOWN_PATH = REPO_ROOT / "SKILLS_INDEX.md"
 NAME_RE = re.compile(r"^[a-z0-9-]{1,64}$")
+VERSION_RE = re.compile(
+    r"^Skill version: `([0-9]+\.[0-9]+\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?)`$",
+    re.MULTILINE,
+)
+ROUTING_CLASSES = {"cross-cutting", "task-specific"}
+LIFECYCLE_STATUSES = {"maintained", "experimental", "retired"}
+INVOCATION_POLICIES = {"implicit", "explicit-only"}
 FORBIDDEN_SKILL_AUXILIARY = {
     "CHANGELOG.md",
     "INSTALLATION_GUIDE.md",
@@ -56,7 +65,20 @@ class RepositoryValidationError(RuntimeError):
 class SkillMetadata:
     name: str
     description: str
+    version: str
     root: Path
+
+
+@dataclass(frozen=True, slots=True)
+class SkillCatalogEntry:
+    name: str
+    path: str
+    routing_class: str
+    lifecycle_status: str
+    invocation_policy: str
+    use_when: tuple[str, ...]
+    not_for: tuple[str, ...]
+    composes_with: tuple[str, ...]
 
 
 def parse_skill_metadata(skill_root: Path) -> SkillMetadata:
@@ -98,7 +120,12 @@ def parse_skill_metadata(skill_root: Path) -> SkillMetadata:
         )
     if len(lines) > 500:
         raise RepositoryValidationError(f"{skill_md} exceeds the 500-line authoring budget")
-    return SkillMetadata(name, description, skill_root)
+    version_matches = VERSION_RE.findall(text)
+    if len(version_matches) != 1:
+        raise RepositoryValidationError(
+            f"{skill_md} must contain exactly one semantic Skill version marker"
+        )
+    return SkillMetadata(name, description, version_matches[0], skill_root)
 
 
 def discover_skills() -> list[Path]:
@@ -118,6 +145,237 @@ def discover_skills() -> list[Path]:
     if not skill_roots:
         raise RepositoryValidationError("no skills found")
     return skill_roots
+
+
+def require_string_list(
+    value: object,
+    *,
+    field: str,
+    allow_empty: bool = False,
+) -> tuple[str, ...]:
+    if not isinstance(value, list):
+        raise RepositoryValidationError(f"catalog field {field} must be a list")
+    if not allow_empty and not value:
+        raise RepositoryValidationError(f"catalog field {field} must not be empty")
+    if any(not isinstance(item, str) or not item.strip() for item in value):
+        raise RepositoryValidationError(
+            f"catalog field {field} must contain only non-empty text"
+        )
+    if len(value) != len(set(value)):
+        raise RepositoryValidationError(f"catalog field {field} contains duplicates")
+    return tuple(value)
+
+
+def expected_invocation_policy(skill_root: Path) -> str:
+    agent_metadata = skill_root / "agents/openai.yaml"
+    if not agent_metadata.is_file():
+        return "implicit"
+    try:
+        values = yaml.safe_load(agent_metadata.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, yaml.YAMLError) as exc:
+        raise RepositoryValidationError(
+            f"cannot parse invocation policy in {agent_metadata}: {exc}"
+        ) from exc
+    if not isinstance(values, dict):
+        raise RepositoryValidationError(f"{agent_metadata} must contain a mapping")
+    policy = values.get("policy", {})
+    if not isinstance(policy, dict):
+        raise RepositoryValidationError(f"{agent_metadata} policy must be a mapping")
+    allow_implicit = policy.get("allow_implicit_invocation", True)
+    if not isinstance(allow_implicit, bool):
+        raise RepositoryValidationError(
+            f"{agent_metadata} allow_implicit_invocation must be true or false"
+        )
+    return "implicit" if allow_implicit else "explicit-only"
+
+
+def load_skill_catalog(
+    metadata_items: list[SkillMetadata] | None = None,
+) -> list[SkillCatalogEntry]:
+    if metadata_items is None:
+        metadata_items = [validate_skill(root) for root in discover_skills()]
+    metadata_by_name = {metadata.name: metadata for metadata in metadata_items}
+
+    try:
+        values = yaml.safe_load(CATALOG_PATH.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, yaml.YAMLError) as exc:
+        raise RepositoryValidationError(f"cannot parse {CATALOG_PATH}: {exc}") from exc
+    if not isinstance(values, dict):
+        raise RepositoryValidationError(f"{CATALOG_PATH} must contain a mapping")
+    if set(values) != {"schema_version", "role", "skills"}:
+        raise RepositoryValidationError(
+            f"{CATALOG_PATH} keys must be exactly schema_version, role, and skills"
+        )
+    if values["schema_version"] != 1:
+        raise RepositoryValidationError("skill catalog schema_version must be 1")
+    if values["role"] != "routing_read_model":
+        raise RepositoryValidationError("skill catalog role must be routing_read_model")
+    raw_skills = values["skills"]
+    if not isinstance(raw_skills, dict):
+        raise RepositoryValidationError("skill catalog skills must be a mapping")
+
+    catalog_names = set(raw_skills)
+    discovered_names = set(metadata_by_name)
+    if catalog_names != discovered_names:
+        missing = sorted(discovered_names - catalog_names)
+        extra = sorted(catalog_names - discovered_names)
+        raise RepositoryValidationError(
+            f"skill catalog coverage differs from skills/: missing={missing}, extra={extra}"
+        )
+
+    entries: list[SkillCatalogEntry] = []
+    expected_keys = {
+        "path",
+        "routing_class",
+        "lifecycle_status",
+        "invocation_policy",
+        "use_when",
+        "not_for",
+        "composes_with",
+    }
+    for name in sorted(raw_skills):
+        raw_entry = raw_skills[name]
+        if not isinstance(name, str) or not NAME_RE.fullmatch(name):
+            raise RepositoryValidationError(f"invalid catalog skill name: {name}")
+        if not isinstance(raw_entry, dict) or set(raw_entry) != expected_keys:
+            raise RepositoryValidationError(
+                f"catalog entry {name} keys must be exactly {', '.join(sorted(expected_keys))}"
+            )
+        expected_path = f"skills/{name}"
+        if raw_entry["path"] != expected_path:
+            raise RepositoryValidationError(
+                f"catalog entry {name} path must be {expected_path}"
+            )
+        routing_class = raw_entry["routing_class"]
+        lifecycle_status = raw_entry["lifecycle_status"]
+        invocation_policy = raw_entry["invocation_policy"]
+        if routing_class not in ROUTING_CLASSES:
+            raise RepositoryValidationError(
+                f"catalog entry {name} has invalid routing_class {routing_class}"
+            )
+        if lifecycle_status not in LIFECYCLE_STATUSES:
+            raise RepositoryValidationError(
+                f"catalog entry {name} has invalid lifecycle_status {lifecycle_status}"
+            )
+        if invocation_policy not in INVOCATION_POLICIES:
+            raise RepositoryValidationError(
+                f"catalog entry {name} has invalid invocation_policy {invocation_policy}"
+            )
+        expected_policy = expected_invocation_policy(metadata_by_name[name].root)
+        if invocation_policy != expected_policy:
+            raise RepositoryValidationError(
+                f"catalog entry {name} invocation_policy is {invocation_policy}; "
+                f"agents/openai.yaml resolves to {expected_policy}"
+            )
+        use_when = require_string_list(
+            raw_entry["use_when"], field=f"{name}.use_when"
+        )
+        not_for = require_string_list(raw_entry["not_for"], field=f"{name}.not_for")
+        composes_with = require_string_list(
+            raw_entry["composes_with"],
+            field=f"{name}.composes_with",
+            allow_empty=True,
+        )
+        unknown_relations = set(composes_with) - discovered_names
+        if unknown_relations:
+            raise RepositoryValidationError(
+                f"catalog entry {name} composes_with unknown skills: "
+                f"{sorted(unknown_relations)}"
+            )
+        if name in composes_with:
+            raise RepositoryValidationError(
+                f"catalog entry {name} must not compose with itself"
+            )
+        entries.append(
+            SkillCatalogEntry(
+                name=name,
+                path=expected_path,
+                routing_class=routing_class,
+                lifecycle_status=lifecycle_status,
+                invocation_policy=invocation_policy,
+                use_when=use_when,
+                not_for=not_for,
+                composes_with=composes_with,
+            )
+        )
+    return entries
+
+
+def render_catalog_markdown(
+    entries: list[SkillCatalogEntry],
+    metadata_items: list[SkillMetadata],
+) -> str:
+    metadata_by_name = {metadata.name: metadata for metadata in metadata_items}
+    lines = [
+        "# Custom Skill Index",
+        "",
+        "This human-readable view is derived from `SKILLS_INDEX.yaml` and the version "
+        "markers in each `SKILL.md`. Run `.venv/bin/python scripts/manage_skills.py "
+        "catalog --check` to detect drift.",
+        "",
+        "The catalog routes and explains repository-owned skills. It does not install a "
+        "skill, force platform invocation, or grant task authority. Runtime availability "
+        "depends on the current installation; implicit invocation depends on each skill's "
+        "metadata and semantic match.",
+        "",
+        "| Skill | Version | Routing class | Lifecycle | Invocation |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for entry in entries:
+        metadata = metadata_by_name[entry.name]
+        lines.append(
+            f"| `{entry.name}` | `{metadata.version}` | `{entry.routing_class}` | "
+            f"`{entry.lifecycle_status}` | `{entry.invocation_policy}` |"
+        )
+    for entry in entries:
+        metadata = metadata_by_name[entry.name]
+        lines.extend(
+            [
+                "",
+                f"## `{entry.name}`",
+                "",
+                metadata.description,
+                "",
+                f"- Source: `{entry.path}/SKILL.md`",
+                "- Use when:",
+            ]
+        )
+        lines.extend(f"  - {item}" for item in entry.use_when)
+        lines.append("- Do not route for:")
+        lines.extend(f"  - {item}" for item in entry.not_for)
+        composed = ", ".join(f"`{name}`" for name in entry.composes_with) or "none"
+        lines.append(f"- Common composition: {composed}")
+    lines.extend(
+        [
+            "",
+            "## Live Installation State",
+            "",
+            "Installation is deliberately not stored in this index because it can change "
+            "independently of Git. Inspect it with:",
+            "",
+            "```bash",
+            ".venv/bin/python scripts/manage_skills.py list",
+            "```",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def validate_skill_catalog(metadata_items: list[SkillMetadata]) -> list[SkillCatalogEntry]:
+    entries = load_skill_catalog(metadata_items)
+    expected_markdown = render_catalog_markdown(entries, metadata_items)
+    try:
+        actual_markdown = CATALOG_MARKDOWN_PATH.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError) as exc:
+        raise RepositoryValidationError(
+            f"cannot read {CATALOG_MARKDOWN_PATH}: {exc}"
+        ) from exc
+    if actual_markdown != expected_markdown:
+        raise RepositoryValidationError(
+            "SKILLS_INDEX.md has drifted from SKILLS_INDEX.yaml or SKILL.md metadata"
+        )
+    return entries
 
 
 def compile_python(path: Path) -> None:
@@ -197,6 +455,7 @@ def run_skill_tests(metadata: SkillMetadata) -> int:
 def validate_repository() -> tuple[int, int]:
     validate_repository_secrets()
     metadata_items = [validate_skill(root) for root in discover_skills()]
+    validate_skill_catalog(metadata_items)
     test_count = sum(run_skill_tests(metadata) for metadata in metadata_items)
     return len(metadata_items), test_count
 
@@ -309,11 +568,82 @@ def check_installation(name: str, target_root: Path) -> None:
     print(f"PASS: {name} installation points to canonical source")
 
 
+def installation_state(name: str, target_root: Path) -> str:
+    source = (SKILLS_ROOT / name).resolve()
+    target = target_root.expanduser() / name
+    if target.is_symlink():
+        return "linked" if target.resolve(strict=False) == source else "linked-elsewhere"
+    if target.is_dir():
+        return "directory"
+    if target.exists():
+        return "other"
+    return "missing"
+
+
+def list_skills(target_root: Path) -> None:
+    metadata_items = [validate_skill(root) for root in discover_skills()]
+    entries = load_skill_catalog(metadata_items)
+    metadata_by_name = {metadata.name: metadata for metadata in metadata_items}
+    headers = ("NAME", "VERSION", "ROUTING", "LIFECYCLE", "INVOCATION", "INSTALLATION")
+    rows = [
+        (
+            entry.name,
+            metadata_by_name[entry.name].version,
+            entry.routing_class,
+            entry.lifecycle_status,
+            entry.invocation_policy,
+            installation_state(entry.name, target_root),
+        )
+        for entry in entries
+    ]
+    widths = [
+        max(len(headers[index]), *(len(row[index]) for row in rows))
+        for index in range(len(headers))
+    ]
+    print("  ".join(value.ljust(widths[index]) for index, value in enumerate(headers)))
+    for row in rows:
+        print("  ".join(value.ljust(widths[index]) for index, value in enumerate(row)))
+
+
+def check_all_installations(target_root: Path) -> None:
+    metadata_items = [validate_skill(root) for root in discover_skills()]
+    entries = load_skill_catalog(metadata_items)
+    failures: list[str] = []
+    for entry in entries:
+        state = installation_state(entry.name, target_root)
+        if state == "linked":
+            print(f"PASS: {entry.name} installation points to canonical source")
+        else:
+            failures.append(f"{entry.name}={state}")
+            print(f"FAIL: {entry.name} installation state is {state}", file=sys.stderr)
+    if failures:
+        raise RepositoryValidationError(
+            "one or more canonical skills are not installed links: " + ", ".join(failures)
+        )
+
+
 def main(argv: list[str] | None = None) -> int:
     codex_home = default_codex_home()
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("validate", help="validate all canonical skills and regressions")
+
+    catalog_parser = subparsers.add_parser(
+        "catalog", help="print or verify the human-readable skill catalog"
+    )
+    catalog_parser.add_argument("--check", action="store_true")
+
+    list_parser = subparsers.add_parser(
+        "list", help="list canonical skills and live installation state"
+    )
+    list_parser.add_argument("--target-root", type=Path, default=codex_home / "skills")
+
+    check_all_parser = subparsers.add_parser(
+        "check-all", help="check every canonical skill installation link"
+    )
+    check_all_parser.add_argument(
+        "--target-root", type=Path, default=codex_home / "skills"
+    )
 
     install_parser = subparsers.add_parser("install", help="install one canonical skill link")
     install_parser.add_argument("name")
@@ -330,9 +660,22 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "validate":
             skill_count, test_count = validate_repository()
             print(f"PASS: validated {skill_count} skill(s) and {test_count} regression script(s)")
+        elif args.command == "catalog":
+            metadata_items = [validate_skill(root) for root in discover_skills()]
+            entries = load_skill_catalog(metadata_items)
+            rendered = render_catalog_markdown(entries, metadata_items)
+            if args.check:
+                validate_skill_catalog(metadata_items)
+                print("PASS: skill catalog and human-readable index are synchronized")
+            else:
+                print(rendered, end="")
+        elif args.command == "list":
+            list_skills(args.target_root)
+        elif args.command == "check-all":
+            check_all_installations(args.target_root)
         elif args.command == "install":
             install_skill(args.name, args.target_root, args.backup_root, args.replace)
-        else:
+        elif args.command == "check":
             check_installation(args.name, args.target_root)
     except (OSError, RepositoryValidationError) as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
