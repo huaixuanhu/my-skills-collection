@@ -1,6 +1,6 @@
 # Technical-Language Routing
 
-Current skill version: `human-ai-governance v0.7.3`
+Current skill version: `human-ai-governance v0.7.4`
 
 Use this reference when the user explicitly selects plain technical language, when a technical explanation is intended for a non-specialist, or when reviewing the independence of terminology, writing mode, and engineering capability.
 

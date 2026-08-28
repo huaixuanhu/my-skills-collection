@@ -20,7 +20,7 @@ CHANGELOG.md                  cross-skill version history
 
 | Skill | Version | Status |
 | --- | --- | --- |
-| `human-ai-governance` | `0.7.3` | validated canonical candidate |
+| `human-ai-governance` | `0.7.4` | validated canonical candidate |
 | `scaffold-research-task` | `0.1.0` | canonical and validated |
 
 ## Local Workflow

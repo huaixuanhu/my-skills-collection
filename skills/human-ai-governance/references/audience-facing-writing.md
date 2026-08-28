@@ -1,6 +1,6 @@
 # Audience-Facing Writing
 
-Current skill version: `human-ai-governance v0.7.3`
+Current skill version: `human-ai-governance v0.7.4`
 
 Use this reference after `SKILL.md` routes a deliverable or one of its content units into audience-facing expression mode. This mode governs presentation and prose. It does not change project tier, engineering controls, evidence requirements, or authorization.
 

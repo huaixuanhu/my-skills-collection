@@ -16,6 +16,7 @@ def main() -> int:
         "references/governance-patterns.md",
         "references/graph-governance.md",
         "references/plan-lifecycle-routing.md",
+        "references/persistent-completion.md",
         "references/preflight-patterns.md",
         "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
@@ -31,8 +32,8 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.7.3`" in skill
-    assert "Generated/adapted from human-ai-governance v0.7.3" in skill
+    assert "Skill version: `0.7.4`" in skill
+    assert "Generated/adapted from human-ai-governance v0.7.4" in skill
     assert len(skill.splitlines()) < 145
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
@@ -61,6 +62,10 @@ def main() -> int:
         "`complete + consumed + evidence_only`",
         "A stale index yields to its owner sources",
         "references/plan-lifecycle-routing.md",
+        "explicitly asks to continue until a verifiable outcome succeeds",
+        "Route retries by credible single and cumulative consequence, not attempt number",
+        "attempt count alone is not an approval boundary",
+        "references/persistent-completion.md",
     ):
         assert required in skill, required
 
@@ -73,9 +78,10 @@ def main() -> int:
         "references/audience-facing-writing.md",
         "references/technical-language-routing.md",
         "references/plan-lifecycle-routing.md",
+        "references/persistent-completion.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.7.3" in text, relative_path
+        assert "v0.7.4" in text, relative_path
 
     assurance = (
         CANDIDATE / "references/proportional-assurance.md"
@@ -87,6 +93,29 @@ def main() -> int:
         "they do not add tiers",
     ):
         assert required in assurance, required
+
+    preflight_patterns = (
+        CANDIDATE / "references/preflight-patterns.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "Attempt numbers and words such as `retry` or `attempt` do not prove risk",
+        "Do not add generic attempt-count, retry-word, or persistence-mode checks to preflight",
+    ):
+        assert required in preflight_patterns, required
+
+    persistent = (
+        CANDIDATE / "references/persistent-completion.md"
+    ).read_text(encoding="utf-8")
+    for required in (
+        "completion objective",
+        "safe recovery",
+        "consequence-bearing execution",
+        "Attempt numbers are audit metadata",
+        "Do not stop at “attempt 1 used”",
+        "Do not use a universal retry count",
+        "A plan index may point to that owner",
+    ):
+        assert required in persistent, required
 
     writing = (
         CANDIDATE / "references/audience-facing-writing.md"
@@ -154,6 +183,8 @@ def main() -> int:
         "Plan closeout and context release",
         "Do not infer `evidence_only` from completion alone",
         "preserve its original text and carry current lifecycle and loading state in the index",
+        "attempt count alone is not a decision boundary",
+        "An exhausted runtime attempt does not exhaust recovery authority",
     ):
         assert required in stage_sizing, required
 
@@ -167,6 +198,9 @@ def main() -> int:
         "Authority state: current",
         "Load policy: default",
         "Consumed by: none",
+        "Persistent Completion and Recovery",
+        "Completion directive: persistent",
+        "route any new execution by consequence rather than attempt number",
     ):
         assert required in governance, required
 
@@ -215,6 +249,12 @@ def main() -> int:
         "Immutable evidence-bound plan closeout",
         "Stale plan index conflict",
         "Large plan index",
+        "Persistent local validation failure",
+        "Authorized non-force push transport failure",
+        "Production activation no-go",
+        "Pre-authorized multi-attempt execution envelope",
+        "Ambiguous non-idempotent external result",
+        "Accepted artifact under recovery",
     ):
         assert required in evaluation, required
     assert "Keep high and xhigh results separate" not in evaluation
@@ -225,12 +265,12 @@ def main() -> int:
 
     agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
     assert (
-        'short_description: "Risk-scaled governance, plan routing, writing, and language"'
+        'short_description: "Risk-scaled governance, recovery, planning, writing, and language"'
         in agent_metadata
     )
     assert (
         'default_prompt: "Use $human-ai-governance to set proportional governance, '
-        'route plan context, reasoning, and writing, and keep default technical language unless plain is requested."'
+        'route persistent recovery, plan context, reasoning, and writing, and keep default technical language unless plain is requested."'
         in agent_metadata
     )
 
@@ -241,7 +281,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.7.3"',
+        'SKILL_VERSION = "0.7.4"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -253,7 +293,7 @@ def main() -> int:
     assert "strip_git_quotes" not in preflight
     assert "PLAN_INDEX" not in preflight
 
-    print("PASS: v0.7.3 package regression checks passed.")
+    print("PASS: v0.7.4 package regression checks passed.")
     return 0
 
 

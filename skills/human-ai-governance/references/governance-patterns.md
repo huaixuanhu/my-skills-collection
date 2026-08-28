@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.3`
+Current skill version: `human-ai-governance v0.7.4`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.3
+Generated/adapted from human-ai-governance v0.7.4
 ```
 
 ## Contents
@@ -15,6 +15,7 @@ Generated/adapted from human-ai-governance v0.7.3
 - [Tier Decision Workflow](#tier-decision-workflow)
 - [Tier Checklist](#tier-checklist)
 - [Task Scope and Model Discretion](#task-scope-and-model-discretion)
+- [Persistent Completion and Recovery](#persistent-completion-and-recovery)
 - [Writing Mode in Governed Deliverables](#writing-mode-in-governed-deliverables)
 - [Technical Language in Governed Deliverables](#technical-language-in-governed-deliverables)
 - [Plan Index and Lifecycle Routing](#plan-index-and-lifecycle-routing)
@@ -87,6 +88,28 @@ Examples:
 - A new order-routing branch is Tier 5 work even if live mode remains disabled, because it designs material authority.
 - A test-only refactor that preserves the tested contract can omit changelog and architecture updates unless the project explicitly requires them.
 - A database migration remains material even when the diff is short.
+
+## Persistent Completion and Recovery
+
+When the user explicitly asks the agent to continue until a verifiable outcome succeeds, preserve three separate layers: the completion objective, safe recovery authority, and consequence-bearing execution authority. A failed attempt leaves the first two active unless an owner source explicitly narrows them.
+
+- Continue equivalent or adaptive diagnosis, repair, local validation, checkpointing, resume, restart, and candidate preparation when scope, success criteria, accepted state, authority, and maximum credible single and cumulative consequence remain unchanged.
+- If a live, destructive, costly, non-idempotent, public, or production action needs renewed authority, continue safe recovery first and pause only at that exact action.
+- Treat attempt numbers as audit metadata. Use a project-specific attempt limit only when attempts consume a named cumulative budget or an explicit owner gate requires it.
+- Preserve deliberate one-shot execution gates tied to material consequences. A later persistent-completion request can replace a generic attempt-count default for safe recovery, but it cannot override a named hard limit or platform approval.
+
+For a complex or recovery-prone plan, add only the fields that improve continuity:
+
+```text
+Completion directive: persistent
+Authorized outcome: <verifiable result>
+Safe recovery: <diagnosis, repair, validation, checkpoint, resume>
+Consequence-bearing execution: <approved envelope or owner gate>
+Cumulative limits: <cost, attempts, downtime, exposure, or none>
+Pause conditions: <material boundary>
+```
+
+Omit this block for ordinary bounded work. Keep the authority contract in its owner plan or authorization record rather than in the plan index. Read `persistent-completion.md` for attempt classification and stop conditions.
 
 ## Writing Mode in Governed Deliverables
 
@@ -188,7 +211,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.3 -->
+<!-- Generated/adapted from human-ai-governance v0.7.4 -->
 
 ## Collaboration
 
@@ -221,6 +244,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 - For material work, state scope, non-scope, validation, and affected authority.
 - Update a document only when its current claim would become stale.
 - Run the aggregate gate once; rerun child checks only for diagnosis or separate evidence.
+- If the user explicitly requests completion persistence, continue safe in-scope recovery after failure and route any new execution by consequence rather than attempt number.
 - Pause for material scope expansion, consequential external action, unresolved material choices, or an explicit approval gate.
 ```
 

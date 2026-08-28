@@ -1,6 +1,6 @@
 # Proportional Assurance
 
-Current skill version: `human-ai-governance v0.7.3`
+Current skill version: `human-ai-governance v0.7.4`
 
 Use this reference when validation is expensive, prior evidence may still be valid, architecture or authority boundaries are involved, defensive controls may overlap, platform permissions need to be separated from project authorization, or a complex capability may reuse an existing component.
 
@@ -104,6 +104,12 @@ The platform's current effective sandbox（沙盒）, approval policy（审批�
 - If the platform configuration permits an action without approval, do not create a pause solely to imitate a stricter platform configuration.
 - Platform-granted technical capability is not blanket task authorization. Preserve the user's scope and project-specific gates for consequential external actions such as push, deployment, production mutation, cutover, retirement, live trading, or material cost.
 - One accepted plan covers ordinary local implementation decisions inside its scope. Reopen human agreement for material scope expansion, unresolved choices that change the result, consequential external action, or an explicit project gate.
+
+## Persistent Completion and Recovery
+
+When the user explicitly asks the agent to continue until a verifiable outcome succeeds, keep the accepted objective and safe in-scope recovery active after a failed attempt. Separate ordinary diagnosis, repair, validation, checkpointing, resume, and preparation from the next action that can create material consequences.
+
+Classify a retry by whether it changes maximum credible single or cumulative impact, authority, accepted state, success criteria, cost, external side effects, or the execution envelope. Attempt number alone is not a new approval boundary. Even when another live or destructive run needs renewed authority, continue safe recovery up to that exact boundary. Read `persistent-completion.md` for the full route and recording pattern.
 
 ## Keep Presentation and Control Placement Separate
 

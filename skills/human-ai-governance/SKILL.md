@@ -1,11 +1,11 @@
 ---
 name: human-ai-governance
-description: Create, review, or maintain practical five-tier human-AI collaboration governance, plan-index and lifecycle routing, reasoning-mode routing, audience-facing writing boundaries, and explicit default/plain technical-language choices for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, plan indexes, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, separating engineering records from reader-facing work, or controlling unexplained technical terminology without weakening engineering rigor.
+description: Create, review, or maintain practical five-tier human-AI collaboration governance, persistent-completion and recovery routing, plan-index and lifecycle routing, reasoning-mode routing, audience-facing writing boundaries, and explicit default/plain technical-language choices for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, plan indexes, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, separating engineering records from reader-facing work, or controlling unexplained technical terminology without weakening engineering rigor.
 ---
 
 # Human-AI Governance
 
-Skill version: `0.7.3`
+Skill version: `0.7.4`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.3
+Generated/adapted from human-ai-governance v0.7.4
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -26,7 +26,9 @@ Use the marker to decide whether an existing project needs a separately approved
 - Attach each validation or safeguard to a named claim, boundary, or credible failure mode. Give it one primary owner and retain independent layers when they control distinct failures.
 - Skip an inapplicable step without a long justification. Preserve explicit repository rules, unresolved material decisions, and controls tied to credible failure modes.
 - Treat a change as material when it can alter observable behavior, architecture or data flow, persistence, safety or authority, privacy, production operation, or a consequential runtime dependency. Typos, formatting, contract-preserving tests, lockfile-only churn, and historical notes are not automatically material.
-- One accepted plan covers safe local implementation inside its scope. Ask again only for a material scope expansion, consequential external action, unresolved material choice, or explicit approval gate.
+- One accepted plan covers safe local implementation inside its scope. When the user explicitly asks to continue until a verifiable outcome succeeds, keep the completion objective and safe in-scope recovery active across failed attempts.
+- Route retries by credible single and cumulative consequence, not attempt number. Continue equivalent or adaptive diagnosis, repair, validation, checkpoint, resume, and preparation while scope, success criteria, authority, accepted state, and consequence ceiling remain unchanged.
+- After a consequential attempt fails, advance safe recovery to the next real boundary. Ask again only for a material scope expansion, unresolved material choice, explicit approval gate, or consequence-bearing execution outside the accepted envelope; attempt count alone is not an approval boundary.
 - Treat the platform's current effective sandbox, approval, connector, and access configuration as authoritative and outside this skill's control. Do not weaken, strengthen, bypass, or recreate it. Platform-granted capability does not expand task scope or project authorization.
 - For a complex, shared, security-sensitive, or maintenance-heavy capability, inspect suitable project, platform, standard, or maintained open-source options before building it from scratch. Simple local glue may be implemented directly; choose by fit and lifecycle risk rather than a mandatory preference order.
 - Update a document when its current claim would become false, incomplete, or misleading. Prefer one canonical source plus links over repetition.
@@ -130,6 +132,8 @@ Read `references/preflight-patterns.md` when the user wants automatic governance
 Read `references/evaluation-scenarios.md` only when evaluating or revising this skill's behavior across representative project types.
 
 Read `references/stage-sizing.md` when creating or revising a complex multi-stage plan, handling a recovery branch, or deciding whether one stage spans too many independent responsibility or recovery domains.
+
+Read `references/persistent-completion.md` when the user explicitly asks the agent to continue until success, a failed attempt must be classified for automatic recovery, or an attempt budget may be confused with authority for diagnosis and repair.
 
 Read `references/plan-lifecycle-routing.md` when a project has nested or parallel plans, completed plans retained as evidence, uncertain current-plan selection, or a plan index that must avoid loading irrelevant history.
 

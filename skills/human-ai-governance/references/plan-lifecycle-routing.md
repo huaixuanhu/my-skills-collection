@@ -1,6 +1,6 @@
 # Plan-Index and Lifecycle Routing
 
-Current skill version: `human-ai-governance v0.7.3`
+Current skill version: `human-ai-governance v0.7.4`
 
 Use this reference when a project has nested or parallel plans, multi-session continuation, completed plans retained for evidence, or enough plan history that finding the current execution source otherwise requires broad searching.
 

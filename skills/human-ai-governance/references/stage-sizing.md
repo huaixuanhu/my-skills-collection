@@ -57,7 +57,7 @@ At a high-load stage close, pause, failure, or task switch, persist the smallest
 - input evidence or source snapshot;
 - retained products, changed contracts, and owned paths;
 - validation result and evidence ceiling;
-- failed attempts, unresolved risks, and forbidden retries;
+- failed attempts, retained recovery authority, unresolved risks, and forbidden consequence-bearing retries;
 - exact next-stage entry conditions.
 
 Do not create a new report when existing receipts and plan links already provide this truth.
@@ -83,7 +83,9 @@ When a stage becomes overloaded during execution:
 2. preserve completed valid state and append-only failure evidence;
 3. derive the remaining work from the accepted parent plan instead of rewriting history;
 4. keep ordinary in-scope decomposition under the accepted plan;
-5. request a new decision only for material scope expansion, consequential external action, a new one-shot or runtime attempt, changed authority, or an explicit local approval gate.
+5. request a new decision only for material scope expansion, changed authority, an explicit local approval gate, or a consequence-bearing execution outside the accepted single or cumulative envelope; attempt count alone is not a decision boundary.
+
+After a failed consequential run, preserve the objective and continue safe diagnosis, local repair, validation, checkpointing, and candidate preparation to the next real boundary. An exhausted runtime attempt does not exhaust recovery authority unless the owner source explicitly and credibly says so.
 
 Use a completed checkpoint as a low-cost task-switch point when the next execution stage changes the primary responsibility surface, authority, or evidence type. Do not switch tasks mechanically in the middle of atomic work.
 

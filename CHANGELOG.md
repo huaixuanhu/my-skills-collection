@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-08-28 15:07 AEST
+
+- Upgraded canonical `human-ai-governance` to v0.7.4 so an explicit persistent-completion request keeps its accepted objective and safe in-scope recovery active after failed attempts.
+- Separated completion objective, safe recovery, and consequence-bearing execution; a failed live or one-shot attempt no longer consumes ordinary authority to diagnose, repair, validate, checkpoint, or prepare a safer candidate.
+- Routed equivalent, adaptive, and consequence-bearing attempts by credible single and cumulative consequences instead of attempt number alone.
+- Required safe recovery to advance to the next real boundary while preserving explicit owner gates, hard limits, platform approvals, accepted artifacts, receipts, checkpoints, rollback routes, and validation rules.
+- Added execution-envelope guidance for repeated high-consequence work, including targets, limits, time windows, health checks, idempotency or reconciliation, and stop conditions.
+- Kept v0.7.1 writing modes, v0.7.2 technical-language choices, and v0.7.3 plan-index routing independent and unchanged; the upgrade does not reduce engineering depth, testing, evidence, or safety.
+- Kept generic preflight behavior unchanged apart from the v0.7.4 marker and prohibited generic attempt-count, retry-word, or persistence-mode checks.
+- Added six recovery and retry scenarios plus focused regression checks. Package regression, preflight behavior regression, the official Codex skill validator, aggregate validation for two skills and five regression scripts, and the diff check all passed.
+- Reason: prevent an `attempt1 used` label from unnecessarily pausing safe repair while retaining renewed authorization at real money, data, production, accepted-work, cumulative-cost, and other material consequence boundaries.
+
 ## 2026-08-27 22:35 AEST
 
 - Upgraded canonical `human-ai-governance` to v0.7.3 with index-first routing for nested, parallel, multi-session, and historically retained plan trees.
