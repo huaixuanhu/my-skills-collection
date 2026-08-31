@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import yaml
+
 
 ROOT = Path(__file__).resolve().parents[2]
 CANDIDATE = ROOT / "skills/human-ai-governance"
@@ -20,6 +22,7 @@ def main() -> int:
         "references/preflight-patterns.md",
         "references/proportional-assurance.md",
         "references/reasoning-mode-routing.md",
+        "references/review-density-routing.md",
         "references/stage-sizing.md",
         "references/technical-language-routing.md",
         "scripts/governance_preflight_template.py",
@@ -32,8 +35,8 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.7.4`" in skill
-    assert "Generated/adapted from human-ai-governance v0.7.4" in skill
+    assert "Skill version: `0.7.5`" in skill
+    assert "Generated/adapted from human-ai-governance v0.7.5" in skill
     assert len(skill.splitlines()) < 145
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
@@ -66,6 +69,7 @@ def main() -> int:
         "Route retries by credible single and cumulative consequence, not attempt number",
         "attempt count alone is not an approval boundary",
         "references/persistent-completion.md",
+        "references/review-density-routing.md",
     ):
         assert required in skill, required
 
@@ -79,9 +83,10 @@ def main() -> int:
         "references/technical-language-routing.md",
         "references/plan-lifecycle-routing.md",
         "references/persistent-completion.md",
+        "references/review-density-routing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.7.4" in text, relative_path
+        assert "v0.7.5" in text, relative_path
 
     assurance = (
         CANDIDATE / "references/proportional-assurance.md"
@@ -263,16 +268,14 @@ def main() -> int:
     for unstable_product_detail in ("four agents", "4 agents", "R ∝"):
         assert unstable_product_detail not in runtime_routing, unstable_product_detail
 
-    agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
-    assert (
-        'short_description: "Risk-scaled governance, recovery, planning, writing, and language"'
-        in agent_metadata
+    agent_metadata = yaml.safe_load(
+        (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
     )
-    assert (
-        'default_prompt: "Use $human-ai-governance to set proportional governance, '
-        'route persistent recovery, plan context, reasoning, and writing, and keep default technical language unless plain is requested."'
-        in agent_metadata
-    )
+    interface = agent_metadata["interface"]
+    assert interface["display_name"] == "Human-AI Governance"
+    assert 25 <= len(interface["short_description"]) <= 64
+    assert "$human-ai-governance" in interface["default_prompt"]
+    assert agent_metadata.get("policy", {}).get("allow_implicit_invocation", True)
 
     graph = (CANDIDATE / "references/graph-governance.md").read_text(encoding="utf-8")
     assert "Manifest presence alone does not activate graph workflow" in graph
@@ -281,7 +284,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.7.4"',
+        'SKILL_VERSION = "0.7.5"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -293,7 +296,7 @@ def main() -> int:
     assert "strip_git_quotes" not in preflight
     assert "PLAN_INDEX" not in preflight
 
-    print("PASS: v0.7.4 package regression checks passed.")
+    print("PASS: v0.7.5 package regression checks passed.")
     return 0
 
 

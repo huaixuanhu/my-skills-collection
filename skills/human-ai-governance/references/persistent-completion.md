@@ -1,6 +1,6 @@
 # Persistent Completion and Recovery
 
-Current skill version: `human-ai-governance v0.7.4`
+Current skill version: `human-ai-governance v0.7.5`
 
 Use this reference when the user explicitly asks Codex to continue until a verifiable outcome succeeds, a failed attempt needs recovery routing, or an attempt budget may be confused with authority to diagnose and repair. Skip it for ordinary bounded tasks that do not need persistent recovery.
 

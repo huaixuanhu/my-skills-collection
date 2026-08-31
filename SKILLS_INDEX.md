@@ -7,7 +7,7 @@ The catalog routes and explains repository-owned skills. It does not install a s
 | Skill | Version | Routing class | Lifecycle | Invocation |
 | --- | --- | --- | --- | --- |
 | `design-authorship` | `0.1.0` | `task-specific` | `maintained` | `implicit` |
-| `human-ai-governance` | `0.7.4` | `cross-cutting` | `maintained` | `implicit` |
+| `human-ai-governance` | `0.7.5` | `cross-cutting` | `maintained` | `implicit` |
 | `scaffold-research-task` | `0.1.0` | `task-specific` | `maintained` | `implicit` |
 
 ## `design-authorship`
@@ -25,14 +25,15 @@ Direct, critique, redesign, and verify context-specific visual and interaction d
 
 ## `human-ai-governance`
 
-Create, review, or maintain practical five-tier human-AI collaboration governance, persistent-completion and recovery routing, plan-index and lifecycle routing, reasoning-mode routing, audience-facing writing boundaries, and explicit default/plain technical-language choices for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, plan indexes, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, separating engineering records from reader-facing work, or controlling unexplained technical terminology without weakening engineering rigor.
+Guide engineering plans, progress updates, evidence, results, and handoffs with concise, decision-complete human review. Also create, review, or maintain proportional five-tier human-AI governance, AGENTS.md, architecture and plan documents, plan indexes, validation and safety boundaries, persistent recovery, reasoning-mode routing, audience-facing writing, and explicit default/plain technical language. Use for user-facing engineering communication, including bounded tasks, and for long-running or consequential technical workflows. Keep ordinary communication lightweight; do not use for general chat, simple translation, or unrelated prose, or replace a task-specific implementation, research, or design workflow.
 
 - Source: `skills/human-ai-governance/SKILL.md`
 - Use when:
+  - User-facing engineering plans, progress, evidence, results, or handoffs need concise, decision-complete communication, including ordinary bounded tasks.
   - Project-wide planning, authority, evidence, recovery, validation, handoff, writing-mode, or technical-language rules need to be created, reviewed, or maintained.
   - A long-running or consequential workflow needs proportional human-AI collaboration boundaries across task types.
 - Do not route for:
-  - An ordinary bounded task whose existing project governance already answers the relevant questions.
+  - General chat, simple translation, or unrelated prose without an engineering review or governance need.
   - Replacing a task-specific design, research, presentation, data, or implementation workflow.
 - Common composition: `design-authorship`, `scaffold-research-task`
 

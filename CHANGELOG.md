@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-08-31 14:25 AEST
+
+- Upgraded canonical `human-ai-governance` to v0.7.5 with compact, decision-complete engineering conversation and expanded detail whenever the request or safe use needs it.
+- Front-loaded plans, progress, evidence, results, and handoffs in the skill description and catalog, including ordinary bounded tasks without extra governance artifacts or approval turns.
+- Required conclusions and actual state first, with relevant evidence, material risks, uncertainty, decisions, and next action; removed repeated background and process narration before essential information.
+- Refined compact reporting after user review: introduce each issue with its affected subject, observed behavior, and current handling; keep natural full sentences and explicit action ownership instead of detached status fragments, without inventing an unknown cause or owner.
+- Kept formal plans, specifications, runbooks, evidence records, exact operational terms, and authorization boundaries complete, without word limits, jargon quotas, or style gates.
+- Recognized standing user or project plain-language instructions as an existing explicit choice and preferred common exact wording while preserving necessary specialist terms and the user's language conventions.
+- Preserved the five-tier model, reasoning and writing modes, plan routing, recovery authority, and generic preflight behavior apart from the version marker.
+- Added synthetic communication, detail-request, formal-record, and description-routing scenarios. Validation evidence is recorded in `releases/human-ai-governance/v0.7.5.md`.
+- Reason: reduce the user's engineering-review burden without losing information needed to judge, reproduce, authorize, or stop work safely.
+
 ## 2026-08-28 17:25 AEST
 
 - Added canonical `design-authorship` v0.1.0 for context-specific UI, interaction, slide, presentation-like HTML, and diagram direction, redesign, critique, and rendered verification.

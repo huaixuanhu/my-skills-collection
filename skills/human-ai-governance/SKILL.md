@@ -1,11 +1,11 @@
 ---
 name: human-ai-governance
-description: Create, review, or maintain practical five-tier human-AI collaboration governance, persistent-completion and recovery routing, plan-index and lifecycle routing, reasoning-mode routing, audience-facing writing boundaries, and explicit default/plain technical-language choices for technical projects. Use when setting up or adapting AGENTS.md, architecture docs, plan docs, plan indexes, changelogs, AI agent logs, validation gates, safety boundaries, handoff routines, long-running workflows, deciding whether an important main-workspace task should use xhigh, Max, Ultra, or a staged combination, separating engineering records from reader-facing work, or controlling unexplained technical terminology without weakening engineering rigor.
+description: Guide engineering plans, progress updates, evidence, results, and handoffs with concise, decision-complete human review. Also create, review, or maintain proportional five-tier human-AI governance, AGENTS.md, architecture and plan documents, plan indexes, validation and safety boundaries, persistent recovery, reasoning-mode routing, audience-facing writing, and explicit default/plain technical language. Use for user-facing engineering communication, including bounded tasks, and for long-running or consequential technical workflows. Keep ordinary communication lightweight; do not use for general chat, simple translation, or unrelated prose, or replace a task-specific implementation, research, or design workflow.
 ---
 
 # Human-AI Governance
 
-Skill version: `0.7.4`
+Skill version: `0.7.5`
 
 ## Overview
 
@@ -14,10 +14,19 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.4
+Generated/adapted from human-ai-governance v0.7.5
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
+
+## Review-Density Routing
+
+- Default to `compact` for user-facing engineering conversation: plan proposals, progress, evidence, results, and handoffs. Keep review density independent from writing mode, terminology, and reasoning effort.
+- Lead with the conclusion or current state; then retain relevant evidence, material risks or uncertainty, required decisions, and the next action. Use only applicable parts, without fixed headings or empty status fields.
+- Keep problem descriptions grounded: name the affected system, component, artifact, or operation, describe its problem or observed behavior, and state its current handling. Use complete, natural sentences rather than bare status fragments; name the actor and action for next steps or approvals when known. Add enough context even if the answer becomes longer; do not invent an unknown cause or owner, or repeat an already-clear subject mechanically.
+- Trim repeated background, process narration, generic reassurance, and secondary implementation detail first. Keep exact operational terms, material changed-file pointers for review, consequential values, evidence limits, and authorization boundaries; distinguish inspected, changed, validated, committed, pushed, deployed, and activated. Link supporting detail without hiding decision-changing information.
+- Use `expanded` when requested or when explanation, safe execution, or reproducibility needs more detail. Expand the affected part directly; do not ask permission to be complete or impose fixed word, line, or jargon limits.
+- Density changes conversation presentation only. Preserve engineering work and complete formal plans, specifications, runbooks, and evidence records. Read `references/review-density-routing.md` when compression, completeness, or mixed conversation/document scope needs judgment.
 
 ## Decision Rules
 
@@ -33,7 +42,7 @@ Use the marker to decide whether an existing project needs a separately approved
 - For a complex, shared, security-sensitive, or maintenance-heavy capability, inspect suitable project, platform, standard, or maintained open-source options before building it from scratch. Simple local glue may be implemented directly; choose by fit and lifecycle risk rather than a mandatory preference order.
 - Update a document when its current claim would become false, incomplete, or misleading. Prefer one canonical source plus links over repetition.
 - When several generations or branches of plans make the current entry unclear, route through a compact plan index before opening plan bodies. Do not recursively load a plan directory to discover which document is current.
-- For a projectless discussion or bounded low-impact task, stop at this file unless a resource trigger below actually applies. Do not load references or create governance artifacts for completeness alone.
+- For communication-only, projectless, or bounded low-impact work, apply only relevant rules and stop at this file unless a resource trigger below actually applies. Do not create tiers, plans, logs, gates, or extra approval turns merely because this skill was invoked for communication.
 
 ## Core Workflow
 
@@ -80,10 +89,10 @@ Use the marker to decide whether an existing project needs a separately approved
 ## Technical-Language Routing
 
 - Treat technical-language routing as an explicit axis independent of writing mode. If the user does not choose, use `default`, add no terminology transformation beyond current Codex and governing instructions, and do not ask for a choice.
-- Activate `plain` only from an explicit user request for plain, everyday, non-specialist, or low-jargon technical language. Apply the choice to the current task or content unit unless the user sets a broader scope, and let the user switch it explicitly.
+- Activate `plain` only from an explicit user request for plain, everyday, non-specialist, or low-jargon technical language; an existing standing user or project instruction counts as that choice. Honor its named scope without repeated reminders; otherwise apply it to the current task or content unit and let the user switch it explicitly.
 - Route writing mode first, then adjust terminology within it. `default` and `plain` must not activate, deactivate, replace, weaken, or reshape engineering-governance writing or audience-facing expression.
 - The choice changes wording only. It must not change reasoning, planning, implementation, tool use, validation, evidence, safety controls, authorization, or completion criteria.
-- In `plain`, preserve exact identifiers, code, commands, paths, configuration keys, error text, formulas, and necessary technical terms. Plain language does not imply brevity; when a simpler substitute would create ambiguity, keep the term and explain it briefly in the user's language.
+- In `plain`, preserve exact identifiers, code, commands, paths, configuration keys, error text, formulas, and necessary technical terms. Prefer a common exact substitute; otherwise retain and briefly explain the term in the user's language. `compact` does not select `plain`; plain language may need more words to preserve meaning.
 
 ## Reasoning-Mode Routing
 
@@ -119,26 +128,16 @@ Retain governance artifacts that support continuity, but keep each one focused.
 
 ## Resources
 
-Read `references/proportional-assurance.md` when validation is expensive, evidence may be reusable, a change crosses architecture or authority boundaries, defensive controls may overlap, platform permissions need to be distinguished from project authorization, or a complex capability may reuse an existing component.
-
-Read `references/audience-facing-writing.md` when creating or revising audience-facing long-form prose, an article, speech, executive narrative, report, or presentation copy, or when a mixed deliverable needs section-level writing-mode routing.
-
-Read `references/technical-language-routing.md` when the user explicitly selects `plain`, when technical material must be explained to a non-specialist, or when validating that `default` and `plain` leave writing mode and engineering capability unchanged.
-
-Read `references/governance-patterns.md` when creating governance files, adapting this workflow to a new project, writing templates, or deciding how strict the project should be.
-
-Read `references/preflight-patterns.md` when the user wants automatic governance checks, drift prevention, pre-commit integration, or a reusable local gate.
-
-Read `references/evaluation-scenarios.md` only when evaluating or revising this skill's behavior across representative project types.
-
-Read `references/stage-sizing.md` when creating or revising a complex multi-stage plan, handling a recovery branch, or deciding whether one stage spans too many independent responsibility or recovery domains.
-
-Read `references/persistent-completion.md` when the user explicitly asks the agent to continue until success, a failed attempt must be classified for automatic recovery, or an attempt budget may be confused with authority for diagnosis and repair.
-
-Read `references/plan-lifecycle-routing.md` when a project has nested or parallel plans, completed plans retained as evidence, uncertain current-plan selection, or a plan index that must avoid loading irrelevant history.
-
-Read `references/reasoning-mode-routing.md` when recommending xhigh, Max, Ultra, or a staged combination for an important or complex main-workspace task, or when mode choice needs recovery routing after repeated failure.
-
-Read `references/graph-governance.md` only when the user explicitly asks for graph governance, an accepted plan calls for a shadow graph pilot, or a repository graph manifest is needed for the current task's cross-surface impact, recovery, authority, lineage, or freshness question. The presence of a manifest alone does not activate graph workflow for a bounded task. Treat graphs as optional derived indexes; do not introduce graph files, hooks, gates, or services merely because this skill is active.
+- Read `references/proportional-assurance.md` when validation is expensive, evidence may be reusable, a change crosses architecture or authority boundaries, defensive controls may overlap, platform permissions need to be distinguished from project authorization, or a complex capability may reuse an existing component.
+- Read `references/audience-facing-writing.md` when creating or revising audience-facing long-form prose, an article, speech, executive narrative, report, or presentation copy, or when a mixed deliverable needs section-level writing-mode routing.
+- Read `references/technical-language-routing.md` when the user explicitly selects `plain`, when technical material must be explained to a non-specialist, or when validating that `default` and `plain` leave writing mode and engineering capability unchanged.
+- Read `references/governance-patterns.md` when creating governance files, adapting this workflow to a new project, writing templates, or deciding how strict the project should be.
+- Read `references/preflight-patterns.md` when the user wants automatic governance checks, drift prevention, pre-commit integration, or a reusable local gate.
+- Read `references/evaluation-scenarios.md` only when evaluating or revising this skill's behavior across representative project types.
+- Read `references/stage-sizing.md` when creating or revising a complex multi-stage plan, handling a recovery branch, or deciding whether one stage spans too many independent responsibility or recovery domains.
+- Read `references/persistent-completion.md` when the user explicitly asks the agent to continue until success, a failed attempt must be classified for automatic recovery, or an attempt budget may be confused with authority for diagnosis and repair.
+- Read `references/plan-lifecycle-routing.md` when a project has nested or parallel plans, completed plans retained as evidence, uncertain current-plan selection, or a plan index that must avoid loading irrelevant history.
+- Read `references/reasoning-mode-routing.md` when recommending xhigh, Max, Ultra, or a staged combination for an important or complex main-workspace task, or when mode choice needs recovery routing after repeated failure.
+- Read `references/graph-governance.md` only when the user explicitly asks for graph governance, an accepted plan calls for a shadow graph pilot, or a repository graph manifest is needed for the current task's cross-surface impact, recovery, authority, lineage, or freshness question. The presence of a manifest alone does not activate graph workflow for a bounded task. Treat graphs as optional derived indexes; do not introduce graph files, hooks, gates, or services merely because this skill is active.
 
 Use `scripts/governance_preflight_template.py` as a starting point. Copy it into the target project, usually as `governance/preflight.py` or `governance/agent_preflight.py`, then tune paths, risk terms, and strictness. Do not replace a proven project-specific gate merely to standardize on this generic template.

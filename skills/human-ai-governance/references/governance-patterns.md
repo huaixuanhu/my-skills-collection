@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.4`
+Current skill version: `human-ai-governance v0.7.5`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.4
+Generated/adapted from human-ai-governance v0.7.5
 ```
 
 ## Contents
@@ -18,6 +18,7 @@ Generated/adapted from human-ai-governance v0.7.4
 - [Persistent Completion and Recovery](#persistent-completion-and-recovery)
 - [Writing Mode in Governed Deliverables](#writing-mode-in-governed-deliverables)
 - [Technical Language in Governed Deliverables](#technical-language-in-governed-deliverables)
+- [Review Density in Engineering Conversation](#review-density-in-engineering-conversation)
 - [Plan Index and Lifecycle Routing](#plan-index-and-lifecycle-routing)
 - [Proportionality and Convenience](#proportionality-and-convenience)
 - [Economic and Account Consequences](#economic-and-account-consequences)
@@ -119,9 +120,17 @@ The writing route does not create a tier, reduce governance, or change authoriza
 
 ## Technical Language in Governed Deliverables
 
-Treat technical-language choice as an explicit axis separate from writing mode. Use `default` when the user does not choose and add no terminology transformation from this skill. Use `plain` only after an explicit request for plain, everyday, non-specialist, or low-jargon technical language.
+Treat technical-language choice as an explicit axis separate from writing mode. Use `default` when the user does not choose and add no terminology transformation from this skill. Use `plain` only after an explicit request for plain, everyday, non-specialist, or low-jargon technical language, including an existing standing user or project instruction.
 
 Route writing mode first, then apply the terminology choice inside it. Neither `default` nor `plain` may activate, deactivate, replace, weaken, or reshape engineering-governance writing or audience-facing expression. Plain language changes wording only; it preserves reasoning, implementation, tools, validation, evidence, safety, authorization, completion criteria, and exact operational terms. Read `technical-language-routing.md` for scope and review guidance.
+
+## Review Density in Engineering Conversation
+
+Use `compact` by default for user-facing engineering plans, progress, evidence, results, and handoffs. Lead with the conclusion or state, then applicable evidence, risks or uncertainty, required decisions, and next action. Omit repetition and secondary implementation detail before removing anything that changes a decision. Expand when the user asks for detail or when safe execution or reproducibility needs it; no fixed length or jargon limit applies.
+
+When describing a problem, name the affected subject, observed behavior, and current handling in natural sentences. Identify the actor and specific action for next work or approval when known. Keep enough context to understand each issue; do not leave status fragments detached from their subjects, invent an unknown owner, or repeat clear subjects mechanically.
+
+Keep density separate from writing mode and terminology. Retain exact operational details and distinguish completed actions from proposals. Formal engineering records stay complete; a compact chat summary does not replace them. Communication-only invocation must not create extra governance artifacts or gates. Read `review-density-routing.md` for the preservation and review rules.
 
 ## Plan Index and Lifecycle Routing
 
@@ -211,7 +220,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.4 -->
+<!-- Generated/adapted from human-ai-governance v0.7.5 -->
 
 ## Collaboration
 
@@ -219,6 +228,9 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 - Plan before material changes. One accepted plan covers safe local work inside its scope.
 - Protect user changes. Do not revert unrelated work.
 - Skip irrelevant process; preserve explicit rules and controls tied to credible harm.
+- Default engineering conversation to compact, decision-complete updates: conclusion or state, relevant evidence, material risks or uncertainty, required decisions, and next action. Expand when requested or necessary; preserve exact operational details and complete formal records.
+- Introduce each problem with its affected subject, observed behavior, and current handling. Use natural sentences with enough context, and name who acts or approves what when known; avoid detached status fragments and invented owners.
+- Honor standing plain-language preferences without repeated reminders; review density does not change terminology choice or engineering rigor.
 
 ## Project Map
 
@@ -406,6 +418,8 @@ Use Tier 5:
 - Validate in simulation, paper or shadow mode, limited live scope, then broader live scope.
 
 ## Handoff Summary
+
+For conversation, use only the applicable parts below; do not print empty fields or a full execution diary. Keep decision-changing limitations in the response even when linking a complete engineering record. This example does not cap the content of a formal handoff document.
 
 ```markdown
 Outcome:
