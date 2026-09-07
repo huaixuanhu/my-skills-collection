@@ -31,6 +31,7 @@ def main() -> int:
         "assets/templates/remote-compute/{{compute_dir}}/run_receipts/README.md.tmpl",
         "assets/templates/third-party-source/THIRD_PARTY.md.tmpl",
         "references/decision-matrix.md",
+        "references/experiment-orientation.md",
         "references/host-adaptation.md",
         "references/profiles.md",
         "references/research-governance.md",
@@ -46,7 +47,7 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.1.0`" in skill
+    assert "Skill version: `0.1.2`" in skill
     assert "Build the smallest useful scaffold for one research task" in skill
     assert "It is not a project-wide base governance system" in skill
     assert "`governance-connect`" in skill
@@ -65,7 +66,7 @@ def main() -> int:
     agent_metadata = (CANDIDATE / "agents/openai.yaml").read_text(encoding="utf-8")
     assert 'display_name: "Scaffold Research Task"' in agent_metadata
     assert (
-        'short_description: "Derive proportional scaffolds for research tasks"'
+        'short_description: "Scaffold research and clarify experiment scope"'
         in agent_metadata
     )
     assert "$scaffold-research-task" in agent_metadata
@@ -74,7 +75,7 @@ def main() -> int:
         encoding="utf-8"
     )
     for required in (
-        'SKILL_VERSION = "0.1.0"',
+        'SKILL_VERSION = "0.1.2"',
         '"governance-connect"',
         '"no-automatic-root-changes"',
         'parser.add_argument("--apply", action="store_true")',
@@ -104,7 +105,7 @@ def main() -> int:
     ):
         assert required in governance, required
 
-    print("PASS: scaffold-research-task v0.1.0 package checks passed.")
+    print("PASS: scaffold-research-task v0.1.2 package checks passed.")
     return 0
 
 

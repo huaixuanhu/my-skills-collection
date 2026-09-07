@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -11,9 +12,11 @@ ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "skills/scaffold-research-task/scripts/scaffold_research_task.py"
 
 
-def run_scaffold(*arguments: object) -> subprocess.CompletedProcess[str]:
+def run_scaffold(
+    *arguments: object, script: Path = SCRIPT
+) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
-        [sys.executable, str(SCRIPT), *(str(argument) for argument in arguments)],
+        [sys.executable, str(script), *(str(argument) for argument in arguments)],
         cwd=ROOT,
         check=False,
         text=True,
@@ -286,6 +289,42 @@ def test_task_name_cannot_break_generated_python(root: Path) -> None:
     assert not target.exists()
 
 
+def test_template_json_is_preserved_and_unknown_tokens_fail(root: Path) -> None:
+    skill_copy = root / "template_fixture"
+    shutil.copytree(SCRIPT.parents[1], skill_copy, ignore=shutil.ignore_patterns("__pycache__"))
+    script = skill_copy / "scripts/scaffold_research_task.py"
+    template = skill_copy / "assets/templates/model-research/configs/README.md.tmpl"
+    original = template.read_text(encoding="utf-8")
+    template.write_text(
+        original + '\n{"analysis": {"name": "{{task_name}}", "seed": 7}}\n',
+        encoding="utf-8",
+    )
+    target = root / "generated_json"
+    result = run_scaffold(
+        "--target", target,
+        "--task-name", "JSON study",
+        "--profile", "local-ml",
+        "--apply",
+        script=script,
+    )
+    assert result.returncode == 0, result.stderr
+    text = (target / "configs/README.md").read_text(encoding="utf-8")
+    assert json.loads(text.splitlines()[-1]) == {"analysis": {"name": "JSON study", "seed": 7}}
+
+    template.write_text(original + "\n{{unknown_field}}\n", encoding="utf-8")
+    blocked_target = root / "unknown_token"
+    result = run_scaffold(
+        "--target", blocked_target,
+        "--task-name", "Unknown field study",
+        "--profile", "local-ml",
+        "--apply",
+        script=script,
+    )
+    assert result.returncode == 2
+    assert "unknown template token" in result.stderr
+    assert not blocked_target.exists()
+
+
 def main() -> int:
     with tempfile.TemporaryDirectory(prefix="scaffold-research-task-") as directory:
         root = Path(directory)
@@ -300,6 +339,7 @@ def main() -> int:
         test_repeat_apply_is_idempotent(root)
         test_unsafe_compute_path_fails_closed(root)
         test_task_name_cannot_break_generated_python(root)
+        test_template_json_is_preserved_and_unknown_tokens_fail(root)
     print("PASS: scaffold generation behavior checks passed.")
     return 0
 

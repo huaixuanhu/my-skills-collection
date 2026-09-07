@@ -28,6 +28,12 @@ Use this reference when the correct structure is unclear. Select the smallest mo
 - Keep one task file capable of carrying scope, non-scope, current lifecycle state, and evidence ceiling for small work.
 - Add a dedicated architecture document when several responsibility surfaces or data and execution flows must remain distinct.
 
+## Choose the Construction Route
+
+Use standard generation when every path in the selected profile serves a real task responsibility. The generator and its validator intentionally share that complete layout contract.
+
+Use manual adaptation when the task needs fewer surfaces, an existing host layout, or another implementation language. Map selected responsibilities to actual files in existing task or architecture notes when needed for continuity, then validate that accepted layout and the affected host contracts. A `model-research` responsibility does not force a Python package on this route. Do not add unused directories or move mature content merely to pass the standard-layout validator.
+
 ## Research Shape Examples
 
 ### Literature or desk research
@@ -48,4 +54,4 @@ Start from the task's substantive modules, then add `governance-connect`. Preser
 
 ## Stop Conditions
 
-Pause for a new decision when inspection reveals a materially different target location, disputed data ownership, an unresolved source-use choice that changes intended actions, consequential remote work, or required root changes outside the accepted scaffold scope.
+Pause for a new decision when inspection reveals a materially different target location, disputed data ownership, an unresolved source-use choice that changes intended actions, consequential remote work outside existing authorization, or required root changes outside the accepted scaffold scope. Reuse valid agreement within its accepted conditions.

@@ -14,7 +14,7 @@ from typing import Iterable
 
 
 SKILL_NAME = "scaffold-research-task"
-SKILL_VERSION = "0.1.0"
+SKILL_VERSION = "0.1.2"
 SCHEMA_VERSION = 1
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE_ROOT = SKILL_ROOT / "assets" / "templates"
@@ -181,8 +181,8 @@ def render_tokens(value: str, context: dict[str, str]) -> str:
     if unknown:
         raise ScaffoldError(f"unknown template token(s): {', '.join(unknown)}")
     rendered = TOKEN_RE.sub(lambda match: context[match.group(1)], value)
-    if "{{" in rendered or "}}" in rendered:
-        raise ScaffoldError("unresolved template delimiter")
+    if TOKEN_RE.search(rendered):
+        raise ScaffoldError("unresolved template token")
     return rendered
 
 

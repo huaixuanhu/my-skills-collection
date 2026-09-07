@@ -8,7 +8,7 @@ The catalog routes and explains repository-owned skills. It does not install a s
 | --- | --- | --- | --- | --- |
 | `design-authorship` | `0.1.0` | `task-specific` | `maintained` | `implicit` |
 | `human-ai-governance` | `0.7.5` | `cross-cutting` | `maintained` | `implicit` |
-| `scaffold-research-task` | `0.1.0` | `task-specific` | `maintained` | `implicit` |
+| `scaffold-research-task` | `0.1.2` | `task-specific` | `maintained` | `implicit` |
 
 ## `design-authorship`
 
@@ -39,14 +39,15 @@ Guide engineering plans, progress updates, evidence, results, and handoffs with 
 
 ## `scaffold-research-task`
 
-Derive, create, adapt, or validate a task-scoped research scaffold with proportional architecture and research governance. Use when a literature review, data study, ML or model investigation, third-party source study, reproducible experiment, or local or remote research task needs a clear folder structure, lifecycle, source and data boundaries, configuration and environment separation, artifact and evidence handling, or connection to existing project governance.
+Derive, create, adapt, or validate a task-scoped research scaffold with proportional architecture and research governance. Use when a literature review, data study, ML or model investigation, third-party source study, reproducible experiment, or local or remote research task needs a clear folder structure, lifecycle, source and data boundaries, configuration and environment separation, artifact and evidence handling, or connection to existing project governance. Also use when ongoing model experiments need an explicit map of design dimensions, current comparisons, fixed conditions, aggregation, and scoring scope.
 
 - Source: `skills/scaffold-research-task/SKILL.md`
 - Use when:
   - A literature review, data study, model investigation, reproducible experiment, or remote research task needs a task-scoped workspace structure.
   - Research inputs, code, data, environments, artifacts, evidence, or host-governance connections need proportional separation.
+  - Ongoing model experiments need a dimension map and compact current comparison, fixed conditions, aggregation, and scoring scope across stages.
 - Do not route for:
-  - Ordinary implementation work that does not need a new research-task architecture.
+  - Ordinary implementation work that needs neither research-task architecture nor experiment orientation.
   - Creating a second project-wide governance base inside an already governed repository.
 - Common composition: `human-ai-governance`, `design-authorship`
 

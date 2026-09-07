@@ -18,6 +18,8 @@ Exit claim: the relevant inputs and material unknowns are identified. This does 
 
 Freeze the data contract, evaluation split, baselines, metrics, comparison rules, stopping rules, reproducibility fields, and invalidation conditions that matter for the task.
 
+For model experiments, record the dimension map and initial comparison slice using [experiment-orientation.md](experiment-orientation.md). Resolve which choices are independent, nested, or bundled, and which dimensions are fixed, compared, kept separate, or aggregated under the scoring rule.
+
 Exit claim: implementation can be judged against a reviewable protocol.
 
 ## stage4 Implementation
@@ -36,11 +38,15 @@ Exit claim: the selected execution path works within the tested boundary.
 
 Run the accepted protocol inside the separately authorized compute and data boundary. Preserve code, source, data, config, environment, seed, compute, terminal state, metrics, and artifact identity.
 
+Use the compact orientation card in experiment progress. At a switch, identify the changed dimensions and retained controls; after execution, reconcile actual identities and coverage against the accepted slice.
+
 Exit claim: eligible run evidence exists for evaluation.
 
 ## stage7 Evaluation and Closeout
 
 Evaluate only eligible runs, preserve negative and incomplete evidence, state uncertainty and limitations, reconcile the task status, and identify the next decision.
+
+Keep every conclusion tied to its comparison slice, aggregation support and weights, metric, horizon, and checkpoint rule. Retain that identity when the current slice advances, and record the next comparison in the existing state owner.
 
 Exit claim: the report's claims match the recorded evidence ceiling.
 

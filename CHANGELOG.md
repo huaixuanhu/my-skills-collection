@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-07 15:05 AEST
+
+- Updated canonical `scaffold-research-task` to v0.1.2 with experiment orientation for ongoing model research, including tasks that need no new scaffold.
+- Added one source-linked dimension map and a compact current-experiment card covering the comparison, fixed conditions, separate or aggregated dimensions, weights, and scoring scope. Experiment switches and handoffs retain the previous slice, changed dimensions, and result comparability.
+- Refined the user's chosen compact format with a default experiment-design summary line: total design dimensions, current varied dimensions, current marginalized dimensions, marginalization rule, and fixed dimensions with values. Used short labels and English dimension names without parenthetical Chinese translations, while retaining one shared map, explicit dependencies, and a concrete example.
+- Distinguished independent factors from configuration bundles and nested arms; kept logical training runs, repeats, execution attempts, and prediction scoring views separate. Clarified conditional and marginal comparisons, paired support, missing evidence, training loss versus evaluation metric, and horizon/checkpoint semantics.
+- Extended existing model-research architecture and configuration templates without adding generated paths, a tracking dependency, a new schema, or a parallel plan. Existing projects can adapt their current protocol or design owner directly.
+- Preserved schema-1 layouts from v0.1.0 and v0.1.1, including their original provenance and documents without the new guidance. Synchronized routing metadata, generated catalog, version markers, and compatibility coverage.
+- Validation and the bounded synthetic exercise are recorded in `releases/scaffold-research-task/v0.1.2.md`. The user authorized scoped Git publication on `codex/astra-skill-adaptation`; capstone project adoption remains separate.
+- Reason: keep the full experiment design and the current comparison understandable as model, arm, population, training, and evaluation choices change across a long-running study.
+
 ## 2026-08-31 14:25 AEST
 
 - Upgraded canonical `human-ai-governance` to v0.7.5 with compact, decision-complete engineering conversation and expanded detail whenever the request or safe use needs it.

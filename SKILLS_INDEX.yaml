@@ -38,8 +38,9 @@ skills:
     use_when:
       - A literature review, data study, model investigation, reproducible experiment, or remote research task needs a task-scoped workspace structure.
       - Research inputs, code, data, environments, artifacts, evidence, or host-governance connections need proportional separation.
+      - Ongoing model experiments need a dimension map and compact current comparison, fixed conditions, aggregation, and scoring scope across stages.
     not_for:
-      - Ordinary implementation work that does not need a new research-task architecture.
+      - Ordinary implementation work that needs neither research-task architecture nor experiment orientation.
       - Creating a second project-wide governance base inside an already governed repository.
     composes_with:
       - human-ai-governance

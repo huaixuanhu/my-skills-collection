@@ -15,13 +15,16 @@ Adapt the scaffold to its containing project and compute environment. Preserve e
 - Reuse the root virtual environment for lightweight checks only when the host project says to do so.
 - Keep root registration as a separately reviewed change.
 - Do not create a second data pipeline, environment, or governance gate when the existing owner already covers the task.
+- Select manual adaptation when established names, shared owners, or the implementation language differ from the complete standard layout. Preserve the host's real responsibilities and validate the affected contracts without adding filler paths.
 
 ## Existing Research Task
 
 - Treat existing files as user-owned.
-- Use dry-run to identify missing paths and conflicts.
-- Exact generated content may be reported unchanged; different existing files are conflicts and must be adapted manually.
+- Use dry-run only when the standard layout is a suitable candidate; otherwise inspect the accepted paths directly.
+- Exact generated content may be reported unchanged; different existing files are generator conflicts and may be adapted manually within the accepted edit scope.
 - Do not force the generated manifest into an existing task unless the user accepts that migration.
+- For manual adaptation, review the responsibility-to-file mapping and meaningful host checks. Record that evidence honestly; the standard-layout validator is not its acceptance gate.
+- For experiment-orientation work, extend the existing protocol or design notes with the dimension map and current slice. Keep the current state owner, plan lineage, configuration IDs, and result history; use the orientation route without generating a new scaffold or parallel plan. Read [experiment-orientation.md](experiment-orientation.md) for the map and compact card.
 
 ## Mature Governed Repository
 

@@ -7,6 +7,7 @@ This governance applies to evidence and reproducibility inside one research task
 `scaffold-research-task` owns:
 
 - research lifecycle and task architecture;
+- experiment dimensions, current comparison scope, aggregation, and scoring identity;
 - source, data, configuration, environment, artifact, receipt, evidence, and report responsibilities;
 - evidence ceilings and reproducibility fields;
 - proportional external-source handling;
@@ -61,6 +62,8 @@ Record fields in proportion to the claim:
 - metrics, limitations, and artifact location.
 
 A small exploratory calculation may need only a notebook, input identity, and limitation note. A comparative model claim normally needs the full chain.
+
+For experiments with several design choices or evaluation views, use [experiment-orientation.md](experiment-orientation.md). Link the run and claim to the dimension map and its experiment slice, including the actual configuration-to-arm mapping, fixed and compared settings, aggregation support and weights, and metric/horizon/checkpoint rules. Keep those records in the existing protocol or design owner so ongoing comparisons remain interpretable across stages.
 
 ## Artifact and Receipt Boundary
 

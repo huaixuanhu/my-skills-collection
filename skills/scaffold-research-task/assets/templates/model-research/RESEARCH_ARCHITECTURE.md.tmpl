@@ -41,3 +41,45 @@ protocol and contracts -> maintained code + configuration + environment
 ## Evidence Boundary
 
 An import, unit test, or smoke run is engineering evidence. Comparative or research-quality claims require the accepted protocol, eligible runs, metrics, and limitations.
+
+## Experiment Dimensions and Current Slice
+
+For model experiments, keep the full dimension map and compact current position here, or link their existing protocol/design owner below. For a study without comparative experiments, state that this section is not applicable. Avoid duplicating an existing plan or configuration registry.
+
+- Source plan or protocol and revision: [record]
+- Current experiment state owner: [this section or existing pointer]
+- Derived map scope: [record the study or campaign this map describes]
+- Configuration, data, evaluation, and run-evidence owners: [record pointers]
+
+### Dimension Map
+
+- Setting groups and current changes: [count and name the groups; name/count changed settings; distinguish independent choices, nested/bundled choices, levels, and combinations]
+
+| Dimension and source | Allowed/observed values | Training, population, replication, evaluation, or other role | Independent, nested, bundled, or restricted relationships | Current treatment and value/rule |
+| --- | --- | --- | --- | --- |
+| [material axis] | [levels; planned/observed scope] | [role] | [dependencies or valid combinations] | [compare / fix / separate / aggregate / defer / unresolved] |
+
+Include material choices hidden inside configuration or arm IDs. Retain fixed and deferred dimensions. Mark unknowns instead of inventing settings. An arm-defined learning-rate policy or loss is not another independently crossed factor. Record whether populations such as states require separate training or only separate scoring.
+
+- Valid training combinations: [enumeration or source; expand nested arms correctly]
+- Replication and logical training total: [seeds/folds and count; or unresolved]
+- Execution attempts and score views: [record separately from logical training runs]
+
+### Current Experiment Position
+
+Start each design proposal or slice change with this single logical line. Use short labels in the reader's language and English dimension names without parenthetical Chinese translations. Fill it from the full map and current protocol; retain fixed values, learning-rate policy, scoring horizon, and averaging weights. Keep nested or bundled relationships explicit, and use `none` or `unresolved` where appropriate. Screen wrapping is fine.
+
+Total design dimensions: {[registered dimensions and relevant levels]} | Current varied: {[comparison dimensions and values]} | Current marginalized: {[averaged dimensions and eligible levels]} | Marginalization rule: {[support, weights and reduction order]} | Current fixed: {[dimension=value pairs]}
+
+Use the fields below only for additional detail needed beyond the summary line.
+
+- Current stage, slice ID, and question: [record]
+- Compared candidates and actual changed settings: [baseline and candidates]
+- Fixed conditions: [values and source for remaining controls]
+- Kept separate / aggregated: [dimensions, eligible support, reduction order and weights; or none]
+- Score: [data/split, metric and units, prediction day/window, averaging rule, checkpoint-selection rule]
+- Change from previous slice: [changed dimensions, retained controls, reason, and comparability impact; or initial slice]
+- Evidence and coverage: [planned versus observed runs; missing/excluded evidence and limitations]
+- Next comparison: [record and say whether artifacts can be reused or new training is needed]
+
+Use a compact version of this position in experiment-facing updates. Expand the full map when the design changes or the reader requests it. Distinguish a comparison at fixed settings from an average over named dimensions with stated weights. Day 1, final-day, and mean-across-days scores need separate definitions; training loss and evaluation metric also remain separate. Preserve each completed result's original slice and evidence when updating the current position.
