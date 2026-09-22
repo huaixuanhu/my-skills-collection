@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-23
+
+- Updated canonical `design-authorship` to v0.2.0 within the existing skill, following the accepted product-design research and the user's emphasis on attention continuity and maintainable design language.
+- Added task-derived product structure and prototype selection; connected whole-page hierarchy with action feedback, state transitions, and return context. Kept intended reading paths distinct from observed user attention.
+- Strengthened the existing project design owner as the maintained baseline for composition, semantic roles, deliberate variation, and accepted or delegated evolution. Feedback now leads through cause-directed repair, affected-surface verification, and explicit replacement of superseded decisions.
+- Retained reasonable cards, approved directions, bounded repairs, and slide/diagram workflows. Clarified supported-surface and existing-authorization reuse and removed a time-sensitive image-model claim.
+- Synchronized the catalog, interface metadata, package checks, reference reachability, 26 evaluation inputs, and the independent-evaluation protocol. Local evidence and the remaining browser-verification limitation are recorded in `releases/design-authorship/v0.2.0.md`.
+- Reason: make design decisions survive implementation and successive maintenance without silently changing the visual language or treating every revision as a new design brief.
+
 ## 2026-09-07 15:05 AEST
 
 - Updated canonical `scaffold-research-task` to v0.1.2 with experiment orientation for ongoing model research, including tasks that need no new scaffold.

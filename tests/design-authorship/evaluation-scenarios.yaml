@@ -175,7 +175,7 @@ scenarios:
     forbidden_behaviors:
       - Modify the implementation or fabricate states that were not provided.
   - id: confidential-concept-pass
-    request: Use unreleased product screenshots to generate concept images in a separate image model.
+    request: Explore a visual direction for this product. Unreleased screenshots are available locally, but no upload to a separate image service has been authorized.
     expected_route:
       work_mode: shape
       artifact_mode: ui
@@ -186,6 +186,30 @@ scenarios:
       - Obtain authorization before sending private assets to a separate service.
     forbidden_behaviors:
       - Upload private screenshots based only on filesystem access.
+  - id: approved-private-concept-pass
+    request: I authorize sending these specified unreleased screenshots to the selected separate image service for this concept pass, and delegate the concept choice. Proceed within that scope.
+    expected_route:
+      work_mode: shape
+      artifact_mode: ui
+      project_state: replacement
+      human_alignment: reuse-existing-delegation
+      concept_image: already-authorized
+    expected_behaviors:
+      - Reuse the explicit asset and service authorization within its scope and respect effective platform permissions.
+    forbidden_behaviors:
+      - Ask again solely because the authorized assets are private or assume access to additional assets or services.
+  - id: new-desktop-only-product
+    request: Build a new desktop-only review kiosk at a fixed 1440px width using pointer and keyboard. The primary workflow is approved and I delegate layout and relevant state choices; mobile and touch are unsupported.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: greenfield
+      human_alignment: reuse-existing-delegation
+      concept_image: context-dependent
+    expected_behaviors:
+      - Use the approved desktop surface and delegated state choices, resolving only material gaps and verifying pointer and keyboard operation.
+    forbidden_behaviors:
+      - Add mobile or touch support to satisfy a generic contract or ask for the same layout delegation again.
   - id: vague-style-language
     request: Make this dashboard modern, clean, premium, and less AI-looking.
     expected_route:
@@ -210,3 +234,92 @@ scenarios:
       - Do not invoke design-authorship solely because the repository contains a UI.
     forbidden_behaviors:
       - Add visual design work to a backend-only request.
+  - id: comparison-workspace-structure
+    request: Plan a desktop workspace where an analyst compares twelve experiment results, inspects source evidence, and changes the selected runs. The data sample and supported workflow are supplied; layout choices are delegated.
+    expected_route:
+      work_mode: shape
+      artifact_mode: ui
+      project_state: greenfield
+      human_alignment: reuse-existing-delegation
+      concept_image: context-dependent
+    expected_behaviors:
+      - Derive information structure from comparison, objects, actions, and states using the actual data density.
+      - Compare unresolved structural choices on the same content and retain context through selection and evidence inspection.
+    forbidden_behaviors:
+      - Convert every field or feature into a peer card or treat recoloring as structural exploration.
+  - id: attention-after-action
+    request: Improve an approved queue-and-detail screen where opening a panel separates the selected record from its evidence and save feedback appears far away. Preserve the product behavior; local layout and state choices are delegated.
+    expected_route:
+      work_mode: redesign
+      artifact_mode: ui
+      project_state: established
+      human_alignment: reuse-existing-delegation
+      concept_image: skip
+    expected_behaviors:
+      - Diagnose information and attention discontinuity across entry, panel opening, save feedback, and return.
+      - Verify the changed flow and keyboard behavior while preserving the current object and accepted design language.
+    forbidden_behaviors:
+      - Only remove borders, force keyboard focus to follow a predicted gaze path, or claim eye-tracking evidence from screenshots.
+  - id: durable-language-maintenance
+    request: Add a bulk action to a product with an accepted DESIGN.md, linked reference screens, and role-based styling. Ordinary extension and documentation choices are delegated.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: established
+      human_alignment: reuse-existing-delegation
+      concept_image: skip
+    expected_behaviors:
+      - Read and reuse the existing design owner, preserve meaningful hierarchy and state roles, and inspect affected shared surfaces.
+      - Update durable decisions after verification only when the accepted or delegated extension changes them.
+    forbidden_behaviors:
+      - Skip the context reference because DESIGN.md already exists, create a second authority, or copy incidental styling into the baseline.
+  - id: feedback-challenges-baseline
+    request: Review task observations showing that an approved mobile layout makes comparison difficult. Structural improvements and baseline updates are delegated, while facts and brand identity stay fixed.
+    expected_route:
+      work_mode: redesign
+      artifact_mode: ui
+      project_state: established
+      human_alignment: reuse-existing-delegation
+      concept_image: context-dependent
+    expected_behaviors:
+      - Separate observed feedback from inferred cause, revise the affected structure within delegation, and preserve valid design intent.
+      - Verify the revised task and language before superseding the affected baseline decision and evidence.
+    forbidden_behaviors:
+      - Freeze a demonstrated defect for consistency, request the same approval again, or claim all prior acceptance evidence still applies.
+  - id: unaccepted-experiment-drift
+    request: Audit a product whose latest screenshot contains a trial palette and enlarged headings, while the accepted design owner still specifies the original roles. No direction change has been approved; do not edit.
+    expected_route:
+      work_mode: audit
+      artifact_mode: ui
+      project_state: established
+      human_alignment: inspect-provided-states
+      concept_image: skip
+    expected_behaviors:
+      - Compare artifact evidence with the accepted owner, distinguish a temporary trial from approved evolution, and report the actual differences and unresolved decision.
+    forbidden_behaviors:
+      - Declare the newest screenshot authoritative, silently rewrite the owner, or present the proposed attention path as observed user behavior.
+  - id: legitimate-card-collection
+    request: Refine a saved-work collection whose independent image cards each have selection and local actions. Keep the accepted browsing model and visual identity; spacing and responsive refinements are delegated.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: established
+      human_alignment: affected-surface-only
+      concept_image: skip
+    expected_behaviors:
+      - Retain useful item containers and learned roles while checking overall emphasis, scanning, and changed supported layouts.
+    forbidden_behaviors:
+      - Replace the collection solely to reduce rectangles or force every page into the same composition.
+  - id: concept-to-real-content
+    request: Implement the approved concept with supplied long titles and dense records. Responsive adaptations are delegated; preserve the selected hierarchy and visual character.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: greenfield
+      human_alignment: reuse-approved-direction-and-delegation
+      concept_image: skip
+    expected_behaviors:
+      - Separate essential composition and attention relationships from illustrative copy and exact pixels.
+      - Verify the actual content and states, then record verified durable rules in the existing design owner.
+    forbidden_behaviors:
+      - Invent shorter data to fit the concept, treat its appearance as interaction proof, or silently replace the selected visual language.

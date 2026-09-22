@@ -6,18 +6,19 @@ The catalog routes and explains repository-owned skills. It does not install a s
 
 | Skill | Version | Routing class | Lifecycle | Invocation |
 | --- | --- | --- | --- | --- |
-| `design-authorship` | `0.1.2` | `task-specific` | `maintained` | `implicit` |
+| `design-authorship` | `0.2.0` | `task-specific` | `maintained` | `implicit` |
 | `human-ai-governance` | `0.7.7` | `cross-cutting` | `maintained` | `implicit` |
 | `scaffold-research-task` | `0.1.2` | `task-specific` | `maintained` | `implicit` |
 
 ## `design-authorship`
 
-Direct, critique, redesign, and verify context-specific visual and interaction design for user interfaces, presentation slides, presentation-like HTML, and explanatory diagrams. Use for layout, hierarchy, typography, color, imagery, motion, responsive behavior, interaction states, narrative flow, visual form, AI-like structural repetition, concept-image calibration, or rendered visual review. Pair it with the appropriate format-specific build skill or tool for code, PPTX, images, and diagrams.
+Direct, critique, redesign, and maintain context-specific visual and interaction design for user interfaces, presentation slides, presentation-like HTML, and explanatory diagrams. Use for task-led structure, layout, attention continuity, hierarchy, visual language, interaction states, narrative flow, design drift, concept-image calibration, or rendered visual review. Pair it with the appropriate format-specific build skill or tool for construction.
 
 - Source: `skills/design-authorship/SKILL.md`
 - Use when:
   - A UI, interaction, responsive state, slide, presentation-like HTML, or explanatory diagram needs design direction, redesign, critique, or visual verification.
-  - Visual intent would benefit from references, content-to-form reasoning, or concept-image calibration before engineering implementation.
+  - Task structure, attention continuity, or visual intent needs references, content-to-form reasoning, or concept-image calibration before implementation.
+  - An ongoing product needs a coherent design language across acceptance, user feedback, maintenance, and intentional evolution without silent drift.
 - Do not route for:
   - Pure backend, data, prose, or infrastructure work with no material visual or interaction decision.
   - Standalone image generation whose requested result is the image itself rather than calibration for a designed artifact.

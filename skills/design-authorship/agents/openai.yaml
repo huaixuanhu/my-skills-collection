@@ -1,6 +1,6 @@
 interface:
   display_name: "Design Authorship"
-  short_description: "Context-led visual and interaction design direction"
-  default_prompt: "Use $design-authorship to align, direct, build, and visually verify this UI, presentation, or diagram."
+  short_description: "Coherent attention and maintainable design language"
+  default_prompt: "Use $design-authorship to shape, verify, and maintain the attention flow and design language of this UI, presentation, or diagram."
 policy:
   allow_implicit_invocation: true

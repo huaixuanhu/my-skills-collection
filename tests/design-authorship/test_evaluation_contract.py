@@ -63,7 +63,7 @@ def main() -> int:
         for scenario in scenarios
     )
 
-    print("PASS: design-authorship evaluation contract checks passed.")
+    print(f"PASS: design-authorship evaluation inputs are consistent ({len(scenarios)} scenarios); model behavior and rendered quality are assessed separately.")
     return 0
 
 

@@ -1,17 +1,17 @@
 ---
 name: design-authorship
-description: Direct, critique, redesign, and verify context-specific visual and interaction design for user interfaces, presentation slides, presentation-like HTML, and explanatory diagrams. Use for layout, hierarchy, typography, color, imagery, motion, responsive behavior, interaction states, narrative flow, visual form, AI-like structural repetition, concept-image calibration, or rendered visual review. Pair it with the appropriate format-specific build skill or tool for code, PPTX, images, and diagrams.
+description: Direct, critique, redesign, and maintain context-specific visual and interaction design for user interfaces, presentation slides, presentation-like HTML, and explanatory diagrams. Use for task-led structure, layout, attention continuity, hierarchy, visual language, interaction states, narrative flow, design drift, concept-image calibration, or rendered visual review. Pair it with the appropriate format-specific build skill or tool for construction.
 ---
 
 # Design Authorship
 
-Skill version: `0.1.2`
+Skill version: `0.2.0`
 
 ## Purpose
 
 Create artifacts whose major design decisions follow from the subject, audience, task, content relationships, interaction states, narrative, or real technical and accessibility constraints.
 
-This skill owns design direction, interaction alignment, content-to-form choices, critique, and visual acceptance. It does not replace the skill or tool that constructs the actual website, PPTX, image, document, or diagram. It does not grant permission to change product behavior, factual content, brand identity, private assets, deployment, or publication.
+This skill owns design direction, attention continuity, interaction alignment, content-to-form choices, critique, and the maintained design language. It does not replace the skill or tool that constructs the actual website, PPTX, image, document, or diagram. It does not grant permission to change product behavior, factual content, brand identity, private assets, deployment, or publication.
 
 ## Route the Work
 
@@ -29,34 +29,41 @@ Use one primary artifact mode. Load a secondary mode only for a real embedded su
 1. Inspect the existing world.
    - Read the brief, real content, project instructions, design system, tokens, components, templates, screenshots, and durable user decisions that actually exist.
    - Preserve an established visual and interaction system unless the user requests replacement.
+   - When extending or reviewing an ongoing project, read [project-design-context.md](references/project-design-context.md). Recover the accepted design baseline before editing; a recent implementation difference is not automatically an intentional evolution.
 
 2. Align the human design contract.
    - Establish the audience, artifact job, primary task or claim, desired emotional register, truth constraints, technical constraints, and what the result should not resemble.
-   - For a new UI, material redesign, or new interaction pattern, obtain human confirmation or explicit delegation for the target desktop and mobile surfaces plus relevant `selected`, `hover`, `focus`, `pressed`, `disabled`, `empty`, `loading`, `error`, and success states before implementation.
+   - For a new UI, material redesign, or new interaction pattern, obtain human confirmation or explicit delegation for the supported surfaces and input methods plus relevant `selected`, `hover`, `focus`, `pressed`, `disabled`, `empty`, `loading`, `error`, and success states before implementation. Reuse existing confirmation or delegation; include desktop and mobile only where supported.
    - Present inferred existing behavior and ask only about material gaps. For a bounded repair, align only the affected viewport, input method, and states.
    - Read [intent-and-reference.md](references/intent-and-reference.md) for the compact contract and reference-analysis method.
 
-3. Decide whether visual concept images add information.
+3. Derive structure from the task.
+   - For material UI work, read [product-structure.md](references/product-structure.md): establish situated use, representative content, objects, actions, and state changes before selecting page modules or concepts that depend on them. Reuse known structure for a bounded repair.
+   - Distinguish task progression, intended attention, and pointer or keyboard operation. A proposed reading path is design intent, not observed gaze evidence.
+
+4. Decide whether visual concept images add information.
    - For a greenfield UI or material visual replacement, actively offer concept-image calibration when layout, atmosphere, imagery, material, or brand character would otherwise be carried mainly through words.
    - For slides or presentation-like HTML, offer it only when original imagery, visual world, or composition would materially improve the story. Skip it for small refinements, strict templates, exact product-state documentation, or evidence-heavy pages where generated imagery could mislead.
-   - Read [concept-image-calibration.md](references/concept-image-calibration.md) before recommending or using GPT Image 2 or another approved image-generation capability.
+   - Read [concept-image-calibration.md](references/concept-image-calibration.md) before recommending or using an approved image-generation capability.
 
-4. Set direction proportionally.
+5. Set direction proportionally.
    - For greenfield or replacement work, follow an already-selected direction; when a material direction remains unresolved, compare useful alternatives in reading path, spatial composition, density, imagery relationship, or interaction model. Two or three can suffice; do not manufacture alternatives merely to meet a count or present color swaps as separate directions.
    - For established-system extensions and small refinements, use one coherent direction inside the current system.
    - Classify major content relationships before choosing visual forms. Read [content-to-form.md](references/content-to-form.md).
+   - Establish how attention connects the main task or claim to its supporting information and next meaningful action. Check the whole composition as well as individual containers; preserve these relationships across states and supported layouts.
 
-5. Build through the artifact's format workflow.
+6. Build through the artifact's format workflow.
    - Read [ui-interaction.md](references/ui-interaction.md), [slides.md](references/slides.md), or [diagrams.md](references/diagrams.md) for the primary mode.
    - Use the available format-specific skill or tool for construction. Keep real content, behavior, and accessibility ahead of decorative novelty.
+   - Carry the selected composition and semantic roles into the implementation, separating essential intent from flexible examples. Tokens alone do not preserve the design language.
 
-6. Critique the artifact, then verify it.
+7. Critique the artifact, then verify it.
    - Render the actual artifact at the relevant sizes and states. For slides, scope review by the change and save/export effects using [slides.md](references/slides.md). Judge screenshots, exports, or the live result before consulting its design rationale.
-   - Address findings within the agreed scope and verify affected claims again. Read [critique-and-verification.md](references/critique-and-verification.md).
+   - Compare with the task and accepted design baseline. Trace findings to structure, attention, interaction, or craft; repair the cause and verify affected claims again. Read [critique-and-verification.md](references/critique-and-verification.md).
 
-7. Persist only durable approved decisions.
+8. Close the feedback loop and maintain the language.
    - Prefer existing design-system and project documents. Do not create `.design-memory/` or cross-project fingerprint logs by default.
-   - Read [project-design-context.md](references/project-design-context.md) only when a long-lived project needs a durable design-context owner.
+   - Follow [project-design-context.md](references/project-design-context.md) for acceptance, feedback, maintenance, and intentional evolution. Update the owner and relevant examples after accepted or delegated changes are verified; keep unresolved experiments distinct from the baseline.
 
 ## Decision Rules
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,6 +17,7 @@ def main() -> int:
         "references/critique-and-verification.md",
         "references/diagrams.md",
         "references/intent-and-reference.md",
+        "references/product-structure.md",
         "references/project-design-context.md",
         "references/slides.md",
         "references/ui-interaction.md",
@@ -28,7 +30,7 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.1.2`" in skill
+    assert "Skill version: `0.2.0`" in skill
     assert len(skill.splitlines()) < 120
     frontmatter = skill.split("---", 2)[1]
     for required in (
@@ -45,7 +47,7 @@ def main() -> int:
 
     for required in (
         "obtain human confirmation or explicit delegation",
-        "target desktop and mobile surfaces",
+        "supported surfaces and input methods",
         "`selected`, `hover`, `focus`, `pressed`, `disabled`, `empty`, `loading`, `error`, and success states",
         "actively offer concept-image calibration",
         "offer it only when original imagery, visual world, or composition would materially improve the story",
@@ -76,9 +78,6 @@ def main() -> int:
         encoding="utf-8"
     )
     for required in (
-        "GPT Image 2",
-        "`gpt-image-2`",
-        "https://developers.openai.com/api/docs/models/gpt-image-2",
         "do not claim which underlying model it uses",
         "Do not send private screenshots",
         "styleframe or composition reference, not as production truth",
@@ -97,7 +96,26 @@ def main() -> int:
     assert not (CANDIDATE / "scripts").exists()
     assert not (CANDIDATE / "assets").exists()
 
-    print("PASS: design-authorship v0.1.2 package checks passed.")
+    # Every runtime reference must be reachable from the entrypoint. This checks
+    # discoverability and missing files, not whether the instructions are good.
+    pending = [CANDIDATE / "SKILL.md"]
+    visited = set()
+    while pending:
+        page = pending.pop().resolve()
+        if page in visited:
+            continue
+        visited.add(page)
+        for target in re.findall(r"\]\(([^)]+)\)", page.read_text(encoding="utf-8")):
+            if target.startswith(("https://", "http://", "#")):
+                continue
+            resolved = (page.parent / target.split("#", 1)[0]).resolve()
+            assert resolved.is_relative_to(CANDIDATE.resolve()), target
+            assert resolved.is_file(), (page, target)
+            if resolved.suffix == ".md":
+                pending.append(resolved)
+    assert {path.resolve() for path in (CANDIDATE / "references").glob("*.md")} <= visited
+
+    print("PASS: design-authorship v0.2.0 package and reference-link checks passed; design behavior is assessed separately.")
     return 0
 
 

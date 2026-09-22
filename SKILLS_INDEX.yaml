@@ -8,7 +8,8 @@ skills:
     invocation_policy: implicit
     use_when:
       - A UI, interaction, responsive state, slide, presentation-like HTML, or explanatory diagram needs design direction, redesign, critique, or visual verification.
-      - Visual intent would benefit from references, content-to-form reasoning, or concept-image calibration before engineering implementation.
+      - Task structure, attention continuity, or visual intent needs references, content-to-form reasoning, or concept-image calibration before implementation.
+      - An ongoing product needs a coherent design language across acceptance, user feedback, maintenance, and intentional evolution without silent drift.
     not_for:
       - Pure backend, data, prose, or infrastructure work with no material visual or interaction decision.
       - Standalone image generation whose requested result is the image itself rather than calibration for a designed artifact.
