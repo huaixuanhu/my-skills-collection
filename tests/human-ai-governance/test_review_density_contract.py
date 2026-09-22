@@ -53,7 +53,7 @@ def main() -> int:
         assert set(case) == {"id", "request", "expected"}
         assert case["request"]
 
-    print("PASS: v0.7.5 review-density evaluation inputs are consistent; model behavior is assessed separately.")
+    print("PASS: v0.7.7 review-density evaluation inputs are consistent; model behavior is assessed separately.")
     return 0
 
 

@@ -11,6 +11,27 @@
 - Validation and the bounded synthetic exercise are recorded in `releases/scaffold-research-task/v0.1.2.md`. The user authorized scoped Git publication on `codex/astra-skill-adaptation`; capstone project adoption remains separate.
 - Reason: keep the full experiment design and the current comparison understandable as model, arm, population, training, and evaluation choices change across a long-running study.
 
+## 2026-09-05 22:19 AEST
+
+- Updated canonical `human-ai-governance` to v0.7.7, `design-authorship` to v0.1.2, and `scaffold-research-task` to v0.1.1 after the user approved the follow-up constraint audit.
+- Carried valid authorization and delegated design choices into later workflow steps; retained scope, expiry, one-shot, renewal, private-asset, and platform boundaries.
+- Scoped UI verification to affected supported layouts and states, expanding for shared-component effects. Kept an already-selected design direction and made alternative comparisons depend on an unresolved material choice.
+- Separated standard scaffold generation from manual adaptation to accepted project paths, responsibilities, and implementation language, with validation appropriate to each route.
+- Corrected template-token detection so nested JSON and literal braces in research documentation do not fail validation; retained checks for unresolved generator placeholders and unknown template fields.
+- Kept compatible v0.1.0 scaffold provenance valid under the v0.1.1 validator without rewriting existing manifests or generated markers.
+- Synchronized current version markers, the generated catalog, evaluation inputs, and regression tests. Evidence and migration notes are in the three version records under `releases/`.
+- Reason: remove repeated decisions, unused structure, and demonstrable validator false positives while retaining accepted design and research contracts. The user's separately edited global rules are outside this change.
+
+## 2026-09-05 17:53 AEST
+
+- Updated canonical `human-ai-governance` to v0.7.6 and `design-authorship` to v0.1.1 for three user-approved collaboration refinements following the Astra compatibility review.
+- Replaced the fixed graph-rebuild status with evidence-based reporting of need, authorization, execution, and verification; already-approved local rebuilds can continue while owner sources remain authoritative.
+- Preserved accepted objectives across side questions and compatible additions; cancellation or replacement stops future incompatible actions and reconciles already-started operations without claiming an unverified stop or reversal.
+- Scoped slide narrative and visual review to new or whole-deck work, local edits, and the actual deck-wide effects of saving or exporting.
+- Synchronized current version markers, generated catalog, and regression inputs. Kept reasoning-mode policy, authority boundaries, preflight behavior, other design modes, and research scaffolding intact.
+- Recorded focused independent decision exercises and local validation in `releases/human-ai-governance/v0.7.6.md` and `releases/design-authorship/v0.1.1.md`; these do not establish a measured long-horizon performance gain.
+- Reason: remove specific sources of repeated approval, unnecessary whole-deck review, and inaccurate task-state reporting while retaining accepted outcomes and their evidence requirements.
+
 ## 2026-08-31 14:25 AEST
 
 - Upgraded canonical `human-ai-governance` to v0.7.5 with compact, decision-complete engineering conversation and expanded detail whenever the request or safe use needs it.

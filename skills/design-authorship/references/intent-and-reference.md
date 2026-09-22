@@ -42,7 +42,7 @@ Do not pixel-copy or convert one reference into a universal template. Separate b
 
 ## Direction Setting
 
-For greenfield or replacement work, compare two or three directions. Each direction should state:
+For greenfield or replacement work, follow an already-selected direction. Compare alternatives when a material design choice remains unresolved; two or three often suffice, but the decision determines the useful set. For each considered direction, retain the information needed to choose:
 
 - a one-sentence visual and interaction thesis;
 - reading path or task flow;
@@ -52,6 +52,6 @@ For greenfield or replacement work, compare two or three directions. Each direct
 - principal usability or narrative risk;
 - why it fits the actual content.
 
-Directions must differ on at least two material axes such as spatial composition, reading path, density, symmetry, imagery relationship, information reveal, or interaction model. Color alone does not create a different direction.
+Alternatives should differ in ways that could change the design decision, such as spatial composition, reading path, density, symmetry, imagery relationship, information reveal, or interaction model. Do not manufacture differences to meet an axis count. Color alone does not create a different direction.
 
 For an established-system extension, derive one direction from current tokens, components, interaction conventions, and representative screens. Identify only the gap that requires a new decision.

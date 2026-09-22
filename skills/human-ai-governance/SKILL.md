@@ -5,7 +5,7 @@ description: Guide engineering plans, progress updates, evidence, results, and h
 
 # Human-AI Governance
 
-Skill version: `0.7.5`
+Skill version: `0.7.7`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.5
+Generated/adapted from human-ai-governance v0.7.7
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -36,6 +36,7 @@ Use the marker to decide whether an existing project needs a separately approved
 - Skip an inapplicable step without a long justification. Preserve explicit repository rules, unresolved material decisions, and controls tied to credible failure modes.
 - Treat a change as material when it can alter observable behavior, architecture or data flow, persistence, safety or authority, privacy, production operation, or a consequential runtime dependency. Typos, formatting, contract-preserving tests, lockfile-only churn, and historical notes are not automatically material.
 - One accepted plan covers safe local implementation inside its scope. When the user explicitly asks to continue until a verifiable outcome succeeds, keep the completion objective and safe in-scope recovery active across failed attempts.
+- Keep the accepted objective active across side questions and incorporate compatible new instructions. On explicit cancellation or a changed objective, stop future incompatible actions, reconcile already-started operations, and retain unaffected work; claim an operation stopped or was undone only with confirming evidence.
 - Route retries by credible single and cumulative consequence, not attempt number. Continue equivalent or adaptive diagnosis, repair, validation, checkpoint, resume, and preparation while scope, success criteria, authority, accepted state, and consequence ceiling remain unchanged.
 - After a consequential attempt fails, advance safe recovery to the next real boundary. Ask again only for a material scope expansion, unresolved material choice, explicit approval gate, or consequence-bearing execution outside the accepted envelope; attempt count alone is not an approval boundary.
 - Treat the platform's current effective sandbox, approval, connector, and access configuration as authoritative and outside this skill's control. Do not weaken, strengthen, bypass, or recreate it. Platform-granted capability does not expand task scope or project authorization.
@@ -135,7 +136,7 @@ Retain governance artifacts that support continuity, but keep each one focused.
 - Read `references/preflight-patterns.md` when the user wants automatic governance checks, drift prevention, pre-commit integration, or a reusable local gate.
 - Read `references/evaluation-scenarios.md` only when evaluating or revising this skill's behavior across representative project types.
 - Read `references/stage-sizing.md` when creating or revising a complex multi-stage plan, handling a recovery branch, or deciding whether one stage spans too many independent responsibility or recovery domains.
-- Read `references/persistent-completion.md` when the user explicitly asks the agent to continue until success, a failed attempt must be classified for automatic recovery, or an attempt budget may be confused with authority for diagnosis and repair.
+- Read `references/persistent-completion.md` when the user explicitly asks the agent to continue until success, a failed attempt or attempt budget needs recovery routing, or an intervening instruction may change the active objective or already-started operations.
 - Read `references/plan-lifecycle-routing.md` when a project has nested or parallel plans, completed plans retained as evidence, uncertain current-plan selection, or a plan index that must avoid loading irrelevant history.
 - Read `references/reasoning-mode-routing.md` when recommending xhigh, Max, Ultra, or a staged combination for an important or complex main-workspace task, or when mode choice needs recovery routing after repeated failure.
 - Read `references/graph-governance.md` only when the user explicitly asks for graph governance, an accepted plan calls for a shadow graph pilot, or a repository graph manifest is needed for the current task's cross-surface impact, recovery, authority, lineage, or freshness question. The presence of a manifest alone does not activate graph workflow for a bounded task. Treat graphs as optional derived indexes; do not introduce graph files, hooks, gates, or services merely because this skill is active.

@@ -1,6 +1,6 @@
 # Preflight Patterns
 
-Current skill version: `human-ai-governance v0.7.5`
+Current skill version: `human-ai-governance v0.7.7`
 
 Use this reference when a project needs automatic checks to prevent governance drift. The bundled `scripts/governance_preflight_template.py` is a starting scaffold, not a universal law. Copy it into the target repository and tune it to the project's tier（层级）, filenames, architecture docs, and credible side effects. Preserve a stronger proven project-specific gate instead of replacing it for consistency alone.
 
@@ -213,6 +213,10 @@ For a `v0.7.2` to `v0.7.3` migration, the five-tier model, writing and terminolo
 For a `v0.7.3` to `v0.7.4` migration, the five-tier model, plan-index route, writing and terminology routes, and generic preflight behavior remain unchanged apart from the version marker. Review any rule that treats a new attempt as automatically requiring approval. Keep safe diagnosis, repair, validation, and preparation active under an explicit persistent-completion request; retain renewed approval only for consequence-bearing execution outside its accepted single or cumulative envelope. Do not add generic attempt-count, retry-word, or persistence-mode checks to preflight.
 
 For a `v0.7.4` to `v0.7.5` migration, keep the five-tier model, reasoning and writing routes, explicit terminology choice, plan routing, recovery authority, and generic preflight behavior unchanged apart from the version marker. Add the compact conversational review rule to the existing collaboration instructions under a separately approved project migration, while retaining full formal records and exact evidence and authorization boundaries. Honor existing standing plain-language preferences. Do not introduce length, jargon, heading, or review-density script gates, and do not infer that a new global skill version updated existing project adapters.
+
+For a `v0.7.5` to `v0.7.6` migration, review active-task continuity and any fixed graph-rebuild status wording. Preserve in-scope progress across side questions, reconcile already-started operations on cancellation or replacement, and report rebuild authority and results from actual evidence. Keep the existing governance model and generic preflight behavior unchanged apart from the version marker; no new script gate or downstream migration follows from this global update.
+
+For a `v0.7.6` to `v0.7.7` migration, carry valid existing agreement and external-action authorization into later steps. In copied templates, qualify renewed approval by an out-of-envelope action or an unsatisfied approval or renewal condition. Preserve one-shot limits, expiry, cumulative limits, and platform gates. The generic preflight changes only its version marker; update a project's marker after its actual rules have been synchronized, not as a substitute for that migration.
 
 Under the accepted reference classifications, `learningWordsformimi` remains Tier 3 while it lacks material economic or account authority, current read-only `autoadvisor` remains Tier 4, and a future live-trading quant system is Tier 5.
 

@@ -30,7 +30,9 @@ Skip generated imagery when the deck is governed by a strict template, the page 
 
 ## Verification
 
-Inspect:
+Scope the narrative and visual review to the task and the actual save/export behavior.
+
+For a new deck or a whole-deck redesign, inspect:
 
 - every page at full size;
 - a full-deck contact sheet;
@@ -40,4 +42,8 @@ Inspect:
 - three-page neighborhoods for accidental template repetition;
 - export fidelity, cropping, font substitution, and overflow.
 
-Fix any break in the narrative chain or critical visual defect before completion.
+For a local edit, inspect the changed pages at full size, relevant adjacent pages, and any dependent content or transitions. Reuse valid review of unaffected pages; changing one title does not by itself reopen the entire deck's narrative contract.
+
+When saving or exporting can affect the whole deck, add deck-wide integrity checks for the effects that the actual tool or pipeline can introduce. These may include page count and order, content preservation, font substitution, cropping, overflow, or missing assets. A master, shared style, renderer, or export change can require inspecting every affected page, even when the requested content edit was small. Select the breadth from the credible effects; an integrity check does not automatically call for rewriting or reapproving the narrative.
+
+Fix affected narrative breaks or critical visual defects within the agreed scope, render the changed result again, and report any unresolved acceptance issue or unverified export effect before completion.

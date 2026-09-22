@@ -34,7 +34,9 @@ For each material node or edge, retain the smallest useful provenance:
 - observation time or snapshot identity;
 - freshness state and builder version when generated.
 
-Before use, verify the graph's bound sources or declared freshness contract. When a newer authoritative source conflicts with the graph, mark the graph stale, use the authoritative source, block invalid downstream continuation, and include one concise handoff field: `Rebuild status: <projection> requires rebuild; not authorized or performed in this task.` Do not silently smooth the conflict.
+Before use, verify the graph's bound sources or declared freshness contract. When a newer authoritative source conflicts with the graph, mark the graph stale, use the authoritative source, and block invalid downstream continuation. Do not silently smooth the conflict.
+
+Report the actual rebuild status concisely: whether a rebuild is needed, whether the accepted scope authorizes it, whether it has run, and what verification establishes. Continue an already-authorized rebuild within its accepted scope; otherwise report the need and remaining authority boundary. Do not infer authorization from graph presence, hard-code an unperformed state after execution, or claim freshness before verification. A rebuilt graph remains a derived view whose material claims yield to owner sources.
 
 ## Shadow-first lifecycle
 

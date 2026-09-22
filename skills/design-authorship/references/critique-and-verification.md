@@ -31,15 +31,15 @@ Do not calculate a taste score, require every subjective axis to exceed a number
 
 UI:
 
-- render confirmed desktop, mobile, and intermediate layouts;
+- render affected supported layouts within the confirmed or delegated contract, including other supported surfaces exposed to shared-component or style changes;
 - exercise changed interactions with pointer, touch assumptions, and keyboard where applicable;
 - inspect confirmed empty, loading, error, success, selected, hover, focus, pressed, and disabled states;
 - test long text and representative real data.
 
 Slides:
 
-- render individual pages and a contact sheet;
-- inspect title flow, adjacent-page transitions, projection distance, and export fidelity.
+- follow [slides.md](slides.md) to select full-deck review for new work or a whole-deck redesign, and affected-page plus relevant-neighbor review for a local edit;
+- broaden integrity checks when shared styles, saving, or export can affect other pages; retain applicable title flow, transition, viewing-distance, and fidelity checks within that scope.
 
 Diagram:
 

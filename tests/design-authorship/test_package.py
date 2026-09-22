@@ -28,7 +28,7 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.1.0`" in skill
+    assert "Skill version: `0.1.2`" in skill
     assert len(skill.splitlines()) < 120
     frontmatter = skill.split("---", 2)[1]
     for required in (
@@ -80,7 +80,6 @@ def main() -> int:
         "`gpt-image-2`",
         "https://developers.openai.com/api/docs/models/gpt-image-2",
         "do not claim which underlying model it uses",
-        "Ask the human whether to use GPT Image 2",
         "Do not send private screenshots",
         "styleframe or composition reference, not as production truth",
         "accessibility conformance",
@@ -98,7 +97,7 @@ def main() -> int:
     assert not (CANDIDATE / "scripts").exists()
     assert not (CANDIDATE / "assets").exists()
 
-    print("PASS: design-authorship v0.1.0 package checks passed.")
+    print("PASS: design-authorship v0.1.2 package checks passed.")
     return 0
 
 

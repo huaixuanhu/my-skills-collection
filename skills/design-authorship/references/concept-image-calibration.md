@@ -22,11 +22,11 @@ Skip it when the task is a bounded polish, an extension of a mature design syste
 
 ## Workflow
 
-1. Complete the intent contract and, for UI work, the viewport-and-state contract first.
-2. Ask the human whether to use GPT Image 2, the environment's approved image-generation tool, or human-supplied concept images.
+1. Use the established intent contract and, for UI work, the confirmed or delegated viewport-and-state contract; resolve only remaining material gaps.
+2. Reuse the human's existing image-tool choice and authorization. When the choice remains unresolved and matters to the result or external effects, ask whether to use GPT Image 2, the environment's approved image-generation tool, or human-supplied concept images.
 3. Do not send private screenshots, unreleased assets, confidential data, or third-party material to a separate service without authorization.
 4. Generate or request only the views needed to compare the selected directions. Prefer styleframes and composition studies over fake production screenshots with invented text or controls.
-5. Let the human select, reject, or combine directions.
+5. Follow an already-selected direction. When selection has been delegated, choose within that delegation and continue; otherwise let the human select, reject, or combine materially different directions.
 6. Extract Reference DNA, including explicit `take` and `avoid` decisions.
 7. Build with real content, components, states, and accessibility constraints.
 8. Compare the rendered implementation with the selected concept. Explain material departures and re-align when they weaken the approved direction.

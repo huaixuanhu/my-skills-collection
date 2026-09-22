@@ -48,4 +48,4 @@ Prefer native semantics and established platform patterns. Verify keyboard opera
 - https://www.w3.org/TR/WCAG22/
 - https://www.w3.org/WAI/ARIA/apg/
 
-Render representative desktop and mobile views plus every materially changed state. Exercise the interaction rather than judging source code alone.
+Render representative applicable layouts and every materially changed state within the confirmed or delegated contract. Broaden checks when shared components or styles can affect other supported surfaces; do not add an unsupported platform solely for verification. Exercise the changed interaction rather than judging source code alone.

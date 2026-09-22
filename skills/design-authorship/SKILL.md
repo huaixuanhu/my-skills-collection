@@ -5,7 +5,7 @@ description: Direct, critique, redesign, and verify context-specific visual and 
 
 # Design Authorship
 
-Skill version: `0.1.0`
+Skill version: `0.1.2`
 
 ## Purpose
 
@@ -42,7 +42,7 @@ Use one primary artifact mode. Load a secondary mode only for a real embedded su
    - Read [concept-image-calibration.md](references/concept-image-calibration.md) before recommending or using GPT Image 2 or another approved image-generation capability.
 
 4. Set direction proportionally.
-   - For greenfield or replacement work, compare two or three directions that differ in reading path, spatial composition, density, imagery relationship, or interaction model. Do not present color swaps as separate directions.
+   - For greenfield or replacement work, follow an already-selected direction; when a material direction remains unresolved, compare useful alternatives in reading path, spatial composition, density, imagery relationship, or interaction model. Two or three can suffice; do not manufacture alternatives merely to meet a count or present color swaps as separate directions.
    - For established-system extensions and small refinements, use one coherent direction inside the current system.
    - Classify major content relationships before choosing visual forms. Read [content-to-form.md](references/content-to-form.md).
 
@@ -51,7 +51,7 @@ Use one primary artifact mode. Load a secondary mode only for a real embedded su
    - Use the available format-specific skill or tool for construction. Keep real content, behavior, and accessibility ahead of decorative novelty.
 
 6. Critique the artifact, then verify it.
-   - Render the actual artifact at the relevant sizes and states. Judge screenshots, exports, or the live result before consulting its design rationale.
+   - Render the actual artifact at the relevant sizes and states. For slides, scope review by the change and save/export effects using [slides.md](references/slides.md). Judge screenshots, exports, or the live result before consulting its design rationale.
    - Address findings within the agreed scope and verify affected claims again. Read [critique-and-verification.md](references/critique-and-verification.md).
 
 7. Persist only durable approved decisions.

@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.5`
+Current skill version: `human-ai-governance v0.7.7`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.5
+Generated/adapted from human-ai-governance v0.7.7
 ```
 
 ## Contents
@@ -79,7 +79,7 @@ Use the workflow as a set of decision rules. A capable model may omit a step whe
 
 Do not produce a long explanation for every skipped step. State the exception only when it changes safety, evidence quality, or user expectations.
 
-One accepted plan covers ordinary local implementation decisions inside its declared scope. Ask again only for a material scope expansion, a consequential external action, an unresolved choice that changes the result, or an explicit repository approval gate.
+One accepted plan covers ordinary local implementation decisions inside its declared scope. Reuse still-valid authorization for consequential external actions inside their accepted execution envelope. Ask again only for a material scope expansion, an action outside that envelope, an unresolved choice that changes the result, or an explicit gate whose approval or renewal condition is not yet satisfied.
 
 Follow the platform's current effective sandbox, approval, connector, and access configuration. The skill neither changes nor recreates that platform boundary. When the platform grants technical capability, continue to apply the accepted task scope and project-specific authorization boundaries.
 
@@ -220,7 +220,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.5 -->
+<!-- Generated/adapted from human-ai-governance v0.7.7 -->
 
 ## Collaboration
 
@@ -257,7 +257,8 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 - Update a document only when its current claim would become stale.
 - Run the aggregate gate once; rerun child checks only for diagnosis or separate evidence.
 - If the user explicitly requests completion persistence, continue safe in-scope recovery after failure and route any new execution by consequence rather than attempt number.
-- Pause for material scope expansion, consequential external action, unresolved material choices, or an explicit approval gate.
+- Keep the objective active across side questions and compatible updates. On cancellation or replacement, stop future incompatible actions, reconcile already-started operations, retain unaffected work, and claim stopping or reversal only from confirming evidence.
+- Reuse valid agreement and authorization. Pause for material scope expansion, consequential external action outside the accepted envelope, unresolved material choices, or an explicit approval or renewal condition that remains unsatisfied.
 ```
 
 ### Plan Doc Header

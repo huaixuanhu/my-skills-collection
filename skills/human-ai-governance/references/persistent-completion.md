@@ -1,14 +1,23 @@
 # Persistent Completion and Recovery
 
-Current skill version: `human-ai-governance v0.7.5`
+Current skill version: `human-ai-governance v0.7.7`
 
-Use this reference when the user explicitly asks Codex to continue until a verifiable outcome succeeds, a failed attempt needs recovery routing, or an attempt budget may be confused with authority to diagnose and repair. Skip it for ordinary bounded tasks that do not need persistent recovery.
+Use this reference when the user explicitly asks Codex to continue until a verifiable outcome succeeds, a failed attempt or attempt budget needs recovery routing, or an intervening instruction may change the active objective or already-started operations. Ordinary bounded tasks can use the entrypoint's continuity rule without loading this reference.
 
 ## Activation and Scope
 
 Treat phrases such as “continue until complete,” “do not stop until it passes,” “finish the whole task,” or an equivalent durable goal as a persistent completion directive when the objective and success condition are clear. Bind the directive to the accepted scope, non-scope, evidence requirements, and platform permissions. Infer a clear route without another question; ask only when a material ambiguity would change the result or consequence boundary.
 
 A persistent completion directive authorizes continued progress toward the accepted outcome. It does not silently add deployment, publication, push, live action, new credentials, data movement, spending, or another external effect that was outside the accepted scope.
+
+## Updates During Active Work
+
+- A side question or status request leaves the accepted objective active. Answer it and continue; incorporate compatible new requirements within the accepted scope without asking for the same agreement again.
+- An explicit cancellation or replacement objective ends future actions that no longer apply. Reconcile tools and operations already started, using available authorized cancellation or recovery controls where appropriate. A new message cannot by itself undo an external action.
+- Preserve completed work and evidence that remain valid. Reopen only affected conclusions, and resolve a material scope or authority change before dependent action; continue useful independent work when possible.
+- Distinguish an instruction received or cancellation requested from an operation confirmed stopped or undone. Use tool results, receipts, or observed state for that claim, and report any pending or unknown outcome without inventing closure.
+
+These rules also apply to ordinary active tasks; they do not require a special persistence phrase, a new log, or another approval turn.
 
 ## Separate Three Authority Layers
 

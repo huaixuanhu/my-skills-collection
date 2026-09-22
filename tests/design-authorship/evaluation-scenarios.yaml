@@ -38,6 +38,43 @@ scenarios:
       - Record the delegated assumptions, preserve behavior, and verify the implemented states.
     forbidden_behaviors:
       - Treat delegation as permission to invent product behavior or skip state verification.
+  - id: delegated-concept-selection
+    request: Use the available image-generation tool with this public text brief; choose the strongest concept and implement it. I have delegated the relevant UI layout and state choices.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: greenfield
+      human_alignment: reuse-existing-delegation
+      concept_image: already-authorized
+    expected_behaviors:
+      - Reuse the authorized tool choice and delegated selection, make the concept choice, and continue within the agreed UI contract.
+      - Preserve the boundary on private assets and verify the real implementation.
+    forbidden_behaviors:
+      - Ask again for the same tool authorization or require the user to select a concept already delegated to the agent.
+  - id: desktop-only-bounded-repair
+    request: Fix a clipped label in a fixed-width desktop-only kiosk. The supported surface and local component are established; there is no mobile implementation or shared responsive change.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: established
+      human_alignment: affected-surface-only
+      concept_image: skip
+    expected_behaviors:
+      - Inspect and verify the affected supported layout and changed interaction states using the existing kiosk contract.
+    forbidden_behaviors:
+      - Require a mobile build or mobile render solely to satisfy a generic desktop-and-mobile checklist.
+  - id: approved-greenfield-direction
+    request: Implement this approved visual composition in a new project, preserving its direction; ordinary layout details are delegated.
+    expected_route:
+      work_mode: build
+      artifact_mode: ui
+      project_state: greenfield
+      human_alignment: reuse-approved-direction-and-delegation
+      concept_image: skip
+    expected_behaviors:
+      - Follow the selected composition, infer its real contract, and resolve only material gaps.
+    forbidden_behaviors:
+      - Manufacture two or three replacement directions solely because the project is new.
   - id: narrative-brand-deck
     request: Build a keynote-style launch deck whose story needs an original visual world.
     expected_route:
@@ -48,8 +85,35 @@ scenarios:
       concept_image: conditional-offer
     expected_behaviors:
       - Offer generated concepts only for imagery, atmosphere, material, or composition that improves the story.
+      - Review every page, the deck narrative, and the rendered or exported result for the new deck.
     forbidden_behaviors:
       - Require generated imagery on every slide.
+  - id: local-title-edit
+    request: Change one title in an approved deck, preserving its argument and style. The editor changes only that text element and a page preview is available; no shared style or export pipeline is changing.
+    expected_route:
+      work_mode: build
+      artifact_mode: slides
+      project_state: established
+      human_alignment: affected-surface-only
+      concept_image: skip
+    expected_behaviors:
+      - Inspect the edited page and relevant adjacent or dependent content for layout and continuity, reusing valid unaffected review.
+    forbidden_behaviors:
+      - Reopen the whole-deck narrative or demand unrelated redesign approval solely because one title changed.
+  - id: local-edit-global-export-effects
+    request: Correct one label in an approved deck and export it with a replacement renderer that may substitute fonts across all pages.
+    expected_route:
+      work_mode: build
+      artifact_mode: slides
+      project_state: established
+      human_alignment: affected-surface-only
+      concept_image: skip
+    expected_behaviors:
+      - Inspect the corrected page and relevant context, then check deck-wide export integrity and all pages exposed to font substitution or resulting layout defects.
+      - Keep the approved narrative and report unresolved export effects.
+    forbidden_behaviors:
+      - Check only the corrected page despite the known deck-wide rendering risk.
+      - Turn an export-integrity check into an unsolicited whole-deck narrative redesign.
   - id: evidence-heavy-results-deck
     request: Polish a research-results deck that must show exact charts, screenshots, and source evidence.
     expected_route:
