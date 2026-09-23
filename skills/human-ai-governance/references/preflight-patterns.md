@@ -1,6 +1,6 @@
 # Preflight Patterns
 
-Current skill version: `human-ai-governance v0.7.7`
+Current skill version: `human-ai-governance v0.7.8`
 
 Use this reference when a project needs automatic checks to prevent governance drift. The bundled `scripts/governance_preflight_template.py` is a starting scaffold, not a universal law. Copy it into the target repository and tune it to the project's tier（层级）, filenames, architecture docs, and credible side effects. Preserve a stronger proven project-specific gate instead of replacing it for consistency alone.
 
@@ -217,6 +217,8 @@ For a `v0.7.4` to `v0.7.5` migration, keep the five-tier model, reasoning and wr
 For a `v0.7.5` to `v0.7.6` migration, review active-task continuity and any fixed graph-rebuild status wording. Preserve in-scope progress across side questions, reconcile already-started operations on cancellation or replacement, and report rebuild authority and results from actual evidence. Keep the existing governance model and generic preflight behavior unchanged apart from the version marker; no new script gate or downstream migration follows from this global update.
 
 For a `v0.7.6` to `v0.7.7` migration, carry valid existing agreement and external-action authorization into later steps. In copied templates, qualify renewed approval by an out-of-envelope action or an unsatisfied approval or renewal condition. Preserve one-shot limits, expiry, cumulative limits, and platform gates. The generic preflight changes only its version marker; update a project's marker after its actual rules have been synchronized, not as a substitute for that migration.
+
+For a `v0.7.7` to `v0.7.8` migration, carry the human choice for added safeguards into the existing collaboration rules. Explain added system paths, operating burden, or maintenance before implementing an unapproved mechanism, while retaining ordinary error handling, explicitly required controls, and prior choices. Keep the five-tier model and generic preflight behavior unchanged apart from its version marker. Do not add keyword checks, safeguard counts, risk scores, or an approval registry; this is a contextual design decision. Preserve project-specific mandatory boundaries, and update the project marker only after its actual rules have been synchronized under the project's migration scope.
 
 Under the accepted reference classifications, `learningWordsformimi` remains Tier 3 while it lacks material economic or account authority, current read-only `autoadvisor` remains Tier 4, and a future live-trading quant system is Tier 5.
 

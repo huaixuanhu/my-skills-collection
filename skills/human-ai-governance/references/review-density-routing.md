@@ -1,6 +1,6 @@
 # Review-Density Routing
 
-Current skill version: `human-ai-governance v0.7.7`
+Current skill version: `human-ai-governance v0.7.8`
 
 Use this reference when a user-facing engineering update must balance review effort with completeness, when shorter wording might hide a material fact, or when one deliverable contains both conversation and formal engineering records.
 

@@ -1,8 +1,8 @@
 # Proportional Assurance
 
-Current skill version: `human-ai-governance v0.7.7`
+Current skill version: `human-ai-governance v0.7.8`
 
-Use this reference when validation is expensive, prior evidence may still be valid, architecture or authority boundaries are involved, defensive controls may overlap, platform permissions need to be separated from project authorization, or a complex capability may reuse an existing component.
+Use this reference when considering an additional safeguard, validation is expensive, prior evidence may still be valid, architecture or authority boundaries are involved, defensive controls may overlap, platform permissions need to be separated from project authorization, or a complex capability may reuse an existing component.
 
 ## One Tier Model, Contextual Questions
 
@@ -80,6 +80,25 @@ During review, ask:
 - Does an upstream contract already guarantee the same condition within the same trust boundary?
 - Does this layer fail visibly and preserve the correct claim ceiling, or can it silently convert an error into misleading success?
 - Is the duplication independent defense-in-depth（纵深防御）, or the same check repeated without a separate owner?
+
+## Human Choice Before Added Safeguards
+
+A safeguard can address a plausible failure and still be an unresolved design trade-off. Before implementing an additional mechanism that introduces system paths, operating burden, or ongoing maintenance beyond the accepted design, present the choice and wait for the user's decision. This includes proposed retry or fallback machinery, compatibility branches, repeated validation, backup systems, background recovery, and extra approval steps when they add those obligations. Judge the added behavior and cost, not line count, model identity, or a tier label alone. Several individually small additions can form one material expansion.
+
+Give a concise, concrete account of:
+
+- the failure being addressed, the evidence or uncertainty, and its credible impact on this project's affected surface;
+- existing protections, the remaining gap, and the exact owner rule if a safeguard is claimed to be required;
+- the proposed addition and its behavior, operating, testing, dependency, and maintenance costs;
+- the simplest acceptable alternative, the residual risk with each choice, and a recommendation. Keeping the current design or deferring an optional addition can be valid choices.
+
+An announcement, silence, or a general request to make something robust is not agreement to an undisclosed expansion. Wait before implementing or scaffolding the proposed addition, while continuing independent work inside the accepted scope. Once the user chooses, carry that choice forward without asking again unless the relevant facts or scope materially change. If an optional addition is declined, preserve the agreed simpler design; do not treat that choice as a failed acceptance check or repeatedly propose the same layer without new evidence. Record a consequential choice in the existing plan or design owner when continuity needs it, without creating another approval registry.
+
+Ordinary error handling that preserves the intended contract, explicitly required controls, and implementation of already-approved safeguards do not need a new choice. For example, a clear save-error message can remain an ordinary repair; adding a durable retry queue and recovery worker introduces a design decision. Reusing an accepted backup procedure does not authorize building a new backup subsystem. Calling added machinery an error handler does not exempt it from the decision.
+
+Preserve existing safety invariants and the platform's effective restrictions. Name a concrete governing requirement when one makes a control mandatory; “safer” or “best practice” alone does not do so. If a newly discovered gap prevents safe completion within the agreed design, pause only the affected operation and explain the smallest viable remedy or scope reduction. Do not silently build a larger protection system, offer bypassing a mandatory boundary, or remove existing controls to make the project simpler.
+
+Keep this as a design conversation. Do not add safeguard counters, keyword checks, risk scores, or another preflight gate to automate the judgment.
 
 ## Reuse or Build
 

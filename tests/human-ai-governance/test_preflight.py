@@ -42,7 +42,7 @@ def commit_all(root: Path, message: str) -> None:
     assert result.returncode == 0, result.stderr
 
 
-def init_repo(root: Path, marker: str = "0.7.7") -> None:
+def init_repo(root: Path, marker: str = "0.7.8") -> None:
     run(["git", "init", "-q"], root)
     run(["git", "config", "user.email", "test@example.invalid"], root)
     run(["git", "config", "user.name", "Governance Test"], root)
@@ -73,7 +73,7 @@ def update_trace(root: Path, *, architecture: bool = False, changed: str = "runt
         root / "CHANGELOG.md",
         "## 2026-07-11 10:00 AEST\n\n"
         f"- Changed {changed}.\n"
-        "- Reason: test v0.7.7 behavior.\n\n"
+        "- Reason: test v0.7.8 behavior.\n\n"
         "## 2026-07-10 10:00 AEST\n\n"
         "- Initial.\n"
         "- Reason: fixture.\n",
@@ -84,7 +84,7 @@ def update_trace(root: Path, *, architecture: bool = False, changed: str = "runt
         f"- Task: test {changed}.\n"
         "- Plan agreed: yes.\n"
         f"- Changed files: {changed}.\n"
-        "- Reason: test v0.7.7 behavior.\n"
+        "- Reason: test v0.7.8 behavior.\n"
         "- Validation: passed.\n"
         "- Safety notes: fixture only.\n\n"
         "## 2026-07-10 10:00 AEST\n\n"
@@ -342,7 +342,7 @@ def main() -> int:
         run(["git", "add", "AGENTS.md"], staged_marker)
         write(
             staged_marker / "AGENTS.md",
-            "Generated/adapted from human-ai-governance v0.7.7\n",
+            "Generated/adapted from human-ai-governance v0.7.8\n",
         )
         result = preflight(staged_marker, "--tier", "1", "--require-skill-marker")
         assert result.returncode == 1
@@ -484,7 +484,7 @@ def main() -> int:
         init_repo(large_agents)
         write(
             large_agents / "AGENTS.md",
-            "Generated/adapted from human-ai-governance v0.7.7\n" + ("x" * 33_000),
+            "Generated/adapted from human-ai-governance v0.7.8\n" + ("x" * 33_000),
         )
         result = preflight(
             large_agents,
@@ -495,7 +495,7 @@ def main() -> int:
         assert_pass(result)
         assert "exceeds the common 32 KiB project-doc budget" in result.stdout
 
-    print("PASS: v0.7.7 preflight behavior tests passed.")
+    print("PASS: v0.7.8 preflight behavior tests passed.")
     return 0
 
 

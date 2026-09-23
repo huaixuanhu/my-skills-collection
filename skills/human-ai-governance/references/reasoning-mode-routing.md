@@ -1,6 +1,6 @@
 # Reasoning-Mode Routing
 
-Current skill version: `human-ai-governance v0.7.7`
+Current skill version: `human-ai-governance v0.7.8`
 
 Use this reference for important or complex work in the main workspace. Keep reasoning-mode choice separate from governance tier: tier controls authority and credible harm, while mode routing responds to the task's reasoning shape.
 

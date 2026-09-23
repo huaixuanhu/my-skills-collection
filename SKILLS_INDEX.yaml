@@ -23,7 +23,7 @@ skills:
     invocation_policy: implicit
     use_when:
       - User-facing engineering plans, progress, evidence, results, or handoffs need concise, decision-complete communication, including ordinary bounded tasks.
-      - Project-wide planning, authority, evidence, recovery, validation, handoff, writing-mode, or technical-language rules need to be created, reviewed, or maintained.
+      - Project-wide planning, authority, evidence, recovery, validation, added-safeguard decisions, handoff, writing-mode, or technical-language rules need to be created, reviewed, or maintained.
       - A long-running or consequential workflow needs proportional human-AI collaboration boundaries across task types.
     not_for:
       - General chat, simple translation, or unrelated prose without an engineering review or governance need.

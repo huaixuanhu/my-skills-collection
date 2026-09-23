@@ -35,8 +35,8 @@ def main() -> int:
     assert actual_files == expected_files, sorted(actual_files ^ expected_files)
 
     skill = (CANDIDATE / "SKILL.md").read_text(encoding="utf-8")
-    assert "Skill version: `0.7.7`" in skill
-    assert "Generated/adapted from human-ai-governance v0.7.7" in skill
+    assert "Skill version: `0.7.8`" in skill
+    assert "Generated/adapted from human-ai-governance v0.7.8" in skill
     assert len(skill.splitlines()) < 145
     assert "The presence of a manifest alone does not activate graph workflow" in skill
     for required in (
@@ -86,7 +86,7 @@ def main() -> int:
         "references/review-density-routing.md",
     ):
         text = (CANDIDATE / relative_path).read_text(encoding="utf-8")
-        assert "v0.7.7" in text, relative_path
+        assert "v0.7.8" in text, relative_path
 
     assurance = (
         CANDIDATE / "references/proportional-assurance.md"
@@ -284,7 +284,7 @@ def main() -> int:
         CANDIDATE / "scripts/governance_preflight_template.py"
     ).read_text(encoding="utf-8")
     for required in (
-        'SKILL_VERSION = "0.7.7"',
+        'SKILL_VERSION = "0.7.8"',
         '"--porcelain=v1", "-z"',
         'errors="surrogateescape"',
         "class GitInspectionError",
@@ -296,7 +296,7 @@ def main() -> int:
     assert "strip_git_quotes" not in preflight
     assert "PLAN_INDEX" not in preflight
 
-    print("PASS: v0.7.7 package regression checks passed.")
+    print("PASS: v0.7.8 package regression checks passed.")
     return 0
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-09-24
+
+- Updated canonical `human-ai-governance` to v0.7.8 after the user confirmed a decision boundary for added safeguards: explain the actual risk, existing protection, added costs, and simpler alternatives before implementing a mechanism that expands the accepted design, then wait for the user's choice.
+- Kept routine error handling, explicitly required controls, and already-approved safeguards autonomous within scope. Preserved declined optional choices, mandatory boundaries, and independent in-scope work while a decision is pending.
+- Updated the existing proportional-assurance reference, project template, migration guidance, evaluation scenarios, catalog, and current version markers. The generic preflight changes only its version marker; no runtime check, approval registry, or downstream migration was added.
+- Validation and bounded decision evidence are recorded in `releases/human-ai-governance/v0.7.8.md`.
+- Reason: give the user control over additional system and maintenance costs without turning ordinary repairs into repeated approval requests or assuming that more protection is always the appropriate project design.
+
 ## 2026-09-23
 
 - Updated canonical `design-authorship` to v0.2.0 within the existing skill, following the accepted product-design research and the user's emphasis on attention continuity and maintainable design language.

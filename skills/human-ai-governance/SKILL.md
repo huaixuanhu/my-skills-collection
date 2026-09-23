@@ -1,11 +1,11 @@
 ---
 name: human-ai-governance
-description: Guide engineering plans, progress updates, evidence, results, and handoffs with concise, decision-complete human review. Also create, review, or maintain proportional five-tier human-AI governance, AGENTS.md, architecture and plan documents, plan indexes, validation and safety boundaries, persistent recovery, reasoning-mode routing, audience-facing writing, and explicit default/plain technical language. Use for user-facing engineering communication, including bounded tasks, and for long-running or consequential technical workflows. Keep ordinary communication lightweight; do not use for general chat, simple translation, or unrelated prose, or replace a task-specific implementation, research, or design workflow.
+description: Guide engineering plans, progress updates, evidence, results, and handoffs with concise, decision-complete human review. Also create, review, or maintain proportional five-tier human-AI governance, AGENTS.md, architecture and plan documents, plan indexes, validation and safety boundaries, human choice over added safeguards, persistent recovery, reasoning-mode routing, audience-facing writing, and explicit default/plain technical language. Use for user-facing engineering communication, including bounded tasks, and for long-running or consequential technical workflows. Keep ordinary communication lightweight; do not use for general chat, simple translation, or unrelated prose, or replace a task-specific implementation, research, or design workflow.
 ---
 
 # Human-AI Governance
 
-Skill version: `0.7.7`
+Skill version: `0.7.8`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.7
+Generated/adapted from human-ai-governance v0.7.8
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -32,7 +32,7 @@ Use the marker to decide whether an existing project needs a separately approved
 
 - Tier 1-5 is the only governance classification. It records effective authority and credible consequence; complexity, data volume, and cloud use shape the work and evidence without creating another level, score, or tier.
 - Apply added controls to the capability surface the task can change. A distant roadmap or unrelated high-risk module does not make every edit high-risk, but permanent project invariants still apply.
-- Attach each validation or safeguard to a named claim, boundary, or credible failure mode. Give it one primary owner and retain independent layers when they control distinct failures.
+- Attach each validation or safeguard to a named claim, boundary, or credible failure mode. Give it one primary owner and retain independent layers when they control distinct failures. Before implementing an additional safeguard that introduces system paths, operating burden, or ongoing maintenance beyond the accepted design, explain the need, costs, and simpler alternatives and wait for the user's choice. Routine error handling, explicitly required controls, and already-approved safeguards remain autonomous within scope.
 - Skip an inapplicable step without a long justification. Preserve explicit repository rules, unresolved material decisions, and controls tied to credible failure modes.
 - Treat a change as material when it can alter observable behavior, architecture or data flow, persistence, safety or authority, privacy, production operation, or a consequential runtime dependency. Typos, formatting, contract-preserving tests, lockfile-only churn, and historical notes are not automatically material.
 - One accepted plan covers safe local implementation inside its scope. When the user explicitly asks to continue until a verifiable outcome succeeds, keep the completion objective and safe in-scope recovery active across failed attempts.
@@ -58,7 +58,7 @@ Use the marker to decide whether an existing project needs a separately approved
 
 3. Implement in bounded slices.
    - Prefer the project's existing patterns, language, tooling, and docs style.
-   - Place controls at the trust, authority, representation, persistence, or irreversibility boundary that owns the failure mode. Inside one boundary, prefer the canonical control over equivalent checks repeated without a distinct purpose.
+   - Place controls at the trust, authority, representation, persistence, or irreversibility boundary that owns the failure mode. Inside one boundary, prefer the canonical control over equivalent checks repeated without a distinct purpose. A credible failure mode establishes a reason to consider a new layer, not agreement to its added complexity; use [proportional-assurance.md](references/proportional-assurance.md) for that decision.
    - Treat roadmap stages as coordination containers, not automatic execution units. Size an execution stage around one primary verifiable outcome and one coherent acceptance and recovery boundary; stages need not be equal.
    - For complex or multi-session work, classify stage capacity as `bounded`, `dense_but_coherent`, or `split_required`. Split independent acceptance, rollback, authority, evidence, or recovery domains only at a restartable seam; do not split by file, function, package, token, duration, or compaction counts alone.
    - Keep atomic or causally inseparable work together. When a product can remain accepted while cross-product roadmap closeout remains pending, expose that restartable seam instead of burying both states in one execution outcome.
@@ -129,7 +129,7 @@ Retain governance artifacts that support continuity, but keep each one focused.
 
 ## Resources
 
-- Read `references/proportional-assurance.md` when validation is expensive, evidence may be reusable, a change crosses architecture or authority boundaries, defensive controls may overlap, platform permissions need to be distinguished from project authorization, or a complex capability may reuse an existing component.
+- Read `references/proportional-assurance.md` when considering an additional safeguard, validation is expensive, evidence may be reusable, a change crosses architecture or authority boundaries, defensive controls may overlap, platform permissions need to be distinguished from project authorization, or a complex capability may reuse an existing component.
 - Read `references/audience-facing-writing.md` when creating or revising audience-facing long-form prose, an article, speech, executive narrative, report, or presentation copy, or when a mixed deliverable needs section-level writing-mode routing.
 - Read `references/technical-language-routing.md` when the user explicitly selects `plain`, when technical material must be explained to a non-specialist, or when validating that `default` and `plain` leave writing mode and engineering capability unchanged.
 - Read `references/governance-patterns.md` when creating governance files, adapting this workflow to a new project, writing templates, or deciding how strict the project should be.

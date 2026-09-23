@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.7`
+Current skill version: `human-ai-governance v0.7.8`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.7
+Generated/adapted from human-ai-governance v0.7.8
 ```
 
 ## Contents
@@ -146,6 +146,7 @@ At closeout, update the index and any mutable header mirror together. Preserve i
 
 Use the lightest governance that adequately controls credible harm.
 
+- Before implementing additional safeguards that introduce system paths, operating burden, or ongoing maintenance beyond the accepted design, explain the actual risk, existing protection, added costs, and simpler alternatives; wait for the user's choice. Routine error handling, explicitly required controls, and already-approved safeguards continue within scope. Apply [proportional-assurance.md](proportional-assurance.md#human-choice-before-added-safeguards) to distinguish these cases without another tier or automatic gate.
 - Require each gate to name the failure mode it controls.
 - Give each failure mode a canonical control owner. Preserve independent layers when they control distinct failures or contain failure of another layer.
 - Prefer one aggregate validation command when it already runs the required child checks.
@@ -220,7 +221,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.7 -->
+<!-- Generated/adapted from human-ai-governance v0.7.8 -->
 
 ## Collaboration
 
@@ -254,6 +255,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 - Read only the canonical sources relevant to the task.
 - When a plan index applies, query it and apply load policy before opening plan bodies; load only matched current plans, necessary parents, status owners, and needed evidence.
 - For material work, state scope, non-scope, validation, and affected authority.
+- Before adding a safeguard that expands system paths, operating burden, or maintenance beyond the accepted design, explain the risk, existing protections, added costs, and simpler alternatives, then wait for the user's choice. Continue ordinary error handling, explicitly required controls, and already-approved safeguards within scope; preserve mandatory boundaries and continue unaffected work while a decision is pending.
 - Update a document only when its current claim would become stale.
 - Run the aggregate gate once; rerun child checks only for diagnosis or separate evidence.
 - If the user explicitly requests completion persistence, continue safe in-scope recovery after failure and route any new execution by consequence rather than attempt number.

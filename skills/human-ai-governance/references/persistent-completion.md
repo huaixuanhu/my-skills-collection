@@ -1,6 +1,6 @@
 # Persistent Completion and Recovery
 
-Current skill version: `human-ai-governance v0.7.7`
+Current skill version: `human-ai-governance v0.7.8`
 
 Use this reference when the user explicitly asks Codex to continue until a verifiable outcome succeeds, a failed attempt or attempt budget needs recovery routing, or an intervening instruction may change the active objective or already-started operations. Ordinary bounded tasks can use the entrypoint's continuity rule without loading this reference.
 
