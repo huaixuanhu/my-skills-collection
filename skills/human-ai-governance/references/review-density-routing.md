@@ -1,6 +1,6 @@
 # Review-Density Routing
 
-Current skill version: `human-ai-governance v0.7.8`
+Current skill version: `human-ai-governance v0.7.9`
 
 Use this reference when a user-facing engineering update must balance review effort with completeness, when shorter wording might hide a material fact, or when one deliverable contains both conversation and formal engineering records.
 
@@ -40,7 +40,7 @@ This is a priority order, not a fixed set of headings. Omit empty sections and â
 
 Keep statuses exact: inspected, changed, validated, committed, pushed, deployed, and activated are different claims. A passing local test does not establish live readiness. A prepared candidate does not mean it has been installed or published. Preserve denominators, time windows, units, thresholds, and missing evidence when they affect interpretation.
 
-Retain exact identifiers, commands, paths, configuration keys, error text, formulas, and contract wording when needed to identify, execute, reproduce, verify, or stop safely. Do not flood an update with every path or log line simply because it exists. Link the relevant source for secondary detail; keep decision-changing caveats in the response itself. Never invent a source link or claim that an unwritten report holds the omitted evidence.
+Retain exact identifiers, commands, paths, configuration keys, error text, formulas, and contract wording when needed to identify, execute, reproduce, verify, or stop safely. Compact reporting does not justify replacing specific diagnostic errors with generic failures or discarding useful context; apply the entrypoint's diagnostic-retention rule to the underlying evidence. Do not flood an update with every path or log line simply because it exists. Link the relevant source for secondary detail; keep decision-changing caveats in the response itself. Never invent a source link or claim that an unwritten report holds the omitted evidence.
 
 In a repair or implementation handoff, preserve the provided material changed-file pointer so the reader can inspect the reported change. A clear feature name supplies the subject, while a short file link preserves that review entrypoint; do not replace it with a long list of incidental files or invent a path that was not supplied or verified.
 

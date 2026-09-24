@@ -16,7 +16,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
-SKILL_VERSION = "0.7.8"
+SKILL_VERSION = "0.7.9"
 SKILL_MARKER_RE = re.compile(
     r"Generated/adapted from human-ai-governance v(?P<version>\d+\.\d+\.\d+)"
 )

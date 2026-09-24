@@ -1,6 +1,6 @@
 # Persistent Completion and Recovery
 
-Current skill version: `human-ai-governance v0.7.8`
+Current skill version: `human-ai-governance v0.7.9`
 
 Use this reference when the user explicitly asks Codex to continue until a verifiable outcome succeeds, a failed attempt or attempt budget needs recovery routing, or an intervening instruction may change the active objective or already-started operations. Ordinary bounded tasks can use the entrypoint's continuity rule without loading this reference.
 
@@ -82,8 +82,8 @@ Do not stop at “attempt 1 used” when safe recovery remains. Do not ask for p
 
 ## Progress and Stopping
 
-- Retry an unchanged action only when evidence supports a transient failure and the retry remains idempotent or otherwise safe.
-- After a repeated substantive failure, change the hypothesis, repair, method, or evidence source instead of looping mechanically.
+- When evidence contradicts the current explanation, reassess it and the relevant tool or validation assumptions; repetition alone does not require a changed method.
+- Safe repetition can support reproduction, intermittency checks, or cross-checking. Choose the next attempt from the actual evidence and circumstances; briefly explain the basis when user participation is needed again.
 - Preserve completed accepted work and reopen only claims invalidated by the failure or repair.
 - Stop when the success condition is verified, a material consequence boundary needs a decision, or no meaningful in-scope recovery path remains.
 

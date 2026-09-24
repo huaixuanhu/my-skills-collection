@@ -1,6 +1,6 @@
 schema_version: 1
 skill: human-ai-governance
-version: 0.7.8
+version: 0.7.9
 data_kind: synthetic
 scenarios:
   - id: bounded-result

@@ -7,7 +7,7 @@ The catalog routes and explains repository-owned skills. It does not install a s
 | Skill | Version | Routing class | Lifecycle | Invocation |
 | --- | --- | --- | --- | --- |
 | `design-authorship` | `0.2.0` | `task-specific` | `maintained` | `implicit` |
-| `human-ai-governance` | `0.7.8` | `cross-cutting` | `maintained` | `implicit` |
+| `human-ai-governance` | `0.7.9` | `cross-cutting` | `maintained` | `implicit` |
 | `scaffold-research-task` | `0.1.2` | `task-specific` | `maintained` | `implicit` |
 
 ## `design-authorship`

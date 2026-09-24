@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-25
+
+- Updated canonical `human-ai-governance` to v0.7.9: reassess explanations and relevant tool or validation assumptions when evidence contradicts them, while preserving useful repeated experiments without mandatory method changes.
+- Made validation directly support the claimed behavior and check whether a repair resolves the original problem. Preserve useful diagnostic errors and context in non-major-consequence work, exclude authentication secrets, and retain applicable major-consequence protections independently of compact reporting.
+- Updated existing references, the project template, three representative evaluation scenarios, catalog, and current version markers. The generic preflight changes only its version marker; no new skill, retry counter, logging subsystem, approval gate, or downstream migration was added.
+- Validation: aggregate checks passed for three skills and nine regression scripts; official `quick_validate.py` and the existing installation-link check passed. A fresh-context agent using an isolated source snapshot handled four synthetic cases as intended: contradicted diagnosis, unverified persistence despite passing mock tests, useful unchanged reruns, and selective secret exclusion with diagnostic retention. These are bounded decision observations, not executed application tests or proof of long-term behavior.
+
 ## 2026-09-24
 
 - Updated canonical `human-ai-governance` to v0.7.8 after the user confirmed a decision boundary for added safeguards: explain the actual risk, existing protection, added costs, and simpler alternatives before implementing a mechanism that expands the accepted design, then wait for the user's choice.

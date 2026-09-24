@@ -5,7 +5,7 @@ description: Guide engineering plans, progress updates, evidence, results, and h
 
 # Human-AI Governance
 
-Skill version: `0.7.8`
+Skill version: `0.7.9`
 
 ## Overview
 
@@ -14,7 +14,7 @@ Create a durable collaboration system while scaling governance to credible harm,
 When generating or upgrading project governance files, include this marker in `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.8
+Generated/adapted from human-ai-governance v0.7.9
 ```
 
 Use the marker to decide whether an existing project needs a separately approved migration. Do not auto-migrate downstream projects when this global skill changes.
@@ -37,7 +37,8 @@ Use the marker to decide whether an existing project needs a separately approved
 - Treat a change as material when it can alter observable behavior, architecture or data flow, persistence, safety or authority, privacy, production operation, or a consequential runtime dependency. Typos, formatting, contract-preserving tests, lockfile-only churn, and historical notes are not automatically material.
 - One accepted plan covers safe local implementation inside its scope. When the user explicitly asks to continue until a verifiable outcome succeeds, keep the completion objective and safe in-scope recovery active across failed attempts.
 - Keep the accepted objective active across side questions and incorporate compatible new instructions. On explicit cancellation or a changed objective, stop future incompatible actions, reconcile already-started operations, and retain unaffected work; claim an operation stopped or was undone only with confirming evidence.
-- Route retries by credible single and cumulative consequence, not attempt number. Continue equivalent or adaptive diagnosis, repair, validation, checkpoint, resume, and preparation while scope, success criteria, authority, accepted state, and consequence ceiling remain unchanged.
+- Route retries by credible single and cumulative consequence, not attempt number. When evidence contradicts the current explanation, reassess it and the relevant tool or validation assumptions. Repetition alone does not require a different method. Continue equivalent or adaptive recovery while scope, success criteria, authority, accepted state, and consequence ceiling remain unchanged; briefly explain the basis when user participation is needed again.
+- In contexts without major consequences, retain diagnostic information and context as fully as useful; avoid unnecessary redaction or deletion, and exclude passwords, keys, and equivalent authentication secrets. Preserve applicable protections where consequences are major. Compact reporting does not justify discarding diagnostic evidence.
 - After a consequential attempt fails, advance safe recovery to the next real boundary. Ask again only for a material scope expansion, unresolved material choice, explicit approval gate, or consequence-bearing execution outside the accepted envelope; attempt count alone is not an approval boundary.
 - Treat the platform's current effective sandbox, approval, connector, and access configuration as authoritative and outside this skill's control. Do not weaken, strengthen, bypass, or recreate it. Platform-granted capability does not expand task scope or project authorization.
 - For a complex, shared, security-sensitive, or maintenance-heavy capability, inspect suitable project, platform, standard, or maintained open-source options before building it from scratch. Simple local glue may be implemented directly; choose by fit and lifecycle risk rather than a mandatory preference order.
@@ -65,7 +66,7 @@ Use the marker to decide whether an existing project needs a separately approved
    - Preserve the accepted parent plan as the source of truth; child or branch plans must name their parent, scope, non-scope, retained state, entry conditions, and exit criteria.
 
 4. Validate and hand off.
-   - Identify the claims and safety invariants affected by the change, then run the smallest meaningful validation that covers them.
+   - Identify the claims and safety invariants affected by the change, then choose proportionate validation that directly supports them and state its limits. For a repair, check whether the original problem is resolved.
    - Reuse passing evidence while its relevant subject, inputs, contract, verifier, acceptance rule, and environment remain unchanged. Invalidate only the affected claims, and keep sampled or offline evidence within its stated claim ceiling.
    - When an aggregate gate already includes the relevant focused check, run only the aggregate gate. Run a child separately only to diagnose a failure or when the user or repository explicitly requires separate evidence. Add a preflight（预检）only when it controls a recurring mechanical failure.
    - Stop adding validation when every affected acceptance claim and safety invariant has current sufficient evidence. A relevant input change, failed evidence, or unresolved consequential boundary reopens only the necessary checks.

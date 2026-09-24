@@ -2,12 +2,12 @@
 
 Use this reference when the task needs concrete templates or a stricter tier decision. Keep final project files shorter than these templates when the project is small.
 
-Current skill version: `human-ai-governance v0.7.8`
+Current skill version: `human-ai-governance v0.7.9`
 
 When adapting this skill into a project, write this marker into `AGENTS.md` or another durable governance file:
 
 ```text
-Generated/adapted from human-ai-governance v0.7.8
+Generated/adapted from human-ai-governance v0.7.9
 ```
 
 ## Contents
@@ -221,7 +221,7 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 ```markdown
 # AGENTS.md
 
-<!-- Generated/adapted from human-ai-governance v0.7.8 -->
+<!-- Generated/adapted from human-ai-governance v0.7.9 -->
 
 ## Collaboration
 
@@ -257,8 +257,10 @@ Do not define “material” only in prose. For Tier 5, record project-specific 
 - For material work, state scope, non-scope, validation, and affected authority.
 - Before adding a safeguard that expands system paths, operating burden, or maintenance beyond the accepted design, explain the risk, existing protections, added costs, and simpler alternatives, then wait for the user's choice. Continue ordinary error handling, explicitly required controls, and already-approved safeguards within scope; preserve mandatory boundaries and continue unaffected work while a decision is pending.
 - Update a document only when its current claim would become stale.
-- Run the aggregate gate once; rerun child checks only for diagnosis or separate evidence.
+- Choose validation that directly supports the affected claims, state its limits, and check whether a repair resolves the original problem. Run the aggregate gate once; rerun child checks only for diagnosis or separate evidence.
 - If the user explicitly requests completion persistence, continue safe in-scope recovery after failure and route any new execution by consequence rather than attempt number.
+- When evidence contradicts the current explanation, reassess it and relevant tool or validation assumptions. Repetition alone does not require a different method; briefly explain the basis when user participation is needed again.
+- In contexts without major consequences, retain useful diagnostic errors and context without unnecessary redaction or deletion, excluding passwords, keys, and equivalent authentication secrets. Preserve applicable protections where consequences are major; compact reporting does not justify discarding evidence.
 - Keep the objective active across side questions and compatible updates. On cancellation or replacement, stop future incompatible actions, reconcile already-started operations, retain unaffected work, and claim stopping or reversal only from confirming evidence.
 - Reuse valid agreement and authorization. Pause for material scope expansion, consequential external action outside the accepted envelope, unresolved material choices, or an explicit approval or renewal condition that remains unsatisfied.
 ```

@@ -1,6 +1,6 @@
 # Proportional Assurance
 
-Current skill version: `human-ai-governance v0.7.8`
+Current skill version: `human-ai-governance v0.7.9`
 
 Use this reference when considering an additional safeguard, validation is expensive, prior evidence may still be valid, architecture or authority boundaries are involved, defensive controls may overlap, platform permissions need to be separated from project authorization, or a complex capability may reuse an existing component.
 
@@ -42,6 +42,8 @@ Examples:
 ## Select Sufficient Validation
 
 Choose validation from the affected claim and boundary. Validation options are not cumulative levels.
+
+Exercise the behavior relevant to the claim and, for a repair, check whether the original problem is resolved. Intermediate observations and test doubles support only the behavior they actually establish; state what remains unverified. This does not require a full production workflow for every change.
 
 | Change shape | Sufficient evidence direction |
 | --- | --- |
